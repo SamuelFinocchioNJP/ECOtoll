@@ -1,4 +1,4 @@
-package Homework1;
+package utility;
 
 public class Constants {
 

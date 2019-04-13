@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Homework1;
+package veicolo;
 
 /**
  * @author Luca

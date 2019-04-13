@@ -1,7 +1,10 @@
-package Homework1;
+package pedaggio;
 
 import java.util.List;
 import java.util.Map;
+
+import autostrada.Casello;
+import veicolo.Veicolo;
 
 public interface IPedaggio {
 	
