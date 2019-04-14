@@ -45,7 +45,7 @@ public class PedaggioKm implements IPedaggio{
 			float mul = this.distanzaPuntiPagamento(caselloIngresso, caselloUscita)*tariffaUnitaria.get(tipoVeicolo);
 			float percentage = mul*iva/100;
 			mul += percentage;
-			DecimalFormat decForm = new DecimalFormat("#.##", new DecimalFormatSymbols());
+			DecimalFormat decForm = new DecimalFormat("#.#", new DecimalFormatSymbols());
 		    decForm.setRoundingMode(RoundingMode.HALF_EVEN);
 			return decForm.format(mul);
 		} else

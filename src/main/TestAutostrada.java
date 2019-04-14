@@ -40,7 +40,7 @@ public class TestAutostrada {
 		
 		Casello casello1 = new Casello("AQ OVEST",100);
 		Casello casello2 = new Casello("PE NORD", 250);
-		System.out.println("Il pedaggio per il veicolo e': "+ autostrada.stampaPedaggio(veicolo, casello1, casello2)+"€");
+		System.out.println("Il pedaggio per il veicolo e': "+ autostrada.stampaPedaggio(veicolo, casello1, casello2)+"0€");
 	
 	}
 
