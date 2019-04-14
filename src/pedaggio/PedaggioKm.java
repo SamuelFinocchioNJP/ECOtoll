@@ -57,7 +57,7 @@ public class PedaggioKm implements IPedaggio{
 		if(caselloUscita.getKm() >= caselloIngresso.getKm()) 
 			return caselloUscita.getKm()-caselloIngresso.getKm();
 		else
-			return 0; //sollevo eccezione
+			return -(caselloUscita.getKm()-caselloIngresso.getKm());
 	}
 	
 	
