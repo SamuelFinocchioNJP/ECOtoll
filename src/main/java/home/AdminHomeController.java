@@ -62,7 +62,7 @@ public class AdminHomeController implements Initializable {
 	@FXML
 	private VBox scoll_Tollbooths = null;
 	
-	//Variabili oggetti pannello Tollbooths
+	//Variabili oggetti pannello Vehicles
 	
 	@FXML
 	private Label lbl_Number_Vehicles;
@@ -121,7 +121,7 @@ public class AdminHomeController implements Initializable {
 		
 	public void onRefreshClickTollbooths()
 	{
-		//TODO: query per refreshare la vista delle autostrade
+		//TODO: query per refreshare la vista delle tollbooths
 	}
 	
 	//Metodi bottoni Vehicles
@@ -133,14 +133,13 @@ public class AdminHomeController implements Initializable {
 		
 	public void onRefreshClickVehicles()
 	{
-		//TODO: query per refreshare la vista delle autostrade
+		//TODO: query per refreshare la vista dei veicoli
 	}
 	
 	//Metodi click sui bottoni a sinistra per cambio panel
 	
 	public void onHighwaysClick()
 	{
-		//TODO: controllo in che view sono se non sono in autostrade ci vado
 		if(!pnl_Highways.isVisible())
 		{
 			pnl_Highways.setVisible(true);
@@ -151,7 +150,6 @@ public class AdminHomeController implements Initializable {
 	
 	public void onTollboothsClick()
 	{
-		//TODO: controllo in che view sono se non sono in toolbooths ci vado
 		if(!pnl_Tollbooths.isVisible())
 		{
 			pnl_Highways.setVisible(false);
@@ -162,7 +160,6 @@ public class AdminHomeController implements Initializable {
 	
 	public void onVehiclesClick()
 	{
-		//TODO: controllo in che view sono se non sono in vehicles ci vado
 		if(!pnl_Vehicles.isVisible())
 		{
 			pnl_Highways.setVisible(false);
