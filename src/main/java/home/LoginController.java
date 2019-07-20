@@ -14,8 +14,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable{
-	
-	private double x,y;
+
 	
 	@FXML
 	private Button administrationArea;
@@ -40,16 +39,7 @@ public class LoginController implements Initializable{
 				root = FXMLLoader.load(getClass().getResource("Login-administrator.fxml"));
 			    Stage stageTheButtonBelongs = (Stage) administrationArea.getScene().getWindow();
 			    stageTheButtonBelongs.setScene(new Scene(root));
-		        root.setOnMousePressed(event -> {
-		            x = event.getSceneX();
-		            y = event.getSceneY();
-		        });
-		        root.setOnMouseDragged(event -> {
-
-		            stageTheButtonBelongs.setX(event.getScreenX() - x);
-		            stageTheButtonBelongs.setY(event.getScreenY() - y);
-
-		        });
+		       
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,16 +52,8 @@ public class LoginController implements Initializable{
 				root = FXMLLoader.load(getClass().getResource("Login-operator.fxml"));
 			    Stage stageTheButtonBelongs = (Stage) operatorArea.getScene().getWindow();
 			    stageTheButtonBelongs.setScene(new Scene(root));
-		        root.setOnMousePressed(event -> {
-		            x = event.getSceneX();
-		            y = event.getSceneY();
-		        });
-		        root.setOnMouseDragged(event -> {
-
-		            stageTheButtonBelongs.setX(event.getScreenX() - x);
-		            stageTheButtonBelongs.setY(event.getScreenY() - y);
-
-		        });
+		      
+			    
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
