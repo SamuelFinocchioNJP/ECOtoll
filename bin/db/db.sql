@@ -1,9 +1,6 @@
 --- ECOtoll database schema
 --- Review 0 - Samuel Finocchio 22/05/19
 
-
-CREATE DATABASE IF NOT EXISTS ecotoll;
-
 CREATE TABLE IF NOT EXISTS veicolo (
       -- Chiave primaria
       id BIGINT AUTO_INCREMENT,

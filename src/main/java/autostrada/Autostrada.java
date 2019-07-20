@@ -54,7 +54,7 @@ public class Autostrada implements ModelInterface {
 				pedaggio = new PedaggioEco();
 				break;
 			default:
-				throw new IllegalArgumentException("Il tipo di pedaggio non è ammesso"); 		
+				throw new IllegalArgumentException("Il tipo di pedaggio non ï¿½ ammesso"); 		
 		}
 	}
 	
@@ -141,7 +141,7 @@ public class Autostrada implements ModelInterface {
 			
 			/** If result set is empty, go for insert query **/
 			if ( rs.next() == false ) {
-				throw new Exception ( "Autostrada not found Exeption" );
+				throw new Exception ( "Autostrada not found Exception" );
 			} else {
 				/// Result found in query
 				this.nome  = rs.getString("nome");
