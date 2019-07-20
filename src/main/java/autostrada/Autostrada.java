@@ -29,7 +29,6 @@ public class Autostrada {
 	
 		
 	public Autostrada(String nome, Map<Integer,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
-		// TODO Auto-generated constructor stub
 		this.nome = nome;
 		this.tariffaUnitaria = tariffaUnitaria;
 		this.listCasello = listCasello;
@@ -47,7 +46,7 @@ public class Autostrada {
 				pedaggio = new PedaggioEco();
 				break;
 			default:
-				System.out.println("Il tipo di pedaggio non è ammesso"); //throw exception		
+				throw new IllegalArgumentException("Il tipo di pedaggio non Ã¨ ammesso"); 		
 		}
 	}
 	
@@ -88,8 +87,5 @@ public class Autostrada {
 	
 	public void setPedaggio(IPedaggio pedaggio) {
 		this.pedaggio = pedaggio;
-	}
-	
-	
-
+	}	
 }

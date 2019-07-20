@@ -17,11 +17,11 @@ public class Database {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 * @throws SQLException
-	 * @return Statement ( JDBC )
 	 * @throws SecurityException 
 	 * @throws NoSuchMethodException 
 	 * @throws InvocationTargetException 
 	 * @throws IllegalArgumentException 
+	 * @return Statement ( JDBC )
 	 */
 	public java.sql.Statement getConnection ( ) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		/// Definition of mysql instance for JDBC

@@ -14,7 +14,6 @@ public class Casello {
 	private int km;
 	
 	public Casello(String localita, int km) {
-		// TODO Auto-generated constructor stub
 		this.localita = localita;
 		this.km = km;	
 	}
