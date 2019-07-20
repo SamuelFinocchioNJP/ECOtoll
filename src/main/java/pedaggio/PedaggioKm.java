@@ -22,7 +22,7 @@ public class PedaggioKm implements IPedaggio{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String calcoloPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita, List<Casello> listCasello, Map<Integer,Float> tariffaUnitaria, int iva) {
+	public String calcoloPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita, List<Casello> listCasello, Map<Integer,Float> tariffaUnitaria, int iva) throws IllegalArgumentException {
 		int tipoVeicolo;
 		if(listCasello.contains(caselloIngresso) && listCasello.contains(caselloUscita)) { //TODO equals() in casello su String nome
 			if(veicolo instanceof ClasseA)
@@ -40,7 +40,7 @@ public class PedaggioKm implements IPedaggio{
 							if(veicolo instanceof Classe5)
 								tipoVeicolo = Constants.CLASSE_5;
 							else
-								return null; //sollevo eccezione
+								throw new IllegalArgumentException("Tipo di veicolo non riconosciuto"); //sollevo eccezione
 			
 			float mul = this.distanzaPuntiPagamento(caselloIngresso, caselloUscita)*tariffaUnitaria.get(tipoVeicolo);
 			float percentage = mul*iva/100;
@@ -49,7 +49,7 @@ public class PedaggioKm implements IPedaggio{
 		    decForm.setRoundingMode(RoundingMode.HALF_EVEN);
 			return decForm.format(mul);
 		} else
-			return "Errore i caselli non sono validi."; //sollevo eccezione	
+			throw new IllegalArgumentException("Lista dei caselli non sono valida."); //sollevo eccezione	
 	}
 	
 		
