@@ -33,9 +33,7 @@ public class LoginController implements Initializable{
 	}
 	
 	public void handleClicks(ActionEvent actionEvent) {
-		
-		System.out.println(administrationArea);
-       
+		       
 		if(actionEvent.getSource() == administrationArea) {
 	        Parent root;
 			try {
