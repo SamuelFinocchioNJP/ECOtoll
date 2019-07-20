@@ -16,10 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- * @author Luca
- *
- */
 public class TestAutostrada extends Application {
 
 	/**
@@ -57,6 +53,8 @@ public class TestAutostrada extends Application {
 		autostrada.save();
 		
 		autostrada.retrieve( 1 );
+		
+		autostrada.destroy();
 		
 		System.out.println( autostrada.getNome() );
 	}

@@ -12,7 +12,7 @@ public abstract class Veicolo {
 	private int inquinamentoAcustico;
 	
 	//costruttore per Veicoli fino al 2021(veicoli pesanti) e 2026(tutti i veicoli)	
-	protected Veicolo(String targa, String marca, String modello, int annoImmatricolazione, int assi) {
+	protected Veicolo (String targa, String marca, String modello, int annoImmatricolazione, int assi) {
 		super();
 		this.targa = targa;
 		this.marca = marca;
@@ -20,7 +20,6 @@ public abstract class Veicolo {
 		this.annoImmatricolazione = annoImmatricolazione;
 		this.assi = assi;
 	}
-
 
 	//costruttore per moto (senza assi) fino al 2026
 	protected Veicolo(String targa, String marca, String modello, int annoImmatricolazione) {
@@ -30,8 +29,7 @@ public abstract class Veicolo {
 		this.modello = modello;
 		this.annoImmatricolazione = annoImmatricolazione;
 	}
-
-
+	
 	//costruttore per veicoli pesanti dal 2021 e veicoli normali dal 2026
 	protected Veicolo(String targa, String marca, String modello, int annoImmatricolazione, int assi,
 			String classeAmbientale, int inquinamentoAcustico) {
