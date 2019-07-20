@@ -1,4 +1,4 @@
-package home;
+package view;
 
 
 import java.net.URL;

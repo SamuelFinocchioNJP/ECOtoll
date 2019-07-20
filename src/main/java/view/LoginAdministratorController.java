@@ -1,4 +1,4 @@
-package home;
+package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,9 +40,6 @@ public class LoginAdministratorController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHome.fxml"));
 			Parent root = loader.load();
 			
-			//Prendo il controller del loader e setto il tollcode con il relativo metodo
-			//HomeOperatorMainController controller = loader.getController();
-			//controller.setTollboothCode(textbox_toll_code.getText());
 			
 			//Passo alla nuova view
 			Stage stage = (Stage) btn_login.getScene().getWindow();
