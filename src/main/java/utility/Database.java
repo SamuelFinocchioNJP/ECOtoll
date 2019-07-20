@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import Settings.Config;
 
 public class Database {
 	/**
@@ -23,17 +22,17 @@ public class Database {
 	 * @throws IllegalArgumentException 
 	 * @return Statement ( JDBC )
 	 */
-	public java.sql.Statement getConnection ( ) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		/// Definition of mysql instance for JDBC
-		Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+	public static java.sql.Statement getConnection ( ) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		/** Definition of mysql instance for JDBC **/
+		// TODO: Remove Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 		  
-		/// Database connection String
-		Connection conn =
-			       DriverManager.getConnection ( 
-			    		   "jdbc:mysql://" + Config.DB_CONNECTION_DBNAME + "/"
-			    		   + Config.DB_CONNECTION_DBNAME + "?" 
-			    		   + "user=" + Config.DB_CONNECTION_DBUSERNAME 
-			    		   + "&password=" + Config.DB_CONNECTION_DBPASSWORD );
+		/** Database connection String **/
+		Connection conn = DriverManager.getConnection ( 
+				   "jdbc:mysql://" 
+						   + Settings.Config.DB_CONNECTION_SERVER + "/" 
+						   + Settings.Config.DB_CONNECTION_DBNAME 
+						   + "?user=" + Settings.Config.DB_CONNECTION_DBUSERNAME 
+						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD );
 		
 		return conn.createStatement ( );
 	}

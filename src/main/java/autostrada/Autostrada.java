@@ -3,12 +3,20 @@
  */
 package autostrada;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
+import Models.ModelInterface;
+import Settings.Config;
 import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
+import utility.Database;
 import veicolo.Veicolo;
 
 
@@ -18,7 +26,7 @@ import veicolo.Veicolo;
  *
  */
 
-public class Autostrada {
+public class Autostrada implements ModelInterface {
 
 	private String nome;
 	private Map<Integer,Float> tariffaUnitaria;
@@ -28,7 +36,7 @@ public class Autostrada {
 	private String tipoPedaggio;
 	
 		
-	public Autostrada(String nome, Map<Integer,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
+	public Autostrada ( String nome, Map<Integer,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
 		this.nome = nome;
 		this.tariffaUnitaria = tariffaUnitaria;
 		this.listCasello = listCasello;
@@ -46,19 +54,20 @@ public class Autostrada {
 				pedaggio = new PedaggioEco();
 				break;
 			default:
-				throw new IllegalArgumentException("Il tipo di pedaggio non Ã¨ ammesso"); 		
+				throw new IllegalArgumentException("Il tipo di pedaggio non è ammesso"); 		
 		}
 	}
 	
-	
 	public String stampaPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita ) {
-	
-			return pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita, listCasello, tariffaUnitaria, iva);
-			
+		return pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita, listCasello, tariffaUnitaria, iva);	
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
+	}
+	
+	public int getIva( ) {
+		return this.iva;
 	}
 
 	public void setNome(String nome) {
@@ -87,5 +96,67 @@ public class Autostrada {
 	
 	public void setPedaggio(IPedaggio pedaggio) {
 		this.pedaggio = pedaggio;
+	}
+
+	@Override
+	public void save ( ) {
+		/***
+		 * DB Schema for Autostrada:
+		 *  id BIGINT AUTO_INCREMENT,
+      	 *	nome VARCHAR ( 255 ) NOT NULL,
+      	 *  iva NOT NULL,
+      	 *  PRIMARY KEY ( id )
+		 */
+		
+		/** Acknowledgement of previous existence of the same instance of autostrada **/
+		
+		try {
+			ResultSet rs = Database.getConnection().executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
+			
+			/** If result set is empty, go for insert query **/
+			if ( rs.next() == false ) {
+				Database.getConnection().executeUpdate ( "INSERT INTO autostrada ( nome, iva )"
+						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')" );
+			} else {
+				
+				/// Result found in query
+				int id  = rs.getInt("id");
+				
+				System.out.println( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
+				Database.getConnection().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
+			}
+		    
+			rs.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void retrieve ( int id ) {
+		try {
+			ResultSet rs = Database.getConnection().executeQuery ( "SELECT nome, iva FROM autostrada WHERE id='" + id + "' LIMIT 1" );
+			
+			/** If result set is empty, go for insert query **/
+			if ( rs.next() == false ) {
+				throw new Exception ( "Autostrada not found Exeption" );
+			} else {
+				/// Result found in query
+				this.nome  = rs.getString("nome");
+				this.iva  = rs.getInt("iva");
+			}
+		    
+			rs.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void setIva(int iva ) {
+		if ( iva > 0 )
+			this.iva = iva;
 	}	
 }
