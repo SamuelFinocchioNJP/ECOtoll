@@ -1,5 +1,6 @@
 package utility;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,10 +18,14 @@ public class Database {
 	 * @throws InstantiationException
 	 * @throws SQLException
 	 * @return Statement ( JDBC )
+	 * @throws SecurityException 
+	 * @throws NoSuchMethodException 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
 	 */
-	public java.sql.Statement getConnection ( ) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public java.sql.Statement getConnection ( ) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		/// Definition of mysql instance for JDBC
-		Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+		Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 		  
 		/// Database connection String
 		Connection conn =
