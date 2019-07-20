@@ -3,15 +3,11 @@
  */
 package autostrada;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 import Models.ModelInterface;
-import Settings.Config;
 import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
@@ -19,22 +15,15 @@ import utility.Constants;
 import utility.Database;
 import veicolo.Veicolo;
 
-
-
-/**
- * @author Luca
- *
- */
-
 public class Autostrada implements ModelInterface {
-
+	
 	private String nome;
+	private int id;
 	private Map<Integer,Float> tariffaUnitaria;
 	private List<Casello> listCasello;
 	private int iva;
 	private IPedaggio pedaggio;
 	private String tipoPedaggio;
-	
 		
 	public Autostrada ( String nome, Map<Integer,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
 		this.nome = nome;
@@ -45,7 +34,11 @@ public class Autostrada implements ModelInterface {
 		buildPedaggio();
 	}
 	
-	private void buildPedaggio() {
+	public Autostrada ( int id ) {
+		this.retrieve( id );
+	}
+
+	private void buildPedaggio ( ) {
 		switch(tipoPedaggio) {
 			case Constants.PEDAGGIO_KM:
 				pedaggio = new PedaggioKm();
@@ -64,6 +57,10 @@ public class Autostrada implements ModelInterface {
 
 	public String getNome() {
 		return this.nome;
+	}
+	
+	public int getId ( ) {
+		return this.id;
 	}
 	
 	public int getIva( ) {
@@ -111,21 +108,29 @@ public class Autostrada implements ModelInterface {
 		/** Acknowledgement of previous existence of the same instance of autostrada **/
 		
 		try {
-			ResultSet rs = Database.getConnection().executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
+			ResultSet rs = Database.getConnectionStatement ( ).executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
 			
 			/** If result set is empty, go for insert query **/
 			if ( rs.next() == false ) {
-				Database.getConnection().executeUpdate ( "INSERT INTO autostrada ( nome, iva )"
+				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO autostrada ( nome, iva )"
 						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')" );
-			} else {
 				
+				rs = preparedStatement.executeQuery();
+				rs = preparedStatement.getGeneratedKeys();
+				
+				this.id = rs.getInt( "id" );
+				this.nome = rs.getString( "nome" );
+				this.iva = rs.getInt( "iva" );
+				
+			} else {
 				/// Result found in query
-				int id  = rs.getInt("id");
+				int id = rs.getInt("id");
 				
 				System.out.println( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
-				Database.getConnection().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
+				Database.getConnectionStatement().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
 			}
 		    
+			this.retrieve ( id );
 			rs.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -136,16 +141,18 @@ public class Autostrada implements ModelInterface {
 
 	@Override
 	public void retrieve ( int id ) {
+		
 		try {
-			ResultSet rs = Database.getConnection().executeQuery ( "SELECT nome, iva FROM autostrada WHERE id='" + id + "' LIMIT 1" );
+			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id, nome, iva FROM autostrada WHERE id='" + id + "' LIMIT 1" );
 			
 			/** If result set is empty, go for insert query **/
 			if ( rs.next() == false ) {
 				throw new Exception ( "Autostrada not found Exception" );
 			} else {
 				/// Result found in query
-				this.nome  = rs.getString("nome");
-				this.iva  = rs.getInt("iva");
+				this.nome  = rs.getString ( "nome" );
+				this.iva  = rs.getInt ( "iva" );
+				this.id = rs.getInt ( "id" );
 			}
 		    
 			rs.close();
@@ -155,8 +162,17 @@ public class Autostrada implements ModelInterface {
 		}
 	}
 
-	public void setIva(int iva ) {
+	public void setIva ( int iva ) {
 		if ( iva > 0 )
 			this.iva = iva;
+	}
+
+	public void destroy ( ) {
+		try {
+			Database.getConnectionStatement().executeUpdate ( "DELETE FROM autostrada WHERE nome='" + this.getNome() + "'" );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}	
 }
