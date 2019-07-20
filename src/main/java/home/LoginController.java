@@ -18,7 +18,9 @@ public class LoginController implements Initializable{
 	private double x,y;
 	
 	@FXML
-	private Button submit;
+	private Button administrationArea;
+	@FXML
+	private Button operatorArea;
 
 	public LoginController() {
 		
@@ -31,12 +33,36 @@ public class LoginController implements Initializable{
 	}
 	
 	public void handleClicks(ActionEvent actionEvent) {
+		
+		System.out.println(administrationArea);
        
-		if(actionEvent.getSource() == submit) {
+		if(actionEvent.getSource() == administrationArea) {
 	        Parent root;
 			try {
-				root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-			    Stage stageTheButtonBelongs = (Stage) submit.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("Login-administrator.fxml"));
+			    Stage stageTheButtonBelongs = (Stage) administrationArea.getScene().getWindow();
+			    stageTheButtonBelongs.setScene(new Scene(root));
+		        root.setOnMousePressed(event -> {
+		            x = event.getSceneX();
+		            y = event.getSceneY();
+		        });
+		        root.setOnMouseDragged(event -> {
+
+		            stageTheButtonBelongs.setX(event.getScreenX() - x);
+		            stageTheButtonBelongs.setY(event.getScreenY() - y);
+
+		        });
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(actionEvent.getSource() == operatorArea) {
+	        Parent root;
+			try {
+				root = FXMLLoader.load(getClass().getResource("Login-operator.fxml"));
+			    Stage stageTheButtonBelongs = (Stage) operatorArea.getScene().getWindow();
 			    stageTheButtonBelongs.setScene(new Scene(root));
 		        root.setOnMousePressed(event -> {
 		            x = event.getSceneX();
