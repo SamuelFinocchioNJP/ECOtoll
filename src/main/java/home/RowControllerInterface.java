@@ -7,4 +7,8 @@ public interface RowControllerInterface {
 	public void onEditClick();
 	
 	public void onDeleteClick();
+	
+	public void onMouseEntered();
+	
+	public void onMouseExited();
 }

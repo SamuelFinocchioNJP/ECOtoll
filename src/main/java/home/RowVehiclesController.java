@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 public class RowVehiclesController implements Initializable, RowControllerInterface {
 
@@ -21,6 +22,9 @@ public class RowVehiclesController implements Initializable, RowControllerInterf
 	
 	@FXML
 	private Button btn_Delete;
+	
+	@FXML
+	private HBox box_Row;
 		
 	
 	@Override
@@ -49,6 +53,20 @@ public class RowVehiclesController implements Initializable, RowControllerInterf
 
 		lbl_Name.setText(strings[0]);
 		lbl_Examples.setText(strings[1]);
+	}
+	
+	//Metodi per animazione bellina :)
+	
+	@Override
+	public void onMouseEntered()
+	{
+		box_Row.setStyle("-fx-background-color : #0A0E3F");
+	}
+		
+	@Override
+	public void onMouseExited()
+	{
+		box_Row.setStyle("-fx-background-color : #02030A");
 	}
 
 }

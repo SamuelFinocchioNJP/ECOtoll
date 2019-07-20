@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 public class RowTollboothsController implements Initializable, RowControllerInterface {
 
@@ -24,6 +25,9 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	
 	@FXML
 	private Button btn_Delete;
+	
+	@FXML
+	private HBox box_Row;
 	
 	
 	@Override
@@ -52,5 +56,19 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 		lbl_Name.setText(strings[1]);
 		lbl_KM.setText(strings[2]);
 		return;
+	}
+	
+	//Metodi per animazione bellina :)
+	
+	@Override
+	public void onMouseEntered()
+	{
+		box_Row.setStyle("-fx-background-color : #0A0E3F");
+	}
+	
+	@Override
+	public void onMouseExited()
+	{
+		box_Row.setStyle("-fx-background-color : #02030A");
 	}
 }
