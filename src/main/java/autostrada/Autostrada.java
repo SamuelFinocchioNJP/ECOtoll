@@ -3,16 +3,11 @@
  */
 package autostrada;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 import Models.ModelInterface;
-import Settings.Config;
 import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
@@ -38,8 +33,12 @@ public class Autostrada implements ModelInterface {
 		this.iva = iva;
 		buildPedaggio();
 	}
+	
+	public Autostrada ( int id ) {
+		this.retrieve( id );
+	}
 
-	private void buildPedaggio() {
+	private void buildPedaggio ( ) {
 		switch(tipoPedaggio) {
 			case Constants.PEDAGGIO_KM:
 				pedaggio = new PedaggioKm();
@@ -124,7 +123,6 @@ public class Autostrada implements ModelInterface {
 				this.iva = rs.getInt( "iva" );
 				
 			} else {
-				
 				/// Result found in query
 				int id = rs.getInt("id");
 				
