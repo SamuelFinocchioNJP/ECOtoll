@@ -64,7 +64,7 @@ public class Casello implements ModelInterface{
 		}
 		try {
 			if ( rs.next() == false ) {
-					Database.getConnection().executeUpdate ( "INSERT INTO casello ( localita, kilometro )"
+					Database.getConnection().executeUpdate ( "INSERT INTO casello ( locazione, kilometro )"
 							+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "')" );
 			} else {
 				/// Result found in query
