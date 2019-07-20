@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 
 
-public interface ControllerInerface {
+public interface ControllerInterface {
 	public int[] idRetriever();
 }
