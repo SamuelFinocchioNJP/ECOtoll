@@ -16,11 +16,16 @@
                <Image url="@../imgs/ECOtoll%20logo/logo_transparent.png" />
             </image>
       </ImageView>
-      <Button fx:id="submit" layoutX="312.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="49.0" prefWidth="277.0" styleClass="shiny-orange" text="Submit" />
+      <Button fx:id="submit" layoutX="312.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="49.0" prefWidth="277.0" styleClass="shiny-orange" text="Submit" />
       <AmbientLight color="CHARTREUSE" lightOn="true" />
-      <TextField layoutX="184.0" layoutY="260.0" prefHeight="70.0" prefWidth="520.0" promptText="Insert toll code" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+      <TextField layoutX="191.0" layoutY="179.0" prefHeight="70.0" prefWidth="520.0" promptText="Username" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
          <font>
             <Font name="SansSerif Regular" size="38.0" />
          </font></TextField>
+      <TextField layoutX="191.0" layoutY="281.0" prefHeight="70.0" prefWidth="520.0" promptText="Password" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+         <font>
+            <Font name="SansSerif Regular" size="38.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
