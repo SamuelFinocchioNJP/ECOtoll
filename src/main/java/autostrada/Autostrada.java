@@ -6,6 +6,7 @@ package autostrada;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -108,13 +109,20 @@ public class Autostrada implements ModelInterface {
 		/** Acknowledgement of previous existence of the same instance of autostrada **/
 		
 		try {
-			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
+			ResultSet rs = Database.getConnectionStatement ( ).executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
 			
 			/** If result set is empty, go for insert query **/
 			if ( rs.next() == false ) {
-				Database.getConnectionStatement().executeUpdate ( "INSERT INTO autostrada ( nome, iva )"
+				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO autostrada ( nome, iva )"
 						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')" );
-
+				
+				rs = preparedStatement.executeQuery();
+				rs = preparedStatement.getGeneratedKeys();
+				
+				this.id = rs.getInt( "id" );
+				this.nome = rs.getString( "nome" );
+				this.iva = rs.getInt( "iva" );
+				
 			} else {
 				
 				/// Result found in query

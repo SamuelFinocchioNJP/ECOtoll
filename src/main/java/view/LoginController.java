@@ -33,7 +33,7 @@ public class LoginController implements Initializable{
 	
 	public void handleClicks(ActionEvent actionEvent) {
 		       
-		if(actionEvent.getSource() == administrationArea) {
+		if ( actionEvent.getSource() == administrationArea ) {
 	        Parent root;
 			try {
 				root = FXMLLoader.load(getClass().getResource("Login-administrator.fxml"));
