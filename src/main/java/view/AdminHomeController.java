@@ -160,7 +160,12 @@ public class AdminHomeController implements Initializable {
 		
 	public void onRefreshClickTollbooths()
 	{
-		//TODO: query per refreshare la vista delle tollbooths
+		//pulisco la lista
+		scoll_Tollbooths.getChildren().clear();
+		
+		//Query e ripopolamento
+		getAllTollbooths();
+		
 	}
 	
 	//Metodi bottoni Vehicles
@@ -296,7 +301,7 @@ public class AdminHomeController implements Initializable {
 				controller.setAdminController(this);
 								
 				//aggiungo la riga allo scroller
-				scroll_Highways.getChildren().add(nodes[i]);
+				scoll_Tollbooths.getChildren().add(nodes[i]);
 				i++;
 			}catch(Exception e)
 			{
