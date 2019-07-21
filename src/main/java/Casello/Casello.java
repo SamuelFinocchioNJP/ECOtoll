@@ -3,10 +3,7 @@
  */
 package Casello;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import Models.ModelInterface;
 import utility.Database;
 
