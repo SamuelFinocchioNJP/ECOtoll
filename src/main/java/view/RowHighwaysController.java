@@ -5,10 +5,14 @@ import java.util.ResourceBundle;
 
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /*
  * @author: Pietro
@@ -46,6 +50,25 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	public void onEditClick()
 	{
 		//TODO: Da decidere, apriamo un pannello per editare?
+		try
+		{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("HighwaysEdit.fxml"));
+			Parent root = loader.load();
+			
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			HighwaysEditController controller = loader.getController();
+			controller.setLabels(lbl_Code.getText(), lbl_Name.getText());
+			controller.setCode(Integer.valueOf(lbl_Code.getText()));
+			controller.setHomeController(admincontroller);
+			
+			stage.show();
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void onDeleteClick()

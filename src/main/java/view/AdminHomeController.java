@@ -245,7 +245,7 @@ public class AdminHomeController implements Initializable {
 						
 				//aggiungo la riga allo scroller
 				scroll_Highways.getChildren().add(nodes[i]);
-						
+				i++;
 			}catch(Exception e)
 			{
 				e.printStackTrace();

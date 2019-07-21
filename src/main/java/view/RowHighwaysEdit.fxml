@@ -23,7 +23,7 @@
             <Font name="Microsoft Sans Serif" size="10.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_Examples" layoutX="125.0" layoutY="23.0" promptText="esempi" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+      <TextField fx:id="txt_Tariff" layoutX="333.0" layoutY="26.0" promptText="tariffa" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
          <font>
             <Font name="Microsoft Sans Serif" size="10.0" />
          </font>
