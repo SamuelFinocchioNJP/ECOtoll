@@ -101,15 +101,7 @@ public class AdminHomeController implements Initializable {
 	
 	
 	private ArrayList<Autostrada> query_results;
-	
-	
-	
-	public AdminHomeController()
-	{
-		ControllerAutostrada controller = new ControllerAutostrada();
-		this.query_results = controller.getAutostrade();
-	}
-	
+		
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -238,7 +230,8 @@ public class AdminHomeController implements Initializable {
 		//Eseguo la query
 		ControllerAutostrada controllera = new ControllerAutostrada();
 		this.query_results = controllera.getAutostrade();
-				
+			
+		lbl_Number_Highways.setText(String.valueOf(query_results.size()));
 			
 				
 		//Ripopolo la lista
