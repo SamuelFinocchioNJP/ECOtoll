@@ -22,6 +22,6 @@ public class PedaggioEco implements IPedaggio {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String calcoloPedaggio(Veicolo veicolo, Casello puntoPagamentoIn, Casello puntoPagamentoOut, List<Casello> listCasello, Map<Integer,Float> tariffaUnitaria, int iva) {return null;} // Throws exception
+	public String calcoloPedaggio(Veicolo veicolo, Casello puntoPagamentoIn, Casello puntoPagamentoOut, Map<String,Float> tariffaUnitaria, int iva) {return null;} // Throws exception
 	
 }
