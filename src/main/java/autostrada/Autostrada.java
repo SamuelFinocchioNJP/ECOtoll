@@ -3,13 +3,12 @@
  */
 package autostrada;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import Casello.Casello;
 import Models.ModelInterface;
 import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;

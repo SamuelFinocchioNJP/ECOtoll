@@ -5,6 +5,7 @@ package main;
 
 import java.util.*;
 
+import Casello.Casello;
 import autostrada.*;
 import veicolo.*;
 import utility.*;

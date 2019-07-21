@@ -3,7 +3,7 @@ package pedaggio;
 import java.util.List;
 import java.util.Map;
 
-import autostrada.Casello;
+import Casello.Casello;
 import veicolo.Veicolo;
 
 public interface IPedaggio {
