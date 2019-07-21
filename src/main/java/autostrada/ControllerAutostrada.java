@@ -1,8 +1,6 @@
 package autostrada;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +17,7 @@ public class ControllerAutostrada implements ControllerInterface{
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
 			int arraySize=counter.getInt(0);
 			arrayId=new int[arraySize];
-			for (int i=0; i<arraySize;i++) {
+			for ( int i = 0; i < arraySize; i++ ) {
 				arrayId[i]=rs.getInt("id");
 				rs.next();
 			}
@@ -29,7 +27,6 @@ public class ControllerAutostrada implements ControllerInterface{
 		}
 		return arrayId;
 	}
-
 	
 	public ArrayList <Autostrada> getAutostrade() {//retrieve automatico autostrade
 		ArrayList <Autostrada> autobahn = new ArrayList<Autostrada>();
