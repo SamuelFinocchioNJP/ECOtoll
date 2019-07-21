@@ -38,9 +38,6 @@ public class AdminHomeController implements Initializable {
 	@FXML
 	private Pane pnl_Tollbooths;
 	
-	@FXML 
-	private Pane pnl_Vehicles;
-	
 	//Variabili oggetti pannello Highways
 	
 	@FXML
@@ -79,23 +76,6 @@ public class AdminHomeController implements Initializable {
 	@FXML
 	private VBox scoll_Tollbooths = null;
 	
-	//Variabili oggetti pannello Vehicles
-	
-	@FXML
-	private Label lbl_Number_Vehicles;
-			
-	@FXML
-	private Label lbl_Number_Title_Vehicles;
-			
-	@FXML 
-	private Button btn_Insert_Vehicles;
-			
-	@FXML
-	private Button btn_Refresh_Vehicles;	
-	
-	@FXML
-	private VBox scroll_Vehicle = null;
-	
 	
 	@FXML
 	private Button btn_Signout;
@@ -115,7 +95,6 @@ public class AdminHomeController implements Initializable {
 		//Parte visibile il pannello highways
 		pnl_Highways.setVisible(true);
 		pnl_Tollbooths.setVisible(false);
-		pnl_Vehicles.setVisible(false);	
 	}
 	
 	//Metodi bottoni Highways
@@ -203,7 +182,6 @@ public class AdminHomeController implements Initializable {
 		{
 			pnl_Highways.setVisible(true);
 			pnl_Tollbooths.setVisible(false);
-			pnl_Vehicles.setVisible(false);	
 		}
 	}
 	
@@ -213,17 +191,6 @@ public class AdminHomeController implements Initializable {
 		{
 			pnl_Highways.setVisible(false);
 			pnl_Tollbooths.setVisible(true);
-			pnl_Vehicles.setVisible(false);	
-		}
-	}
-	
-	public void onVehiclesClick()
-	{
-		if(!pnl_Vehicles.isVisible())
-		{
-			pnl_Highways.setVisible(false);
-			pnl_Tollbooths.setVisible(false);
-			pnl_Vehicles.setVisible(true);	
 		}
 	}
 	
