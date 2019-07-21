@@ -1,6 +1,18 @@
 -- ECOtoll database schema
 -- Review 0 - Samuel Finocchio 22/05/19
 
+CREATE TABLE IF NOT EXISTS categoria (
+      -- Chiave primaria
+      id BIGINT AUTO_INCREMENT,
+
+      -- Campi di default obbligatori
+      nome VARCHAR ( 32 ) NOT NULL,
+      esempi VARCHAR ( 255 ) NOT NULL,
+
+      
+      PRIMARY KEY ( id )
+);
+
 CREATE TABLE IF NOT EXISTS veicolo (
       -- Chiave primaria
       id BIGINT AUTO_INCREMENT,
@@ -9,7 +21,7 @@ CREATE TABLE IF NOT EXISTS veicolo (
       targa VARCHAR ( 32 ) NOT NULL,
       modello VARCHAR ( 128 ) NOT NULL,
       assi INT NOT NULL,
-      classe_veicolo ENUM('A', 'B', '3', '4', '5') NOT NULL,
+      -- classe_veicolo ENUM('A', 'B', '3', '4', '5') NOT NULL,
 
       -- Classe ambientale opzionale
       classe_ambientale VARCHAR ( 64 ),
@@ -22,9 +34,11 @@ CREATE TABLE IF NOT EXISTS veicolo (
 
       -- Inquinamento acustico opzionale
       inquinamentoAcustico INT,
-
+      id_classe_veicolo BIGINT,
       UNIQUE(targa),
-      PRIMARY KEY ( id )
+      PRIMARY KEY ( id ),
+      
+      FOREIGN KEY ( id_classe_veicolo ) REFERENCES categoria ( id )
 );
 
 CREATE TABLE IF NOT EXISTS autostrada (
@@ -43,13 +57,15 @@ CREATE TABLE IF NOT EXISTS casello (
 
 CREATE TABLE IF NOT EXISTS tariffa ( 
       id BIGINT AUTO_INCREMENT,
-      classe_veicolo ENUM('A', 'B', '3', '4', '5') NOT NULL,
+      -- classe_veicolo ENUM('A', 'B', '3', '4', '5') NOT NULL,
       prezzo DECIMAL ( 9, 2 ) NOT NULL,
       PRIMARY KEY ( id ),
 
       -- Foreign key id_autostrada riferimento a autostrada
       id_autostrada BIGINT,
-      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id )
+      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id ),
+      id_classe_veicolo BIGINT,
+      FOREIGN KEY ( id_classe_veicolo ) REFERENCES categoria ( id )
 );
 
 CREATE TABLE IF NOT EXISTS biglietto ( 
@@ -67,5 +83,4 @@ CREATE TABLE IF NOT EXISTS biglietto (
 
       PRIMARY KEY ( id )
 );
-
 
