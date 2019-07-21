@@ -3,8 +3,10 @@
  */
 package autostrada;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
@@ -44,6 +46,7 @@ public class Autostrada implements ModelInterface {
 	}
 	
 	public Autostrada ( int id ) {
+		this.id = id;
 		this.retrieve( id );
 	}
 
@@ -115,32 +118,40 @@ public class Autostrada implements ModelInterface {
 		 */
 		
 		/** Acknowledgement of previous existence of the same instance of autostrada **/
-		
-		try {
-			ResultSet rs = Database.getConnectionStatement ( ).executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
-			
-			/** If result set is empty, go for insert query **/
-			if ( rs.next() == false ) {
-				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO autostrada ( nome, iva )"
-						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')", Statement.RETURN_GENERATED_KEYS );
+		if ( this.id == 0 ) {
+			try {
+				ResultSet rs = Database.getConnectionStatement ( ).executeQuery ( "SELECT id FROM autostrada WHERE nome='" + this.getNome ( ) + "' LIMIT 1" );
 				
-				if ( preparedStatement.executeUpdate() != 0 ) {
-					this.save();
+				/** If result set is empty, go for insert query **/
+				if ( rs.next() == false ) {
+					PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO autostrada ( nome, iva )"
+							+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')", Statement.RETURN_GENERATED_KEYS );
+					
+					if ( preparedStatement.executeUpdate() != 0 ) {
+						this.save();
+					} else {
+						throw new Exception ( "Cant save Autostada exception!" );
+					}
 				} else {
-					throw new Exception ( "Cant save Autostada exception!" );
+					/// Result found in query
+					this.id = rs.getInt ( "id" );
+					System.out.println( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
+					Database.getConnectionStatement().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
 				}
-			} else {
-				/// Result found in query
-				this.id = rs.getInt ( "id" );
-				System.out.println( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
-				Database.getConnectionStatement().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
+			    
+				this.retrieve ( id );
+				rs.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		    
-			this.retrieve ( id );
-			rs.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+			try {
+				Database.getConnectionStatement().executeUpdate ( "UPDATE autostrada SET nome = '" + this.getNome ( ) + "', iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
