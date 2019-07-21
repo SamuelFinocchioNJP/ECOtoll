@@ -1,6 +1,5 @@
 package Auth;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,19 +8,19 @@ import utility.Database;
 public class LoginController {
 	
 	public boolean login ( String username, String password ) {
-		
 		ResultSet rs = null;
 		try {
 			rs = Database.getConnectionStatement()
 						.executeQuery( "SELECT * FROM administrator WHERE username='" + username + "', AND password = '" + password + "'" );
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace ( );
 		}
 		
 		try {
 			return rs.next();
-		} catch (SQLException e) {
+		} catch ( SQLException e ) {
 			return false;
 		}
 	}
+	
 }
