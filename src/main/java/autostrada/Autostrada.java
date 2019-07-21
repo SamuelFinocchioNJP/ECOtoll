@@ -5,6 +5,7 @@ package autostrada;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 import Models.ModelInterface;
@@ -119,20 +120,18 @@ public class Autostrada implements ModelInterface {
 			/** If result set is empty, go for insert query **/
 			if ( rs.next() == false ) {
 				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO autostrada ( nome, iva )"
-						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')" );
-				rs = preparedStatement.executeQuery(); 
-				rs = preparedStatement.getGeneratedKeys();
+						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')", Statement.RETURN_GENERATED_KEYS );
 				
-				this.id = rs.getInt( "id" );
-				this.nome = rs.getString( "nome" );
-				this.iva = rs.getInt( "iva" );
-				
+				if ( preparedStatement.executeUpdate() != 0 ) {
+					this.save();
+				} else {
+					throw new Exception ( "Cant save Autostada exception!" );
+				}
 			} else {
 				/// Result found in query
-				int id = rs.getInt("id");
-				
-				System.out.println( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
-				Database.getConnectionStatement().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + id );
+				this.id = rs.getInt ( "id" );
+				System.out.println( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
+				Database.getConnectionStatement().executeUpdate ( "UPDATE autostrada SET iva = '" + this.getIva ( ) + "' WHERE id=" + this.id  );
 			}
 		    
 			this.retrieve ( id );
@@ -141,7 +140,6 @@ public class Autostrada implements ModelInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

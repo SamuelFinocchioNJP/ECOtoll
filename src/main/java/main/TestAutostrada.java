@@ -59,9 +59,8 @@ public class TestAutostrada extends Application {
 			System.out.printf("A\t%f\n",tar.get("A"));
 			System.out.printf("B\t%f\n",tar.get("B"));	
 			
-		Autostrada na = new Autostrada ( "A18", 23 );
+		Autostrada na = new Autostrada ( "A18", 26 );
 		na.save();
-		
 		System.out.println( autostrada.getNome() );
 	}
 	

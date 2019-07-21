@@ -16,7 +16,7 @@ import utility.Database;
 public class ControllerAutostrada implements ControllerInterface{
 	@Override
 	public  int[] idRetriever() {
-		int [] arrayId=null;
+		int [] arrayId = null;
 		try {
 			ResultSet counter = Database.getConnectionStatement().executeQuery ( "COUNT (*) FROM autostrada" );
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
