@@ -91,7 +91,7 @@ public class Casello implements ModelInterface {
 	public void retrieve ( int id ) {
 		ResultSet rs = null;
 		try {
-			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id, km, localita FROM casello WHERE id='" + id + "' LIMIT 1" );
+			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id, kilometro, locazione FROM casello WHERE id='" + id + "' LIMIT 1" );
 		
 			 if ( rs.next() == false ) {
 				 throw new Exception ( "Casello not found Exception" );

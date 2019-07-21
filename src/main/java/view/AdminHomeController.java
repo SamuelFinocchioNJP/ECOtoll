@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 
 
 import autostrada.Autostrada;
-import autostrada.Casello;
+import Casello.Casello;
+import Casello.CaselloController;
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -270,13 +271,13 @@ public class AdminHomeController implements Initializable {
 	}
 
 	
-	private void getAllTollbooths()
+	private void getAllTollbooths( )
 	{
 		ArrayList<Casello> query_results;
 		
 		//Eseguo la query
-		ControllerAutostrada controllera = new ControllerAutostrada();
-		query_results = controllera.getCaselliFromAutostrada(txt_HighwayCode.getText());
+		CaselloController caselloController = new CaselloController();
+		query_results = caselloController.getCaselliFromAutostrada(Integer.valueOf( txt_HighwayCode.getText() ));
 					
 		lbl_Number_Tollbooths.setText(String.valueOf(query_results.size()));
 					
@@ -295,8 +296,8 @@ public class AdminHomeController implements Initializable {
 				nodes[i] = (Node) loader.load();
 								
 				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
-				RowHighwaysController controller = loader.getController();
-				controller.setLabels(String.valueOf(x.getId), x.getLocalita(), String.valueOf(x.getKm()));
+				RowTollboothsController controller = loader.getController();
+				controller.setLabels(String.valueOf( x.getId() ), x.getLocalita(), String.valueOf(x.getKm()));
 				//Ogni row ha il riferimento al controller dello scroller in cui si trova
 				controller.setAdminController(this);
 								
