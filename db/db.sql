@@ -1,5 +1,5 @@
 -- ECOtoll database schema
--- Review 0 - Samuel Finocchio 22/05/19
+-- Review 3 - Samuel Finocchio 21/07/19
 
 CREATE DATABASE IF NOT EXISTS ecotoll;
 
@@ -68,6 +68,14 @@ CREATE TABLE IF NOT EXISTS biglietto (
       -- Foreign key id_veicolo riferimento a veicolo
       id_veicolo BIGINT,
       FOREIGN KEY ( id_veicolo ) REFERENCES veicolo ( id ),
+
+      PRIMARY KEY ( id )
+);
+
+CREATE TABLE IF NOT EXISTS administrator (
+      id BIGINT AUTO_INCREMENT,
+      username VARCHAR(255) NOT NULL,
+      password VARCHAR(255) NOT NULL,
 
       PRIMARY KEY ( id )
 );
