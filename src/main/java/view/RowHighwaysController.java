@@ -3,6 +3,7 @@ package view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,6 +28,8 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	@FXML
 	private HBox box_Row;
 	
+	private AdminHomeController admincontroller;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -42,6 +45,10 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	public void onDeleteClick()
 	{
 		//TODO: Chiediamo una conferma?
+		ControllerAutostrada controller = new ControllerAutostrada();
+		controller.deleteRecord(Integer.valueOf(lbl_Code.getText()));
+		
+		admincontroller.onRefreshClickHighways();
 	}
 
 	@Override
@@ -63,6 +70,11 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	public void onMouseExited()
 	{
 		box_Row.setStyle("-fx-background-color : #02030A");
+	}
+	
+	public void setAdminController(AdminHomeController controller)
+	{
+		this.admincontroller = controller;
 	}
 
 }

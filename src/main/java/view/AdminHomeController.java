@@ -234,6 +234,8 @@ public class AdminHomeController implements Initializable {
 				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
 				RowHighwaysController controller = loader.getController();
 				controller.setLabels(String.valueOf(x.getId()),x.getNome());
+				//Ogni row ha il riferimento al controller dello scroller in cui si trova
+				controller.setAdminController(this);
 						
 				//aggiungo la riga allo scroller
 				scroll_Highways.getChildren().add(nodes[i]);
