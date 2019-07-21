@@ -114,8 +114,7 @@ public class Autostrada implements ModelInterface {
 			if ( rs.next() == false ) {
 				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO autostrada ( nome, iva )"
 						+ " VALUES ('" + this.getNome() + "','" + this.getIva() + "')" );
-				
-				rs = preparedStatement.executeQuery();
+				rs = preparedStatement.executeQuery(); 
 				rs = preparedStatement.getGeneratedKeys();
 				
 				this.id = rs.getInt( "id" );
