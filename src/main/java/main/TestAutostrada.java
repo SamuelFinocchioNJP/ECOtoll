@@ -40,6 +40,7 @@ public class TestAutostrada extends Application {
 		tariffaA25.put(Constants.CLASSE_5, (float) 0.099);
 		
 		//lista caselli
+		/***
 		listCasello.add(new Casello("AQ OVEST",100));
 		listCasello.add(new Casello("PE NORD", 250));
 		listCasello.add(new Casello("TE OVEST", 180));
@@ -49,7 +50,7 @@ public class TestAutostrada extends Application {
 		casello1.setKm( 1000 );
 		casello1.save();
 		System.out.println("Il pedaggio per il veicolo e': "+ autostrada.stampaPedaggio(veicolo, casello1, casello2)+"0�");
-		
+		**/
 		autostrada.setIva ( 24 );
 		autostrada.save();
 		//autostrada.retrieve( 1 );
