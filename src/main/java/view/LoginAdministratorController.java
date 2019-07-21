@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import Auth.*;
 
 public class LoginAdministratorController implements Initializable {
 
@@ -33,7 +34,7 @@ public class LoginAdministratorController implements Initializable {
 	{
 		try {
 			
-			LoginController controller = new LoginController();
+			Auth.LoginController controller = new Auth.LoginController();
 			
 			Boolean login = controller.login(txt_Username.getText(), txt_Password.getText());
 			

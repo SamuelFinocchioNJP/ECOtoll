@@ -198,7 +198,7 @@ public class AdminHomeController implements Initializable {
 	{
 		try {
 			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-administrator.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
 			Parent root = loader.load();
 			
 			Stage stage = (Stage) btn_Signout.getScene().getWindow();
