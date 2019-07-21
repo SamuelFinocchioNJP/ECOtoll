@@ -1,8 +1,6 @@
 package autostrada;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Controllers.ControllerInterface;

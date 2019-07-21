@@ -9,6 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+/*
+ * @author: Pietro
+ * 
+ * */
+
 public class RowVehiclesController implements Initializable, RowControllerInterface {
 
 	@FXML
@@ -28,6 +33,7 @@ public class RowVehiclesController implements Initializable, RowControllerInterf
 	
 	private String id_Vehicle;
 	
+	private AdminHomeController admincontroller;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -74,6 +80,12 @@ public class RowVehiclesController implements Initializable, RowControllerInterf
 	public void onMouseExited()
 	{
 		box_Row.setStyle("-fx-background-color : #02030A");
+	}
+	
+	@Override
+	public void setAdminController(AdminHomeController controller)
+	{
+		this.admincontroller = controller;
 	}
 
 }

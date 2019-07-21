@@ -10,6 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+/*
+ * @author: Pietro
+ * 
+ * */
+
+
 public class RowHighwaysController implements Initializable, RowControllerInterface {
 
 	
@@ -44,7 +50,6 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	
 	public void onDeleteClick()
 	{
-		//TODO: Chiediamo una conferma?
 		ControllerAutostrada controller = new ControllerAutostrada();
 		controller.deleteRecord(Integer.valueOf(lbl_Code.getText()));
 		
@@ -72,6 +77,7 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 		box_Row.setStyle("-fx-background-color : #02030A");
 	}
 	
+	@Override
 	public void setAdminController(AdminHomeController controller)
 	{
 		this.admincontroller = controller;

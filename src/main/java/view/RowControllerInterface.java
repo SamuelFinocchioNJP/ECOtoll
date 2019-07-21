@@ -11,4 +11,6 @@ public interface RowControllerInterface {
 	public void onMouseEntered();
 	
 	public void onMouseExited();
+	
+	public void setAdminController(AdminHomeController controller);
 }

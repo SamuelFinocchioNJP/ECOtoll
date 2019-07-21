@@ -20,6 +20,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/*
+ * @author: Pietro
+ * 
+ * */
+
+
 public class AdminHomeController implements Initializable {
 
 	//Variabili Pannelli di Sinistra
