@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class FactoryConcreteVeicolo {
 	public FactoryConcreteVeicolo() {}
-	public  Veicolo getVeicolo(ResultSet ogg) throws Exception {
+	public static Veicolo getVeicolo(ResultSet ogg) throws Exception {
 		String type=null;
 		Veicolo returnVal=null;
 		try {
