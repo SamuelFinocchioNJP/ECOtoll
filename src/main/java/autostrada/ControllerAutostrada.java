@@ -67,13 +67,13 @@ public class ControllerAutostrada implements ControllerInterface{
 			Tariffa t5 = new Tariffa ( "5", tariffeNuove.get( "5" ), idAutostrada );
 			t5.save();
 			
-		} catch (Exception e) {
+		} catch ( Exception e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public Map<String,Float>  getAutostradeTariffe ( int idAutostrada ) {
+	public Map<String,Float> getAutostradeTariffe ( int idAutostrada ) {
 		HashMap<String,Float> classToTariffs = new HashMap<String, Float>();
 		try {
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT classe_veicolo, prezzo FROM tariffa WHERE id_autostrada = '" + idAutostrada + "'" );
