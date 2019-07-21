@@ -64,7 +64,7 @@ public class HomeOperatorMainController implements Initializable{
 		case Constants.KM_TOLL:
 			//pedaggio per km
 			toll = new PedaggioKm();
-			toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva)
+			//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
 			System.out.println(toll_code);
 			break;
 		
