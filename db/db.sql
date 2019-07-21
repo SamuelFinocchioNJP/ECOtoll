@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS casello (
 
 CREATE TABLE IF NOT EXISTS tariffa ( 
       id BIGINT AUTO_INCREMENT,
-      classe_veicolo ENUM('A', 'B', '3', '4', '5') NOT NULL,
+      classe_veicolo ENUM( 'A', 'B', '3', '4', '5' ) NOT NULL,
       prezzo DECIMAL ( 9, 2 ) NOT NULL,
       PRIMARY KEY ( id ),
 

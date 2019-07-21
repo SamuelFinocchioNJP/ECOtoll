@@ -39,6 +39,8 @@ public class Autostrada implements ModelInterface {
 	public Autostrada ( String nome, int iva ) {
 		this.nome = nome;
 		this.iva = iva;
+		
+		this.save();
 	}
 	
 	public Autostrada ( int id ) {

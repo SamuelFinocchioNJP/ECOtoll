@@ -2,10 +2,7 @@ package autostrada;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
-import java.util.AbstractMap;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +36,7 @@ public class ControllerAutostrada implements ControllerInterface{
 		try {	
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
 			while(rs.next()){
-				Autostrada k = new Autostrada(rs.getInt("id"));
+				Autostrada k = new Autostrada( rs.getInt("id") );
 				autobahn.add(k);
 			}
 		}catch (Exception e) {
@@ -50,39 +47,41 @@ public class ControllerAutostrada implements ControllerInterface{
 		return autobahn;
 	}
 	
-	public void editTariffa (int idAutostrada,String nomeNuovo, Map <String,Float> tariffeNuove) {
-		
-		ArrayList <String> keys=new ArrayList();
-		ArrayList <Float>  tariffs=new ArrayList();
-		for(Map.Entry<String,Float> x: tariffeNuove.entrySet()) {
-			keys.add(x.getKey());
-			tariffs.add(tariffeNuove.get(x.getKey()));
-		}
+	public void editTariffa ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
+
 		try {
-			Database.getConnectionStatement().executeUpdate("UPDATE autostrada SET nome= '"+nomeNuovo+"' WHERE id="+idAutostrada);
-			int j=0;
-			for(String x: keys) {
-				Database.getConnectionStatement().executeUpdate("UPDATE tariffa SET prezzo= "+tariffs.get(j++)+"WHERE nome="+keys);
-			}
+			/// Modifica nome autostrada
+			Autostrada a = new Autostrada ( idAutostrada );
+			a.setNome( nomeNuovo );
+			a.save();
+			
+			/// Inserimento tariffe
+			Tariffa ta = new Tariffa ( "A", tariffeNuove.get( "A" ), idAutostrada );
+			Tariffa tb = new Tariffa ( "B", tariffeNuove.get( "B" ), idAutostrada );
+			Tariffa t3 = new Tariffa ( "3", tariffeNuove.get( "3" ), idAutostrada );
+			Tariffa t4 = new Tariffa ( "4", tariffeNuove.get( "4" ), idAutostrada );
+			Tariffa t5 = new Tariffa ( "5", tariffeNuove.get( "5" ), idAutostrada );
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-
-		
-		
-		
+		}
 	}
-	public Map<String,Float>  getAutostradeTariffe(int id) {
-		HashMap<String,Float> classToTariffs=new HashMap();
+	
+	public Map<String,Float>  getAutostradeTariffe ( int idAutostrada ) {
+		HashMap<String,Float> classToTariffs = new HashMap<String, Float>();
 		try {
-			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT categoria.nome AS nome_categoria,tariffa.prezzo FROM autostrada  INNER JOIN tariffa ON tariffa.id_autostrada=autostrada.id INNER JOIN categoria ON categoria.id=tariffa.id_classe_veicolo WHERE autostrada.id= "+id );
-			// 	put(K key, V value)
-			while(rs.next()){
-				classToTariffs.put(rs.getString("nome_categoria"), rs.getFloat("prezzo"));
+			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT classe_veicolo, prezzo FROM tariffa WHERE id_autostrada = '" + idAutostrada + "'" );
+            
+			if ( rs.next() != false ) {
+				do {
+					classToTariffs.put ( rs.getString("classe_veicolo"), rs.getFloat("prezzo") );
+				} while( rs.next() );
+			} else {
+				throw new Exception ( "Cant retrieve tariffe from autostrada exception" );
 			}
+				
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return classToTariffs;
