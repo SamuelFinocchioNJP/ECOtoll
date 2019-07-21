@@ -106,8 +106,8 @@ public class AdminHomeController implements Initializable {
 	
 	public AdminHomeController()
 	{
-		ControllerAutostrada controller = new ControllerAutostrada();
-		this.query_results = controller.getAutostrade();
+		/*ControllerAutostrada controller = new ControllerAutostrada();
+		this.query_results = controller.getAutostrade();*/
 	}
 	
 	
@@ -238,7 +238,8 @@ public class AdminHomeController implements Initializable {
 		//Eseguo la query
 		ControllerAutostrada controllera = new ControllerAutostrada();
 		this.query_results = controllera.getAutostrade();
-				
+			
+		lbl_Number_Highways.setText(String.valueOf(query_results.size()));
 			
 				
 		//Ripopolo la lista
