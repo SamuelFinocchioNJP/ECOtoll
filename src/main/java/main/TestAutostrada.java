@@ -57,7 +57,10 @@ public class TestAutostrada extends Application {
 		//new ControllerAutostrada().deleteRecord(3);
 		Map <String,Float> tar=new ControllerAutostrada().getAutostradeTariffe(1);
 			System.out.printf("A\t%f\n",tar.get("A"));
-			System.out.printf("B\t%f\n",tar.get("B"));		
+			System.out.printf("B\t%f\n",tar.get("B"));	
+			
+		Autostrada na = new Autostrada ( "A18", 26 );
+		na.save();
 		System.out.println( autostrada.getNome() );
 	}
 	
