@@ -159,12 +159,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="lbl_Number_Tollbooths" text="22000" textFill="#2a73ff">
+                              <Label fx:id="lbl_Number_Tollbooths" text="0" textFill="#2a73ff">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbl_Number_Title_Tollbooths" text="Highways Number" textFill="#e7e5e5" />
+                              <Label fx:id="lbl_Number_Title_Tollbooths" text="Tollbooths Number" textFill="#e7e5e5" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
