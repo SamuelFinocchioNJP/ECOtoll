@@ -6,9 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import Casello.Casello;
+import autostrada.ControllerAutostrada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +20,11 @@ import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
+import veicolo.Classe3;
+import veicolo.Classe4;
+import veicolo.Classe5;
 import veicolo.ClasseA;
+import veicolo.ClasseB;
 import veicolo.Veicolo;
 
 public class HomeOperatorMainController implements Initializable{
@@ -77,16 +83,39 @@ public class HomeOperatorMainController implements Initializable{
 
 		switch(toll_code) {
 		
-			case Constants.KM_TOLL:		
+			case Constants.KM_TOLL:
+								
 				Veicolo vehicle = new ClasseA("dnsj","dbsaj", "33", 2, 2);
 				Veicolo vehicle2 = vehicle;
 				System.out.println(vehicle2 instanceof ClasseA);
+		
+				
+				
 				
 				Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
 				Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
+				ControllerAutostrada highway_controller = new ControllerAutostrada();
+				Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());
+				if(vehicle2 instanceof ClasseA)
+					rate.get(Constants.COD_CLASSE_A);
+				else
+					if(vehicle2 instanceof ClasseB)
+						rate.get(Constants.COD_CLASSE_B);
+					else
+						if(vehicle2 instanceof Classe3)
+							rate.get(Constants.COD_CLASSE_3);
+						else
+							if(vehicle2 instanceof Classe4)
+								rate.get(Constants.COD_CLASSE_4);
+							else
+								if(vehicle2 instanceof Classe5)
+									rate.get(Constants.COD_CLASSE_5);
+								else
+									throw new IllegalArgumentException("Tipo di veicolo non riconosciuto");
+								
 				
 				toll = new PedaggioKm();
-				//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
+				toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
 				break;
 		
 			case Constants.ECO_TOLL:
