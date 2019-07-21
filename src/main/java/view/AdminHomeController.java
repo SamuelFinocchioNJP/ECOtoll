@@ -267,9 +267,11 @@ public class AdminHomeController implements Initializable {
 	
 	private void getAllTollbooths()
 	{
+		ArrayList<Casello> query_results;
+		
 		//Eseguo la query
 		ControllerAutostrada controllera = new ControllerAutostrada();
-		this.query_results = controllera.getCaselliFromAutostrada(txt_HighwayCode.getText());
+		query_results = controllera.getCaselliFromAutostrada(txt_HighwayCode.getText());
 					
 		lbl_Number_Tollbooths.setText(String.valueOf(query_results.size()));
 					
