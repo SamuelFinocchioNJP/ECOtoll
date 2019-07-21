@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Struttura della tabella `administrator`
 --
+CREATE DATABASE ecotoll;
+USE ecotoll
 
 CREATE TABLE `administrator` (
   `id` bigint(20) NOT NULL,

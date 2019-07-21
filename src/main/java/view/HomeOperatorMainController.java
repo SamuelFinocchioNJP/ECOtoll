@@ -110,5 +110,4 @@ public class HomeOperatorMainController implements Initializable{
 		}
 	}
 	
-	
 }
