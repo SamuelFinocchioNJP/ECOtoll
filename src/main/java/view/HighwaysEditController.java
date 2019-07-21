@@ -2,6 +2,7 @@ package view;
 
 import java.net.URL;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import autostrada.Autostrada;
@@ -67,12 +68,12 @@ public class HighwaysEditController implements Initializable {
 	{
 		
 		ControllerAutostrada controllerA= new ControllerAutostrada();
-		Map<Integer,Float> result = controllerA.getAutostradeTariffe(code);
+		Map<String, Float> result = controllerA.getAutostradeTariffe(code);
 		
 		
 		Node[] nodes = new Node[result.size()];
 		int i = 0;
-		for(Map.Entry<Integer,Float> x : result.entrySet())
+		for(Entry<String, Float> x : result.entrySet())
 		{
 					
 			try
