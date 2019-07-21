@@ -57,8 +57,9 @@ public class HighwaysEditController implements Initializable {
 				res.put(lables[0], Float.valueOf(lables[1]));
 			}
 		}
+		//query
 		ControllerAutostrada controller = new ControllerAutostrada();
-		controller.editTariffa(code, txt_Name.getText(), res);
+		controller.editAutostradaWithTariff(code, txt_Name.getText(), res);
 		
 		admincontroller.onRefreshClickHighways();
 		

@@ -8,9 +8,9 @@ import java.util.Map;
 import Controllers.ControllerInterface;
 import utility.Database;
 
-public class ControllerAutostrada implements ControllerInterface{
+public class ControllerAutostrada implements ControllerInterface {
 	@Override
-	public  int[] idRetriever() {
+	public  int[] idRetriever ( ) {
 		int [] arrayId = null;
 		try {
 			ResultSet counter = Database.getConnectionStatement().executeQuery ( "COUNT (*) FROM autostrada" );
@@ -32,11 +32,11 @@ public class ControllerAutostrada implements ControllerInterface{
 		ArrayList <Autostrada> autobahn = new ArrayList<Autostrada>();
 		try {	
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
-			while(rs.next()){
+			while( rs.next() ){
 				Autostrada k = new Autostrada( rs.getInt("id") );
 				autobahn.add(k);
 			}
-		}catch (Exception e) {
+		} catch ( Exception e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -44,6 +44,15 @@ public class ControllerAutostrada implements ControllerInterface{
 		return autobahn;
 	}
 	
+	
+	public void editAutostradaWithTariff ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
+		editTariffa ( idAutostrada, nomeNuovo, tariffeNuove );
+	}
+	
+	/** 
+	 * @deprecated
+	 * Use editAutostradaWithTariff ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) instead
+	 **/
 	public void editTariffa ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		try {
 			/// Modifica nome autostrada
@@ -71,6 +80,13 @@ public class ControllerAutostrada implements ControllerInterface{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void addAutostradaWithTariff ( String nomeNuovo, Map <String,Float> tariffeNuove ) {
+		Autostrada a = new Autostrada ( nomeNuovo, 22 );
+		a.save();
+		
+		editAutostradaWithTariff ( a.getId(), a.getNome(), tariffeNuove );
 	}
 	
 	public Map<String,Float> getAutostradeTariffe ( int idAutostrada ) {
