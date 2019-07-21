@@ -47,15 +47,16 @@ public class TestAutostrada extends Application {
 		Casello casello2 = new Casello("PE NORD", 250);
 		casello1.setKm( 1000 );
 		casello1.save();
-		System.out.println("Il pedaggio per il veicolo e': "+ autostrada.stampaPedaggio(veicolo, casello1, casello2)+"0€");
+		System.out.println("Il pedaggio per il veicolo e': "+ autostrada.stampaPedaggio(veicolo, casello1, casello2)+"0ï¿½");
 		
 		autostrada.setIva ( 24 );
 		autostrada.save();
 		
-		autostrada.retrieve( 1 );
+		//autostrada.retrieve( 1 );
 		
 		autostrada.destroy();
-		
+		new ControllerAutostrada().deleteRecord(2);
+		new ControllerAutostrada().deleteRecord(3);
 		System.out.println( autostrada.getNome() );
 	}
 	

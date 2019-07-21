@@ -1,15 +1,16 @@
 package autostrada;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Controllers.ControllerInterface;
 import utility.Database;
 
 public class ControllerAutostrada implements ControllerInterface{
-
 	@Override
-	public int[] idRetriever() {
+	public  int[] idRetriever() {
 		int [] arrayId=null;
 		try {
 			ResultSet counter = Database.getConnectionStatement().executeQuery ( "COUNT (*) FROM autostrada" );
@@ -36,9 +37,6 @@ public class ControllerAutostrada implements ControllerInterface{
 				Autostrada k = new Autostrada(rs.getInt("id"));
 				autobahn.add(k);
 			}
-				
-				
-			
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,4 +45,18 @@ public class ControllerAutostrada implements ControllerInterface{
 		return autobahn;
 	}
 
+	@Override
+	public  void deleteRecord(int id) {//Con codice si intende l'Id o il nome dell'autostrada?
+		try {
+			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = "+id );
+			if(!rs.next()) {
+				throw new Exception("The id that you have supplied does not correspond to an existing Autostrada");
+			}
+			Database.getConnectionStatement().executeUpdate ( "DELETE FROM autostrada WHERE id = "+id );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
