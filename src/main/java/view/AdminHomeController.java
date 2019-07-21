@@ -1,10 +1,15 @@
 package view;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import autostrada.Autostrada;
+import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -77,21 +82,48 @@ public class AdminHomeController implements Initializable {
 	private Button btn_Refresh_Vehicles;	
 	
 	@FXML
-	private VBox scroll_Vehicles = null;
+	private VBox scroll_Vehicle = null;
+	
+	
+	private ArrayList<Autostrada> query_results;
 	
 	
 	
 	public AdminHomeController()
 	{
-		//TODO: costruttore, qua si fa la query per fare il get delle highways una volta che ho i dati parte initialize automaticamente
-		//		qua non ho accesso agli oggetti @FXML
+		ControllerAutostrada controller = new ControllerAutostrada();
+		this.query_results = controller.getAutostrade();
 	}
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO: prendere i dati che mi fornisce la query fatta nel costruttore e displayarli
-		//		 qui ho accesso agli oggetti FXML
+		
+		Node[] nodes = new Node[query_results.size()];
+		int i = 0;
+		for(Autostrada x : query_results)
+		{
+			
+			try
+			{
+				//Prendo il layout della singola riga
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighways.fxml"));
+				//la assegno all'i-esmima entry
+				nodes[i] = (Node) loader.load();
+				
+				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
+				RowHighwaysController controller = loader.getController();
+				controller.setLabels(String.valueOf(x.getId()),x.getNome());
+				
+				//aggiungo la riga allo scroller
+				scroll_Highways.getChildren().add(nodes[i]);
+				
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+		}
 		
 		
 		//Parte visibile il pannello highways
@@ -107,9 +139,41 @@ public class AdminHomeController implements Initializable {
 		//TODO: query di inserimento
 	}
 	
+	
 	public void onRefreshClickHighways()
-	{
-		//TODO: query per refreshare la vista delle autostrade
+	{	
+		//Eseguo la query
+		ControllerAutostrada controllera = new ControllerAutostrada();
+		this.query_results = controllera.getAutostrade();
+		
+		//Pulisco la lista
+		scroll_Highways.getChildren().clear();
+		
+		//Ripopolo la lista
+		Node[] nodes = new Node[query_results.size()];
+		int i = 0;
+		for(Autostrada x : query_results)
+		{
+			
+			try
+			{
+				//Prendo il layout della singola riga
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighways.fxml"));
+				//la assegno all'i-esmima entry
+				nodes[i] = (Node) loader.load();
+				
+				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
+				RowHighwaysController controller = loader.getController();
+				controller.setLabels(String.valueOf(x.getId()),x.getNome());
+				
+				//aggiungo la riga allo scroller
+				scroll_Highways.getChildren().add(nodes[i]);
+				
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 
 	//Metodi bottoni Tollbooths

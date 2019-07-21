@@ -1,5 +1,5 @@
---- ECOtoll database schema
---- Review 0 - Samuel Finocchio 22/05/19
+-- ECOtoll database schema
+-- Review 0 - Samuel Finocchio 22/05/19
 
 CREATE TABLE IF NOT EXISTS veicolo (
       -- Chiave primaria
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS veicolo (
 CREATE TABLE IF NOT EXISTS autostrada (
       id BIGINT AUTO_INCREMENT,
       nome VARCHAR ( 255 ) NOT NULL,
-      iva NOT NULL,
+      iva FLOAT ( 9.2 ) NOT NULL,
       PRIMARY KEY ( id )
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS tariffa (
 
       -- Foreign key id_autostrada riferimento a autostrada
       id_autostrada BIGINT,
-      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id ),
+      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id )
 );
 
 CREATE TABLE IF NOT EXISTS biglietto ( 
