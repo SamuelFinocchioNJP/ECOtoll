@@ -1,9 +1,12 @@
 /**
  * 
  */
-package autostrada;
+package Casello;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import Models.ModelInterface;
 import utility.Database;
 
@@ -11,6 +14,12 @@ public class Casello implements ModelInterface {
 
 	private String localita;
 	private int km;
+	private int id;
+	
+	public Casello ( int id ) {
+		this.id = id;
+		this.retrieve( id );
+	}
 	
 	public Casello(String localita, int km) {
 		this.localita = localita;
@@ -19,6 +28,10 @@ public class Casello implements ModelInterface {
 
 	public String getLocalita() {
 		return localita;
+	}
+	
+	public int getId ( ) {
+		return this.id;
 	}
 
 	public void setLocalita(String localita) {
@@ -51,13 +64,15 @@ public class Casello implements ModelInterface {
 		try {
 			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM casello WHERE locazione='" + this.getLocalita() + "' LIMIT 1" );
 		}catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			if ( rs.next() == false ) {
-					Database.getConnectionStatement().executeUpdate ( "INSERT INTO casello ( locazione, kilometro )"
-							+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "')" );
+				if ( Database.getConnectionStatement().executeUpdate ( "INSERT INTO casello ( locazione, kilometro )"
+						+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "')" ) != 0 )
+					this.save();
+				else 
+					throw new Exception ( "Can not create casello exception" );
 			} else {
 				/// Result found in query
 				int id;
@@ -73,26 +88,30 @@ public class Casello implements ModelInterface {
 	}
 
 	@Override
-	public void retrieve(int id) {
+	public void retrieve ( int id ) {
 		ResultSet rs = null;
 		try {
-			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM casello WHERE locazione='" + this.getLocalita() + "' LIMIT 1" );
+			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id, kilometro, locazione FROM casello WHERE id='" + id + "' LIMIT 1" );
 		
 			 if ( rs.next() == false ) {
 				 throw new Exception ( "Casello not found Exception" );
 			 }else {
+				 this.id = rs.getInt("id");
 				 this.km = rs.getInt("kilometro");
 				 this.localita = rs.getString("locazione");
 			 }
 		}catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
+		try {
+			Database.getConnectionStatement().executeUpdate ( "DELETE FROM casello WHERE id=" + id );
+		} catch ( Exception e) {
+			e.printStackTrace();
+		} 
 		
 	}
 
