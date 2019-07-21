@@ -1,8 +1,11 @@
 package view;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import utility.Constants;
 
 public class HighwayInsertController implements Initializable {
@@ -43,13 +47,30 @@ public class HighwayInsertController implements Initializable {
 	
 	public void onClick()
 	{
-		//query di insert
+		Map<String,Float> res = new HashMap<String,Float>();
+		
+		if(loaders != null)
+		{
+			for(FXMLLoader x : loaders)
+			{
+				String[] lables = ((RowHighwaysEditController) x.getController()).getLables();
+				res.put(lables[0], Float.valueOf(lables[1]));
+			}
+		}
+		//query
+		ControllerAutostrada controller = new ControllerAutostrada();
+		controller.addAutostradaWithTariff(txt_Name.getText(), res);
+		
+		admincontroller.onRefreshClickHighways();
+		
+		Stage stage = (Stage) btn_Done.getScene().getWindow();
+		stage.close();
 	}
 	
 	private void populate()
 	{
 		
-		String[] classi =  {"Classe A","Classe B","Classe 3","Classe 4","Classe 5"};
+		String[] classi =  {"A","B","3","4","5"};
 		
 		
 		loaders = new FXMLLoader[Constants.NUMERO_CLASSI];

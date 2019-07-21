@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #02030A;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HighwayInsertController">
    <children>
-      <Button fx:id="btn_Done" layoutX="312.0" layoutY="437.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="49.0" prefWidth="277.0" styleClass="shiny-orange" stylesheets="@style.css" text="Done" />
+      <Button fx:id="btn_Done" layoutX="31.0" layoutY="437.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="32.0" prefWidth="191.0" styleClass="shiny-orange" stylesheets="@style.css" text="Done" />
       <ImageView fitHeight="122.0" fitWidth="283.0" layoutX="309.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/ECOtoll%20logo/logo_transparent.png" />
@@ -34,12 +34,12 @@
          </font>
       </Label>
       <VBox fx:id="scroll_vehicle_classes" layoutX="313.0" layoutY="186.0" prefHeight="221.0" prefWidth="565.0" />
-      <Label layoutX="390.0" layoutY="150.0" text="Name" textFill="#e7e5e5">
+      <Label layoutX="412.0" layoutY="150.0" text="Name" textFill="#e7e5e5">
          <font>
             <Font name="Microsoft Sans Serif" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="546.0" layoutY="150.0" text="Tariff" textFill="#e7e5e5">
+      <Label layoutX="576.0" layoutY="150.0" text="Tariff" textFill="#e7e5e5">
          <font>
             <Font name="Microsoft Sans Serif" size="14.0" />
          </font>
