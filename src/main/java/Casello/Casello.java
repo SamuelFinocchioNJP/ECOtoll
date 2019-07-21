@@ -15,6 +15,7 @@ public class Casello implements ModelInterface {
 	private String localita;
 	private int km;
 	private int id;
+	private int autostradaId;
 	
 	public Casello ( int id ) {
 		this.id = id;
@@ -36,6 +37,14 @@ public class Casello implements ModelInterface {
 
 	public void setLocalita(String localita) {
 		this.localita = localita;
+	}
+
+	public int getAutostradaId() {
+		return autostradaId;
+	}
+
+	public void setAutostradaId(int autostradaId) {
+		this.autostradaId = autostradaId;
 	}
 
 	public int getKm() {
@@ -68,8 +77,8 @@ public class Casello implements ModelInterface {
 		}
 		try {
 			if ( rs.next() == false ) {
-				if ( Database.getConnectionStatement().executeUpdate ( "INSERT INTO casello ( locazione, kilometro )"
-						+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "')" ) != 0 )
+				if ( Database.getConnectionStatement().executeUpdate ( "INSERT INTO casello ( locazione, kilometro, id_autostrada )"
+						+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "', ,'" + this.getAutostradaId ( ) + "')" ) != 0 )
 					this.save();
 				else 
 					throw new Exception ( "Can not create casello exception" );
@@ -78,7 +87,7 @@ public class Casello implements ModelInterface {
 				int id;
 				id = rs.getInt("id");
 				//System.out.println( "UPDATE casello SET kilometro = '" + this.getKm ( ) + "' WHERE id=" + id );
-			    Database.getConnectionStatement().executeUpdate ( "UPDATE casello SET kilometro = '" + this.getKm( ) + "' WHERE id=" + id );
+			    Database.getConnectionStatement().executeUpdate ( "UPDATE casello SET kilometro = '" + this.getKm( ) + "', locazione = '" + this.getLocalita() + "', id_autostrada = '" + this.autostradaId + "' WHERE id=" + id );
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -96,9 +105,9 @@ public class Casello implements ModelInterface {
 			 if ( rs.next() == false ) {
 				 throw new Exception ( "Casello not found Exception" );
 			 }else {
-				 this.id = rs.getInt("id");
-				 this.km = rs.getInt("kilometro");
-				 this.localita = rs.getString("locazione");
+				 this.id = rs.getInt( "id" );
+				 this.km = rs.getInt( "kilometro" );
+				 this.localita = rs.getString( "locazione" );
 			 }
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -111,8 +120,7 @@ public class Casello implements ModelInterface {
 			Database.getConnectionStatement().executeUpdate ( "DELETE FROM casello WHERE id=" + id );
 		} catch ( Exception e) {
 			e.printStackTrace();
-		} 
-		
+		}
 	}
 
 }
