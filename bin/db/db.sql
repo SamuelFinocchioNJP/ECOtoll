@@ -72,4 +72,12 @@ CREATE TABLE IF NOT EXISTS biglietto (
       PRIMARY KEY ( id )
 );
 
+CREATE TABLE IF NOT EXISTS administrator (
+      id BIGINT AUTO_INCREMENT,
+      username VARCHAR(255) NOT NULL,
+      password VARCHAR(255) NOT NULL,
+      
+      PRIMARY KEY ( id )
+);
+
 
