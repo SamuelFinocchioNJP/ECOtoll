@@ -12,6 +12,7 @@ public class ClasseB extends Veicolo {
 	/**
 	 * 
 	 */
+	protected ClasseB() {}
 	
 	//Costruttore fino al 2021
 	public ClasseB(String targa, String marca, String modello, int annoImmatricolazione, int assi) {
@@ -24,5 +25,7 @@ public class ClasseB extends Veicolo {
 		super(targa, marca, modello, annoImmatricolazione, assi, classeAmbientale, inquinamentoAcustico);
 		//if(annoImmatricolazione <= 2021) throw new IllegalArgumentException("Costruttore errato per questo anno di immatricolazione");
 	}
+
+	
 
 }

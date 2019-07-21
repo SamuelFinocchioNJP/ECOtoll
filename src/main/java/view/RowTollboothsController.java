@@ -3,6 +3,7 @@ package view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Casello.Casello;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,7 +75,10 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	@Override
 	public void onDeleteClick()
 	{
-		//TODO: Chiediamo una conferma?
+		Casello casello = new Casello(Integer.valueOf(lbl_Code.getText()));
+		casello.destroy();
+		
+		admincontroller.onRefreshClickTollbooths();
 	}
 	
 	@Override

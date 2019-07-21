@@ -3,9 +3,10 @@
  */
 package Casello;
 
-import java.lang.reflect.InvocationTargetException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import com.mysql.jdbc.Statement;
 
 import Models.ModelInterface;
 import utility.Database;
@@ -71,30 +72,49 @@ public class Casello implements ModelInterface {
 	@Override
 	public void save() {
 		ResultSet rs = null;
-		try {
-			 rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM casello WHERE id='" + this.getId() + "' LIMIT 1" );
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			if ( rs.next() == false ) {
-				if ( Database.getConnectionStatement().executeUpdate ( "INSERT INTO casello ( locazione, kilometro, id_autostrada )"
-						+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "', '" + this.getAutostradaId ( ) + "')" ) != 0 )
-					this.save();
-				else 
-					throw new Exception ( "Can not create casello exception" );
-			} else {
-				/// Result found in query
-				int id;
-				id = rs.getInt("id");
-				//System.out.println( "UPDATE casello SET kilometro = '" + this.getKm ( ) + "' WHERE id=" + id );
-			    Database.getConnectionStatement().executeUpdate ( "UPDATE casello SET kilometro = '" + this.getKm( ) + "', locazione = '" + this.getLocalita() + "', id_autostrada = '" + this.autostradaId + "' WHERE id=" + id );
+		if ( this.id != 0 ) {
+			try {
+				 rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM casello WHERE id='" + this.getId() + "' LIMIT 1" );
+			}catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				if ( rs.next() == false ) {
+					if ( Database.getConnectionStatement().executeUpdate ( "INSERT INTO casello ( locazione, kilometro, id_autostrada )"
+							+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "', '" + this.getAutostradaId ( ) + "')" ) != 0 )
+						this.save();
+					else 
+						throw new Exception ( "Can not create casello exception" );
+				} else {
+					/// Result found in query
+					int id;
+					id = rs.getInt("id");
+					//System.out.println( "UPDATE casello SET kilometro = '" + this.getKm ( ) + "' WHERE id=" + id );
+				    Database.getConnectionStatement().executeUpdate ( "UPDATE casello SET kilometro = '" + this.getKm( ) + "', locazione = '" + this.getLocalita() + "', id_autostrada = '" + this.autostradaId + "' WHERE id=" + id );
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO casello ( locazione, kilometro, id_autostrada )"
+						+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "', '" + this.getAutostradaId ( ) + "')", Statement.RETURN_GENERATED_KEYS );
+				
+				preparedStatement.executeUpdate();
+				rs = preparedStatement.getGeneratedKeys();
+				
+				if ( rs.next() ) {
+					this.id = rs.getInt(1); 
+				}
+					
+				
+				rs.close();
+			} catch ( Exception e ) {
+				e.printStackTrace();
+			}
 		}
-	    
+		
 	}
 
 	@Override
