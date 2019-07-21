@@ -156,6 +156,23 @@ public class AdminHomeController implements Initializable {
 	public void onInsertClickTollbooths()
 	{
 		//TODO: query di inserimento
+		try
+		{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("TollboothInsert.fxml"));
+			Parent root = loader.load();
+					
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			TollboothInsertController controller = loader.getController();
+			controller.setHighwayCode(Integer.valueOf(txt_HighwayCode.getText()));
+					
+			controller.setHomeController(this);
+					
+			stage.show();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 		
 	public void onRefreshClickTollbooths()
