@@ -62,7 +62,7 @@ public class ControllerAutostrada implements ControllerInterface{
 			Database.getConnectionStatement().executeUpdate("UPDATE autostrada SET nome= '"+nomeNuovo+"' WHERE id="+idAutostrada);
 			int j=0;
 			for(String x: keys) {
-				Database.getConnectionStatement().executeUpdate("UPDATE tariffa SET prezzo= "+tariffs.get(j++));
+				Database.getConnectionStatement().executeUpdate("UPDATE tariffa SET prezzo= "+tariffs.get(j++)+"WHERE nome="+keys);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
