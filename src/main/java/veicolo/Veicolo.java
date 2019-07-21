@@ -10,7 +10,7 @@ public abstract class Veicolo {
 	
 	private String classeAmbientale;
 	private int inquinamentoAcustico;
-	
+	protected Veicolo() {}
 	//costruttore per Veicoli fino al 2021(veicoli pesanti) e 2026(tutti i veicoli)	
 	protected Veicolo (String targa, String marca, String modello, int annoImmatricolazione, int assi) {
 		super();
@@ -125,8 +125,6 @@ public abstract class Veicolo {
 	public void setInquinamentoAcustico(int inquinamentoAcustico) {
 		this.inquinamentoAcustico = inquinamentoAcustico;
 	}
-	
-	
 	
 	
 }

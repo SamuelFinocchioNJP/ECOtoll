@@ -10,7 +10,8 @@ package veicolo;
 public class ClasseA extends Veicolo {
 	
 	private int cilindrata;
-
+	public ClasseA() {}
+	
 	//costruttore fino al 2026
 	public ClasseA(String targa, String marca, String modello, int annoImmatricolazione, int assi) throws IllegalArgumentException{
 		super(targa,marca,modello,annoImmatricolazione,assi);
