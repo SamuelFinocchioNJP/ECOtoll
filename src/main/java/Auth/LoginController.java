@@ -9,9 +9,9 @@ public class LoginController {
 	
 	public boolean login ( String username, String password ) {
 		ResultSet rs = null;
-		try {
+		try {			
 			rs = Database.getConnectionStatement()
-						.executeQuery( "SELECT * FROM administrator WHERE username='" + username + "', AND password = '" + password + "'" );
+						.executeQuery( "SELECT * FROM administrator WHERE username LIKE '" + username + "' AND password = '" + password + "'" );
 		} catch (Exception e) {
 			e.printStackTrace ( );
 		}
