@@ -15,4 +15,10 @@ public class Constants {
 	
 	public static final int KM_TOLL = 1;
 	public static final int ECO_TOLL = 2;
+	
+	public static final String COD_CLASSE_A = "A";
+	public static final String COD_CLASSE_B = "B";
+	public static final String COD_CLASSE_3 = "3";
+	public static final String COD_CLASSE_4 = "4";
+	public static final String COD_CLASSE_5 = "5";
 }
