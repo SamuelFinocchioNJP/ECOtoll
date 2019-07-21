@@ -32,9 +32,17 @@ public class LoginAdministratorController implements Initializable {
 	public void onClick()
 	{
 		try {
-			//TODO: query per controllo login
 			
-			//Suppongo successo nel login
+			LoginController controller = new LoginController();
+			
+			Boolean login = controller.login(txt_Username.getText(), txt_Password.getText());
+			
+			if(!login)
+			{
+				txt_Username.setText("Wrong Credentials");
+				txt_Password.setText("");
+				return;
+			}
 			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHome.fxml"));
@@ -49,6 +57,7 @@ public class LoginAdministratorController implements Initializable {
 		catch(Exception e){
 			e.printStackTrace();
 			System.err.println(e);
+			
 		}
 		
 		
