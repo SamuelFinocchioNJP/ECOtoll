@@ -39,12 +39,7 @@
             <Font name="Microsoft Sans Serif" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="534.0" layoutY="150.0" text="Examples" textFill="#e7e5e5">
-         <font>
-            <Font name="Microsoft Sans Serif" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="686.0" layoutY="150.0" text="Tariff" textFill="#e7e5e5">
+      <Label layoutX="546.0" layoutY="150.0" text="Tariff" textFill="#e7e5e5">
          <font>
             <Font name="Microsoft Sans Serif" size="14.0" />
          </font>
