@@ -101,9 +101,15 @@ public class Casello implements ModelInterface {
 				PreparedStatement preparedStatement = Database.getConnectionObject().prepareStatement ( "INSERT INTO casello ( locazione, kilometro, id_autostrada )"
 						+ " VALUES ('" + this.getLocalita() + "','" + this.getKm() + "', '" + this.getAutostradaId ( ) + "')", Statement.RETURN_GENERATED_KEYS );
 				
-				preparedStatement.executeQuery();
-				rs = preparedStatement.getResultSet();
+				preparedStatement.executeUpdate();
+				rs = preparedStatement.getGeneratedKeys();
 				
+				if ( rs.next() ) {
+					this.id = rs.getInt(1); 
+				}
+					
+				
+				rs.close();
 			} catch ( Exception e ) {
 				e.printStackTrace();
 			}
