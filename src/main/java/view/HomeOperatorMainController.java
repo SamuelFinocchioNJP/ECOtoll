@@ -115,7 +115,7 @@ public class HomeOperatorMainController implements Initializable{
 								
 				
 				toll = new PedaggioKm();
-				toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
+				//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
 				break;
 		
 			case Constants.ECO_TOLL:
