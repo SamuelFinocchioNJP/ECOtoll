@@ -1,5 +1,5 @@
 -- ECOtoll database schema
--- Review 3 - Samuel Finocchio 21/07/19
+-- Review 0 - Samuel Finocchio 22/05/19
 
 CREATE DATABASE IF NOT EXISTS ecotoll;
 
@@ -42,7 +42,11 @@ CREATE TABLE IF NOT EXISTS casello (
       id BIGINT AUTO_INCREMENT,
       locazione VARCHAR ( 255 ) NOT NULL,
       kilometro INT NOT NULL,
-      PRIMARY KEY ( id )
+      PRIMARY KEY ( id ),
+
+       -- Foreign key id_autostrada riferimento a autostrada
+      id_autostrada BIGINT,
+      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id )
 );
 
 CREATE TABLE IF NOT EXISTS tariffa ( 
@@ -76,7 +80,7 @@ CREATE TABLE IF NOT EXISTS administrator (
       id BIGINT AUTO_INCREMENT,
       username VARCHAR(255) NOT NULL,
       password VARCHAR(255) NOT NULL,
-
+      
       PRIMARY KEY ( id )
 );
 
