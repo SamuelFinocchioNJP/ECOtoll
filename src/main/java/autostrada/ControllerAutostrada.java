@@ -15,8 +15,8 @@ public class ControllerAutostrada implements ControllerInterface{
 		try {
 			ResultSet counter = Database.getConnectionStatement().executeQuery ( "COUNT (*) FROM autostrada" );
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
-			int arraySize=counter.getInt(0);
-			arrayId=new int[arraySize];
+			int arraySize = counter.getInt(0);
+			arrayId = new int[arraySize];
 			for ( int i = 0; i < arraySize; i++ ) {
 				arrayId[i]=rs.getInt("id");
 				rs.next();
@@ -45,7 +45,6 @@ public class ControllerAutostrada implements ControllerInterface{
 	}
 	
 	public void editTariffa ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
-
 		try {
 			/// Modifica nome autostrada
 			Autostrada a = new Autostrada ( idAutostrada );
@@ -54,10 +53,19 @@ public class ControllerAutostrada implements ControllerInterface{
 			
 			/// Inserimento tariffe
 			Tariffa ta = new Tariffa ( "A", tariffeNuove.get( "A" ), idAutostrada );
+			ta.save();
+			
 			Tariffa tb = new Tariffa ( "B", tariffeNuove.get( "B" ), idAutostrada );
+			tb.save();
+			
 			Tariffa t3 = new Tariffa ( "3", tariffeNuove.get( "3" ), idAutostrada );
+			t3.save();
+			
 			Tariffa t4 = new Tariffa ( "4", tariffeNuove.get( "4" ), idAutostrada );
+			t4.save();
+			
 			Tariffa t5 = new Tariffa ( "5", tariffeNuove.get( "5" ), idAutostrada );
+			t5.save();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -85,13 +93,13 @@ public class ControllerAutostrada implements ControllerInterface{
 	}
 
 	@Override
-	public  void deleteRecord(int id) {//Con codice si intende l'Id o il nome dell'autostrada?
+	public void deleteRecord ( int id ) {//Con codice si intende l'Id o il nome dell'autostrada?
 		try {
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = "+id );
 			if(!rs.next()) {
 				throw new Exception("The id that you have supplied does not correspond to an existing Autostrada");
 			}
-			Database.getConnectionStatement().executeUpdate ( "DELETE FROM autostrada WHERE id = "+id );
+			Database.getConnectionStatement().executeUpdate ( "DELETE FROM autostrada WHERE id = " + id );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
