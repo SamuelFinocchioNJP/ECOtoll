@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class HighwaysEditController implements Initializable {
 
@@ -56,7 +57,13 @@ public class HighwaysEditController implements Initializable {
 				res.put(lables[0], Float.valueOf(lables[1]));
 			}
 		}
-		//chiamata(id,lbl_Name.getText(),map);
+		ControllerAutostrada controller = new ControllerAutostrada();
+		controller.editTariffa(code, txt_Name.getText(), res);
+		
+		admincontroller.onRefreshClickHighways();
+		
+		Stage stage = (Stage) btn_Done.getScene().getWindow();
+		stage.close();
 	}
 	
 	public void setHomeController(AdminHomeController controller)
