@@ -22,6 +22,8 @@ public class RowHighwaysEditController implements Initializable {
 	
 	private HighwaysEditController editcontroller;
 	
+	private HighwayInsertController insertcontroller;
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -34,6 +36,11 @@ public class RowHighwaysEditController implements Initializable {
 	public void setHighwaysController(HighwaysEditController controller)
 	{
 		editcontroller = controller;
+	}
+	
+	public void setHighwaysController(HighwayInsertController controller)
+	{
+		insertcontroller = controller;
 	}
 	
 	public void setLables(String type, String tariff)

@@ -7,6 +7,8 @@ public class Constants {
 	public static final int CLASSE_3 = 3;
 	public static final int CLASSE_4 = 4;
 	public static final int CLASSE_5 = 5;
+	
+	public static final int NUMERO_CLASSI = 5;
 
 	public static final String PEDAGGIO_KM = "KM";
 	public static final String PEDAGGIO_ECO = "ECO";

@@ -129,6 +129,23 @@ public class AdminHomeController implements Initializable {
 	public void onInsertClickHighwyas()
 	{
 		//TODO: query di inserimento
+		try
+		{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("HighwaysInsert.fxml"));
+			Parent root = loader.load();
+			
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			HighwayInsertController controller = loader.getController();
+			
+			controller.setHomeController(this);
+			
+			stage.show();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
