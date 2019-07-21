@@ -32,7 +32,8 @@ public class Database {
 						   + Settings.Config.DB_CONNECTION_SERVER + "/" 
 						   + Settings.Config.DB_CONNECTION_DBNAME 
 						   + "?user=" + Settings.Config.DB_CONNECTION_DBUSERNAME 
-						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD );
+						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD 
+						   + "&useSSL=false");
 		
 		return conn.createStatement ( );
 	}
