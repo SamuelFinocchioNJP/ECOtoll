@@ -21,14 +21,14 @@ public class Autostrada implements ModelInterface {
 	
 	private String nome;
 	private int id;
-	private Map<Integer,Float> tariffaUnitaria;
+	private Map<String,Float> tariffaUnitaria;
 	private List<Casello> listCasello;
 	private int iva;
 	private IPedaggio pedaggio;
 	private String tipoPedaggio;
 		
 	/** TODO: Replace old constructor **/
-	public Autostrada ( String nome, Map<Integer,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
+	public Autostrada ( String nome, Map<String,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
 		this.nome = nome;
 		this.tariffaUnitaria = tariffaUnitaria;
 		this.listCasello = listCasello;
@@ -63,7 +63,7 @@ public class Autostrada implements ModelInterface {
 	}
 	
 	public String stampaPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita ) {
-		return pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita, listCasello, tariffaUnitaria, iva);	
+		return pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita, tariffaUnitaria, iva);	
 	}
 
 	public String getNome() {
@@ -82,11 +82,11 @@ public class Autostrada implements ModelInterface {
 		this.nome = nome;
 	}
 
-	public Map<Integer, Float> getTariffaUnitaria() {
+	public Map<String, Float> getTariffaUnitaria() {
 		return tariffaUnitaria;
 	}
 	
-	public void setTariffaUnitaria(Map<Integer, Float> tariffaUnitaria) {
+	public void setTariffaUnitaria(Map<String, Float> tariffaUnitaria) {
 		this.tariffaUnitaria = tariffaUnitaria;
 	}
 

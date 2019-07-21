@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import Casello.Casello;
+import autostrada.Autostrada;
 import autostrada.ControllerAutostrada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ import veicolo.Classe5;
 import veicolo.ClasseA;
 import veicolo.ClasseB;
 import veicolo.Veicolo;
+import veicolo.VeicoloController;
 
 public class HomeOperatorMainController implements Initializable{
 
@@ -81,45 +83,24 @@ public class HomeOperatorMainController implements Initializable{
 		System.out.println(start_tollbooth_code);
 		System.out.println(car_license_plate);
 
-		switch(toll_code) {
-		
-			case Constants.KM_TOLL:
-								
-				Veicolo vehicle = new ClasseA("dnsj","dbsaj", "33", 2, 2);
-				Veicolo vehicle2 = vehicle;
-				System.out.println(vehicle2 instanceof ClasseA);
-		
-				
-				
-				
+		switch(toll_code) {	
+			case Constants.KM_TOLL:							
+				Veicolo vehicle = VeicoloController.getVeicolo(car_license_plate);				
+							
 				Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
 				Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
 				ControllerAutostrada highway_controller = new ControllerAutostrada();
-				Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());
-				if(vehicle2 instanceof ClasseA)
-					rate.get(Constants.COD_CLASSE_A);
-				else
-					if(vehicle2 instanceof ClasseB)
-						rate.get(Constants.COD_CLASSE_B);
-					else
-						if(vehicle2 instanceof Classe3)
-							rate.get(Constants.COD_CLASSE_3);
-						else
-							if(vehicle2 instanceof Classe4)
-								rate.get(Constants.COD_CLASSE_4);
-							else
-								if(vehicle2 instanceof Classe5)
-									rate.get(Constants.COD_CLASSE_5);
-								else
-									throw new IllegalArgumentException("Tipo di veicolo non riconosciuto");
-								
-				
+				Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());											
 				toll = new PedaggioKm();
-				//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
+				
+				Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
+				int highway_iva = highway.getIva();
+				
+				
+				System.out.println(toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva));
 				break;
 		
-			case Constants.ECO_TOLL:
-			
+			case Constants.ECO_TOLL:		
 				toll = new PedaggioEco();
 				System.out.println(toll_code);
 				break;
