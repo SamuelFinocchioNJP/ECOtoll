@@ -70,7 +70,12 @@ public class Tariffa implements ModelInterface {
 		
 		/** Acknowledgement of previous existence of the same instance of tariffa **/
 		try {
-			Database.getConnectionStatement().executeUpdate ("INSERT INTO TARIFFA ( id_autostrada, classe_veicolo, prezzo ) VALUES ('" + this.idAutostrada + "','" + this.classeVeicolo + "', '" + this.prezzo + "')");
+			/// Sostituizione precedente tariffa con nuova previa eliminazione
+			Database.getConnectionStatement ( ).executeUpdate ( "DELETE FROM tariffa WHERE id_autostrada=" + "'" + this.idAutostrada + "' AND classe_veicolo =" + "'" + this.classeVeicolo + "'" );
+			
+			/** If result set is empty, go for insert query **/
+			Database.getConnectionStatement().executeUpdate ("INSERT INTO tariffa ( id_autostrada, classe_veicolo, prezzo ) "
+					+ "VALUES ('" + this.idAutostrada + "','" + this.classeVeicolo + "', '" + this.prezzo + "')");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
