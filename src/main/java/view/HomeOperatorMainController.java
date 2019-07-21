@@ -28,7 +28,7 @@ public class HomeOperatorMainController implements Initializable{
 	public void setTollboothCode(String code)
 	{
 		this.code = code;
-		lbl_tollbooth.setText("Tollboth #" + code);
+		lbl_tollbooth.setText("Welcome, \n you are in "+ code +" toolbooth");
 		return;
 	}
 	
@@ -36,5 +36,7 @@ public class HomeOperatorMainController implements Initializable{
 	public void onClick()
 	{
 		//TODO: Codice per prendere da file i dati, calcolare il prezzo e stamparlo
+		
+		
 	}
 }
