@@ -23,7 +23,7 @@ public class Casello implements ModelInterface {
 		this.retrieve( id );
 	}
 	
-	public Casello(String localita, int km, int autostradaId ) {
+	public Casello ( String localita, int km, int autostradaId ) {
 		this.localita = localita;
 		this.km = km;	
 		this.autostradaId = autostradaId;
@@ -131,7 +131,7 @@ public class Casello implements ModelInterface {
 				 this.localita = rs.getString( "locazione" );
 				 this.autostradaId = rs.getInt("id_autostrada");
 			 }
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
