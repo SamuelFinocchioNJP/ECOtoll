@@ -51,18 +51,13 @@ public class TestAutostrada extends Application {
 		
 		autostrada.setIva ( 24 );
 		autostrada.save();
-		
 		//autostrada.retrieve( 1 );
-		
 		//autostrada.destroy();
 		//new ControllerAutostrada().deleteRecord(2);
 		//new ControllerAutostrada().deleteRecord(3);
-		Map <Integer,Float> tar=new ControllerAutostrada().getAutostradeTariffe(1);
-		
-			System.out.printf("A\t%f\n",tar.get(1));
-			System.out.printf("B\t%f\n",tar.get(2));
-		
-		
+		Map <String,Float> tar=new ControllerAutostrada().getAutostradeTariffe(1);
+			System.out.printf("A\t%f\n",tar.get("A"));
+			System.out.printf("B\t%f\n",tar.get("B"));		
 		System.out.println( autostrada.getNome() );
 	}
 	

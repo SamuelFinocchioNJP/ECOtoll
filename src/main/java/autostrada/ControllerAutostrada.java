@@ -50,13 +50,13 @@ public class ControllerAutostrada implements ControllerInterface{
 	}
 	
 	
-	public Map<Integer,Float>  getAutostradeTariffe(int id) {
-		HashMap<Integer,Float> classToTariffs=new HashMap();
+	public Map<String,Float>  getAutostradeTariffe(int id) {
+		HashMap<String,Float> classToTariffs=new HashMap();
 		try {
-			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT categoria.id AS id_categoria,tariffa.prezzo FROM autostrada  INNER JOIN tariffa ON tariffa.id_autostrada=autostrada.id INNER JOIN categoria ON categoria.id=tariffa.id_classe_veicolo WHERE autostrada.id= "+id );
+			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT categoria.nome AS nome_categoria,tariffa.prezzo FROM autostrada  INNER JOIN tariffa ON tariffa.id_autostrada=autostrada.id INNER JOIN categoria ON categoria.id=tariffa.id_classe_veicolo WHERE autostrada.id= "+id );
 			// 	put(K key, V value)
 			while(rs.next()){
-				classToTariffs.put(rs.getInt("id_categoria"), rs.getFloat("prezzo"));
+				classToTariffs.put(rs.getString("nome_categoria"), rs.getFloat("prezzo"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
