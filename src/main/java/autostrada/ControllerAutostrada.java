@@ -9,7 +9,10 @@ import Controllers.ControllerInterface;
 import utility.Database;
 
 public class ControllerAutostrada implements ControllerInterface {
-	@Override
+	/**
+	 * @deprecated
+	 * Use getAutostrade() instead
+	 */
 	public  int[] idRetriever ( ) {
 		int [] arrayId = null;
 		try {
@@ -28,7 +31,7 @@ public class ControllerAutostrada implements ControllerInterface {
 		return arrayId;
 	}
 	
-	public ArrayList <Autostrada> getAutostrade() {//retrieve automatico autostrade
+	public ArrayList <Autostrada> getAutostrade() { // retrieve automatico autostrade
 		ArrayList <Autostrada> autobahn = new ArrayList<Autostrada>();
 		try {	
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
@@ -37,13 +40,11 @@ public class ControllerAutostrada implements ControllerInterface {
 				autobahn.add(k);
 			}
 		} catch ( Exception e ) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return autobahn;
 	}
-	
 	
 	public void editAutostradaWithTariff ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		editTariffa ( idAutostrada, nomeNuovo, tariffeNuove );
@@ -121,6 +122,5 @@ public class ControllerAutostrada implements ControllerInterface {
 			e.printStackTrace();
 		}
 	}
-	
 	
 }
