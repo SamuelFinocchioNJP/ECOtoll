@@ -34,6 +34,11 @@
       </Label>
       <Button fx:id="btn_km_toll" layoutX="729.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleTollClick" prefHeight="49.0" prefWidth="149.0" styleClass="shiny-orange" stylesheets="@style.css" text="Pedaggio KM" />
       <Button fx:id="btn_eco_toll" layoutX="729.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleTollClick" prefHeight="49.0" prefWidth="149.0" styleClass="shiny-orange" stylesheets="@style.css" text="Pedaggio ECO" />
+      <Label fx:id="lbl_tollprice" layoutX="39.0" layoutY="308.0" text="Operator Panel" textFill="#e7e5e5" visible="false">
+         <font>
+            <Font name="Microsoft Sans Serif" size="38.0" />
+         </font>
+      </Label>
    </children>
    <effect>
       <DropShadow blurType="ONE_PASS_BOX" color="#1b1eeb" />

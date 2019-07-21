@@ -49,6 +49,9 @@ public class HomeOperatorMainController implements Initializable{
 	@FXML
 	private Button btn_eco_toll;
 	
+	@FXML
+	private Label lbl_tollprice;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -97,7 +100,8 @@ public class HomeOperatorMainController implements Initializable{
 				int highway_iva = highway.getIva();
 				
 				
-				System.out.println(toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva));
+				lbl_tollprice.setText("Il prezzo del pedaggio è: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"€");
+				lbl_tollprice.setVisible(true);
 				break;
 		
 			case Constants.ECO_TOLL:		
