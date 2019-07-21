@@ -25,6 +25,7 @@ public class Autostrada implements ModelInterface {
 	private IPedaggio pedaggio;
 	private String tipoPedaggio;
 		
+	/** TODO: Replace old constructor **/
 	public Autostrada ( String nome, Map<Integer,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
 		this.nome = nome;
 		this.tariffaUnitaria = tariffaUnitaria;
@@ -32,6 +33,11 @@ public class Autostrada implements ModelInterface {
 		this.tipoPedaggio = tipoPedaggio;
 		this.iva = iva;
 		buildPedaggio();
+	}
+	
+	public Autostrada ( String nome, int iva ) {
+		this.nome = nome;
+		this.iva = iva;
 	}
 	
 	public Autostrada ( int id ) {
@@ -47,7 +53,7 @@ public class Autostrada implements ModelInterface {
 				pedaggio = new PedaggioEco();
 				break;
 			default:
-				throw new IllegalArgumentException("Il tipo di pedaggio non ï¿½ ammesso"); 		
+				throw new IllegalArgumentException("Il tipo di pedaggio non è ammesso"); 		
 		}
 	}
 	
