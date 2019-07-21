@@ -4,17 +4,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
 import autostrada.Autostrada;
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class AdminHomeController implements Initializable {
 
@@ -85,6 +89,11 @@ public class AdminHomeController implements Initializable {
 	private VBox scroll_Vehicle = null;
 	
 	
+	@FXML
+	private Button btn_Signout;
+	
+	
+	
 	private ArrayList<Autostrada> query_results;
 	
 	
@@ -99,33 +108,10 @@ public class AdminHomeController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		Node[] nodes = new Node[query_results.size()];
-		int i = 0;
-		for(Autostrada x : query_results)
-		{
-			
-			try
-			{
-				//Prendo il layout della singola riga
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighways.fxml"));
-				//la assegno all'i-esmima entry
-				nodes[i] = (Node) loader.load();
-				
-				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
-				RowHighwaysController controller = loader.getController();
-				controller.setLabels(String.valueOf(x.getId()),x.getNome());
-				
-				//aggiungo la riga allo scroller
-				scroll_Highways.getChildren().add(nodes[i]);
-				
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			
-		}
+		//Query e popolamento delle rows
+		getAllHighways();
 		
-		
+						
 		//Parte visibile il pannello highways
 		pnl_Highways.setVisible(true);
 		pnl_Tollbooths.setVisible(false);
@@ -142,38 +128,11 @@ public class AdminHomeController implements Initializable {
 	
 	public void onRefreshClickHighways()
 	{	
-		//Eseguo la query
-		ControllerAutostrada controllera = new ControllerAutostrada();
-		this.query_results = controllera.getAutostrade();
-		
 		//Pulisco la lista
 		scroll_Highways.getChildren().clear();
 		
-		//Ripopolo la lista
-		Node[] nodes = new Node[query_results.size()];
-		int i = 0;
-		for(Autostrada x : query_results)
-		{
-			
-			try
-			{
-				//Prendo il layout della singola riga
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighways.fxml"));
-				//la assegno all'i-esmima entry
-				nodes[i] = (Node) loader.load();
-				
-				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
-				RowHighwaysController controller = loader.getController();
-				controller.setLabels(String.valueOf(x.getId()),x.getNome());
-				
-				//aggiungo la riga allo scroller
-				scroll_Highways.getChildren().add(nodes[i]);
-				
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
+		//Query e popolamento delle rows
+		getAllHighways();
 	}
 
 	//Metodi bottoni Tollbooths
@@ -234,9 +193,56 @@ public class AdminHomeController implements Initializable {
 	
 	public void onSignoutClick()
 	{
-		//TODO: sloggo e torno alla schermata iniziale
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-administrator.fxml"));
+			Parent root = loader.load();
+			
+			Stage stage = (Stage) btn_Signout.getScene().getWindow();
+			stage.setScene(new Scene(root));
+			
+			
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	
+	private void getAllHighways()
+	{
+		//Eseguo la query
+		ControllerAutostrada controllera = new ControllerAutostrada();
+		this.query_results = controllera.getAutostrade();
+				
+			
+				
+		//Ripopolo la lista
+		Node[] nodes = new Node[query_results.size()];
+		int i = 0;
+		for(Autostrada x : query_results)
+		{
+					
+			try
+			{
+				//Prendo il layout della singola riga
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighways.fxml"));
+				//la assegno all'i-esmima entry
+				nodes[i] = (Node) loader.load();
+						
+				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
+				RowHighwaysController controller = loader.getController();
+				controller.setLabels(String.valueOf(x.getId()),x.getNome());
+						
+				//aggiungo la riga allo scroller
+				scroll_Highways.getChildren().add(nodes[i]);
+						
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
 
 }
