@@ -1,5 +1,6 @@
 package autostrada;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
@@ -49,7 +50,29 @@ public class ControllerAutostrada implements ControllerInterface{
 		return autobahn;
 	}
 	
-	
+	public void editTariffa (int idAutostrada,String nomeNuovo, Map <String,Float> tariffeNuove) {
+		
+		ArrayList <String> keys=new ArrayList();
+		ArrayList <Float>  tariffs=new ArrayList();
+		for(Map.Entry<String,Float> x: tariffeNuove.entrySet()) {
+			keys.add(x.getKey());
+			tariffs.add(tariffeNuove.get(x.getKey()));
+		}
+		try {
+			Database.getConnectionStatement().executeUpdate("UPDATE autostrada SET nome= '"+nomeNuovo+"' WHERE id="+idAutostrada);
+			int j=0;
+			for(String x: keys) {
+				Database.getConnectionStatement().executeUpdate("UPDATE tariffa SET prezzo= "+tariffs.get(j++));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+		
+		
+		
+	}
 	public Map<String,Float>  getAutostradeTariffe(int id) {
 		HashMap<String,Float> classToTariffs=new HashMap();
 		try {
