@@ -3,18 +3,9 @@
  */
 package autostrada;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.*;
-
 import Models.ModelInterface;
-import pedaggio.IPedaggio;
-import pedaggio.PedaggioEco;
-import pedaggio.PedaggioKm;
-import utility.Constants;
 import utility.Database;
-import veicolo.Veicolo;
 
 public class Tariffa implements ModelInterface {
 	private int id;
