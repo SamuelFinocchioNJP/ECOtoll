@@ -55,8 +55,6 @@ public class Tariffa implements ModelInterface {
 		this.classeVeicolo = classeVeicolo;
 		this.prezzo = prezzo;
 		this.idAutostrada = idAutostrada;
-		
-		this.save();
 	}
 
 	@Override

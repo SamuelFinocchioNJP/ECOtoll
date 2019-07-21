@@ -38,7 +38,11 @@ CREATE TABLE IF NOT EXISTS casello (
       id BIGINT AUTO_INCREMENT,
       locazione VARCHAR ( 255 ) NOT NULL,
       kilometro INT NOT NULL,
-      PRIMARY KEY ( id )
+      PRIMARY KEY ( id ),
+      
+       -- Foreign key id_autostrada riferimento a autostrada
+      id_autostrada BIGINT,
+      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id ),
 );
 
 CREATE TABLE IF NOT EXISTS tariffa ( 
