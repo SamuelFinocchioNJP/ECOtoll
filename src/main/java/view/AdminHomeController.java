@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 
 import autostrada.Autostrada;
+import autostrada.Casello;
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -263,4 +264,42 @@ public class AdminHomeController implements Initializable {
 		}
 	}
 
+	
+	private void getAllTollbooths()
+	{
+		//Eseguo la query
+		ControllerAutostrada controllera = new ControllerAutostrada();
+		this.query_results = controllera.getCaselliFromAutostrada(txt_HighwayCode.getText());
+					
+		lbl_Number_Tollbooths.setText(String.valueOf(query_results.size()));
+					
+						
+		//Ripopolo la lista
+		Node[] nodes = new Node[query_results.size()];
+		int i = 0;
+		for(Casello x : query_results)
+		{
+							
+			try
+			{
+				//Prendo il layout della singola riga
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowTollbooths.fxml"));
+				//la assegno all'i-esmima entry
+				nodes[i] = (Node) loader.load();
+								
+				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
+				RowHighwaysController controller = loader.getController();
+				controller.setLabels(String.valueOf(x.getId), x.getLocalita(), String.valueOf(x.getKm()));
+				//Ogni row ha il riferimento al controller dello scroller in cui si trova
+				controller.setAdminController(this);
+								
+				//aggiungo la riga allo scroller
+				scroll_Highways.getChildren().add(nodes[i]);
+				i++;
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
 }
