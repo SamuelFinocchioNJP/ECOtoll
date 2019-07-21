@@ -12,4 +12,7 @@ public class Constants {
 
 	public static final String PEDAGGIO_KM = "KM";
 	public static final String PEDAGGIO_ECO = "ECO";
+	
+	public static final int KM_TOLL = 1;
+	public static final int ECO_TOLL = 2;
 }

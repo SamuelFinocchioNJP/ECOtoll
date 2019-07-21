@@ -3,11 +3,16 @@ package view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Casello.Casello;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /*
  * @author: Pietro
@@ -47,12 +52,33 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	public void onEditClick()
 	{
 		//TODO: Da decidere, apriamo un pannello per editare?
+				try
+				{
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("TollboothEdit.fxml"));
+					Parent root = loader.load();
+					
+					Stage stage = new Stage();
+					stage.setScene(new Scene(root));
+					TollboothEditController controller = loader.getController();
+					controller.setLabels(lbl_Code.getText(), lbl_Name.getText(), lbl_KM.getText());
+					controller.setCode(Integer.valueOf(lbl_Code.getText()));
+					controller.setHomeController(admincontroller);
+					
+					stage.show();
+					
+				}catch(Exception e)
+				{
+					e.printStackTrace();
+				}
 	}
 	
 	@Override
 	public void onDeleteClick()
 	{
-		//TODO: Chiediamo una conferma?
+		Casello casello = new Casello(Integer.valueOf(lbl_Code.getText()));
+		casello.destroy();
+		
+		admincontroller.onRefreshClickTollbooths();
 	}
 	
 	@Override

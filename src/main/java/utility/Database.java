@@ -31,8 +31,10 @@ public class Database {
 				   "jdbc:mysql://" 
 						   + Settings.Config.DB_CONNECTION_SERVER + "/" 
 						   + Settings.Config.DB_CONNECTION_DBNAME 
-						   + "?user=" + Settings.Config.DB_CONNECTION_DBUSERNAME 
-						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD );
+						   + "?useSSL=false" 
+						   + "&user=" + Settings.Config.DB_CONNECTION_DBUSERNAME 
+						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD 
+						  );
 		
 		return conn.createStatement ( );
 	}
