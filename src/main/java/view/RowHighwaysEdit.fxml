@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -18,11 +19,11 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-      <TextField fx:id="txt_Type" promptText="Tipo veicolo" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+      <Label fx:id="lbl_Name" text="Name" textFill="#e7e5e5">
          <font>
-            <Font name="Microsoft Sans Serif" size="10.0" />
+            <Font name="Microsoft Sans Serif" size="14.0" />
          </font>
-      </TextField>
+      </Label>
       <TextField fx:id="txt_Tariff" layoutX="333.0" layoutY="26.0" promptText="tariffa" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
          <font>
             <Font name="Microsoft Sans Serif" size="10.0" />
