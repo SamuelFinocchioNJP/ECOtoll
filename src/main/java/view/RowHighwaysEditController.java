@@ -17,6 +17,9 @@ public class RowHighwaysEditController implements Initializable {
 	private TextField txt_Examples;
 	
 	@FXML
+	private TextField txt_Tariff;
+	
+	@FXML
 	private HBox box_Row;
 	
 	private HighwaysEditController editcontroller;
@@ -35,17 +38,19 @@ public class RowHighwaysEditController implements Initializable {
 		editcontroller = controller;
 	}
 	
-	public void setLables(String type, String examples)
+	public void setLables(String type, String examples, String tariff)
 	{
 		txt_Type.setText(type);
 		txt_Examples.setText(examples);
+		txt_Tariff.setText(tariff);
 	}
 	
 	public String[] getLables()
 	{
-		String[] res = new String[2];
+		String[] res = new String[3];
 		res[0] = txt_Type.getText();
 		res[1] = txt_Examples.getText();
+		res[3] = txt_Tariff.getText();
 		return res;
 	}
 	
