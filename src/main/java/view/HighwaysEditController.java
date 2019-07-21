@@ -1,10 +1,10 @@
 package view;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import autostrada.Autostrada;
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +33,9 @@ public class HighwaysEditController implements Initializable {
 	
 	private AdminHomeController admincontroller;
 	
+	private Node[] nodes ;
 	
+	private FXMLLoader[] loaders;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -43,7 +45,18 @@ public class HighwaysEditController implements Initializable {
 	
 	public void onClick()
 	{
+		Map<String,Float> res = new HashMap<String,Float>();
 		//query di inserimento
+		
+		if(loaders != null)
+		{
+			for(FXMLLoader x : loaders)
+			{
+				String[] lables = ((RowHighwaysEditController) x.getController()).getLables();
+				res.put(lables[0], Float.valueOf(lables[1]));
+			}
+		}
+		//chiamata(id,lbl_Name.getText(),map);
 	}
 	
 	public void setHomeController(AdminHomeController controller)
@@ -67,28 +80,30 @@ public class HighwaysEditController implements Initializable {
 	{
 		
 		ControllerAutostrada controllerA= new ControllerAutostrada();
-		Map<Integer,Float> result = controllerA.getAutostradeTariffe(code);
+		Map<String,Float> result = controllerA.getAutostradeTariffe(code);
 		
-		
-		Node[] nodes = new Node[result.size()];
+		loaders = new FXMLLoader[result.size()];
+		nodes = new Node[result.size()];
 		int i = 0;
-		for(Map.Entry<Integer,Float> x : result.entrySet())
+		for(Map.Entry<String,Float> x : result.entrySet())
 		{
 					
 			try
 			{
 				//Prendo il layout della singola riga
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighwaysEdit.fxml"));
+				loaders[i] = loader;
 				//la assegno all'i-esmima entry
 				nodes[i] = (Node) loader.load();
 						
 				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
 				RowHighwaysEditController controller = loader.getController();
-				controller.setLables("test", String.valueOf(x.getValue()));
+				controller.setLables(x.getKey(), String.valueOf(x.getValue()));
 				//Ogni row ha il riferimento al controller dello scroller in cui si trova
 				controller.setHighwaysController(this);
 				scroll_vehicle_classes.getChildren().add(nodes[i]);
 				i++;
+				
 			}catch(Exception e)
 			{
 				e.printStackTrace();

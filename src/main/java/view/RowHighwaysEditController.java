@@ -5,13 +5,14 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 public class RowHighwaysEditController implements Initializable {
 
 	@FXML
-	private TextField txt_Type;
+	private Label lbl_Name;
 	
 	@FXML
 	private TextField txt_Tariff;
@@ -37,14 +38,14 @@ public class RowHighwaysEditController implements Initializable {
 	
 	public void setLables(String type, String tariff)
 	{
-		txt_Type.setText(type);
+		lbl_Name.setText(type);
 		txt_Tariff.setText(tariff);
 	}
 	
 	public String[] getLables()
 	{
 		String[] res = new String[2];
-		res[0] = txt_Type.getText();
+		res[0] = lbl_Name.getText();
 		res[1] = txt_Tariff.getText();
 		return res;
 	}
