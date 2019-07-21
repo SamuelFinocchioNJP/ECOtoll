@@ -43,7 +43,6 @@ public abstract class Veicolo {
 		this.inquinamentoAcustico = inquinamentoAcustico;
 	}
 
-
 	//costruttore per moto dal 2026
 	protected Veicolo(String targa, String marca, String modello, int annoImmatricolazione, String classeAmbientale,
 			int inquinamentoAcustico) {
@@ -55,7 +54,6 @@ public abstract class Veicolo {
 		this.classeAmbientale = classeAmbientale;
 		this.inquinamentoAcustico = inquinamentoAcustico;
 	}
-
 
 	public String getTarga() {
 		return targa;

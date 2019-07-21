@@ -142,7 +142,6 @@ public class AdminHomeController implements Initializable {
 		
 	}
 	
-	
 	public void onRefreshClickHighways()
 	{	
 		//Pulisco la lista
@@ -166,11 +165,9 @@ public class AdminHomeController implements Initializable {
 		
 		//Query e ripopolamento
 		getAllTollbooths();
-		
 	}
 	
 	//Metodi bottoni Vehicles
-	
 	public void onInsertClickVehicles()
 	{
 		//TODO: query di inserimento
