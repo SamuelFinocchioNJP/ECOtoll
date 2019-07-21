@@ -32,8 +32,8 @@
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btn_calculate1" layoutX="729.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="49.0" prefWidth="149.0" styleClass="shiny-orange" stylesheets="@style.css" text="Pedaggio KM" />
-      <Button fx:id="btn_calculate11" layoutX="729.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="49.0" prefWidth="149.0" styleClass="shiny-orange" stylesheets="@style.css" text="Pedaggio ECO" />
+      <Button fx:id="btn_km_toll" layoutX="729.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleTollClick" prefHeight="49.0" prefWidth="149.0" styleClass="shiny-orange" stylesheets="@style.css" text="Pedaggio KM" />
+      <Button fx:id="btn_eco_toll" layoutX="729.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleTollClick" prefHeight="49.0" prefWidth="149.0" styleClass="shiny-orange" stylesheets="@style.css" text="Pedaggio ECO" />
    </children>
    <effect>
       <DropShadow blurType="ONE_PASS_BOX" color="#1b1eeb" />
