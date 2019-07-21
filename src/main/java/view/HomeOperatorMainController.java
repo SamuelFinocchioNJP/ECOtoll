@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Casello.Casello;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,11 +18,14 @@ import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
+import veicolo.ClasseA;
 import veicolo.Veicolo;
 
 public class HomeOperatorMainController implements Initializable{
 
-	private String code;
+	private String destination_tollbooth_code;
+	private String start_tollbooth_code;
+	private String car_license_plate;
 	private int toll_code;
 	private IPedaggio toll;
 	
@@ -45,7 +49,7 @@ public class HomeOperatorMainController implements Initializable{
 	
 	public void setTollboothCode(String code)
 	{
-		this.code = code;
+		this.destination_tollbooth_code = code;
 		lbl_tollbooth.setText("Welcome, \n you are in "+ code +" toolbooth");
 		return;
 	}
@@ -66,28 +70,30 @@ public class HomeOperatorMainController implements Initializable{
 	public void onClick() throws IOException {
 		
 		BufferedReader reader = new BufferedReader(new FileReader("tollData.txt"));
-		String tollbooth_code = reader.readLine();
-		String car_license_plate = reader.readLine();
-		System.out.println(tollbooth_code);
+		this.start_tollbooth_code = reader.readLine();
+		this.car_license_plate = reader.readLine();
+		System.out.println(start_tollbooth_code);
 		System.out.println(car_license_plate);
 
 		switch(toll_code) {
 		
-		case Constants.KM_TOLL:
+			case Constants.KM_TOLL:		
+				Veicolo vehicle = new ClasseA("dnsj","dbsaj", "33", 2, 2);
+				Veicolo vehicle2 = vehicle;
+				System.out.println(vehicle2 instanceof ClasseA);
 				
-			//Veicolo vehicle = new Veicolo();
-			
-			toll = new PedaggioKm();
-			//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
-			
-			break;
+				Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
+				Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
+				
+				toll = new PedaggioKm();
+				//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
+				break;
 		
-		case Constants.ECO_TOLL:
+			case Constants.ECO_TOLL:
 			
-			toll = new PedaggioEco();
-			System.out.println(toll_code);
-			
-			break;
+				toll = new PedaggioEco();
+				System.out.println(toll_code);
+				break;
 		
 		default:
 			
