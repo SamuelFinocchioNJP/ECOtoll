@@ -101,15 +101,7 @@ public class AdminHomeController implements Initializable {
 	
 	
 	private ArrayList<Autostrada> query_results;
-	
-	
-	
-	public AdminHomeController()
-	{
-		/*ControllerAutostrada controller = new ControllerAutostrada();
-		this.query_results = controller.getAutostrade();*/
-	}
-	
+		
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
