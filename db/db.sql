@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS casello (
 
        -- Foreign key id_autostrada riferimento a autostrada
       id_autostrada BIGINT,
-      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id )
+      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id ) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS tariffa ( 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS tariffa (
 
       -- Foreign key id_autostrada riferimento a autostrada
       id_autostrada BIGINT,
-      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id )
+      FOREIGN KEY ( id_autostrada ) REFERENCES autostrada ( id ) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS biglietto ( 
