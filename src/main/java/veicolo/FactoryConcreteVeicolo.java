@@ -9,6 +9,7 @@ public class FactoryConcreteVeicolo {
 		String type=null;
 		Veicolo returnVal=null;
 		try {
+			ogg.next();
 			type = ogg.getString("classe_veicolo");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -39,7 +40,7 @@ public class FactoryConcreteVeicolo {
 		returnVal.setClasseAmbientale(ogg.getString("classe_ambientale"));
 		returnVal.setAnnoImmatricolazione(ogg.getInt("anno_immatricolazione"));
 		returnVal.setClasseAmbientale(ogg.getString("classe_ambientale"));
-		returnVal.setInquinamentoAcustico(ogg.getInt("inquinamento_acustico"));
+		returnVal.setInquinamentoAcustico(ogg.getInt("inquinamentoAcustico"));
 		
 		return returnVal;
 }}
