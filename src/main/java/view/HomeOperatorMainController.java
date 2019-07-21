@@ -1,6 +1,10 @@
 package view;
 
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,8 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pedaggio.IPedaggio;
+import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
+import veicolo.Veicolo;
 
 public class HomeOperatorMainController implements Initializable{
 
@@ -57,19 +63,28 @@ public class HomeOperatorMainController implements Initializable{
 		
 	}
 
-	public void onClick() {
+	public void onClick() throws IOException {
 		
+		BufferedReader reader = new BufferedReader(new FileReader("tollData.txt"));
+		String tollbooth_code = reader.readLine();
+		String car_license_plate = reader.readLine();
+		System.out.println(tollbooth_code);
+		System.out.println(car_license_plate);
+
 		switch(toll_code) {
 		
 		case Constants.KM_TOLL:
-			//pedaggio per km
+				
+			//Veicolo vehicle = new Veicolo();
+			
 			toll = new PedaggioKm();
 			//toll.calcoloPedaggio(veicolo, puntoPagamentoIn, puntoPagamentoOut, listCasello, tariffaUnitaria, iva);
-			System.out.println(toll_code);
+			
 			break;
 		
 		case Constants.ECO_TOLL:
-			// pedaggio eco
+			
+			toll = new PedaggioEco();
 			System.out.println(toll_code);
 			
 			break;
