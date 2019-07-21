@@ -12,6 +12,8 @@ public class Classe5 extends Veicolo {
 	/**
 	 * 
 	 */
+	protected Classe5() {}
+	
 	//Costruttore fino al 2021
 	public Classe5(String targa, String marca, String modello, int annoImmatricolazione, int assi) {
 		// TODO Auto-generated constructor stub
