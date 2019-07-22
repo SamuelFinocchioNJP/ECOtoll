@@ -3,6 +3,7 @@
  */
 package Casello;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -173,20 +174,21 @@ public class Casello implements ModelInterface {
 	public void retrieve ( int id ) throws SQLException {
 		ResultSet rs = null;
 		try {
-			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id, kilometro, locazione, id_autostrada FROM casello WHERE id='" + id + "' LIMIT 1" );
-		
-			 if ( rs.next() == false ) {
-				 throw new SQLException ( Constants.CASELLO_NOT_FOUND_ERROR );
-				
-			 }else {
-				 this.id = rs.getInt( "id" );
-				 this.km = rs.getInt( "kilometro" );
-				 this.localita = rs.getString( "locazione" );
-				 this.autostradaId = rs.getInt("id_autostrada");
-			 }
-		} catch (Exception e) {
+			rs = Database.getConnectionStatement().executeQuery ( "SELECT id, kilometro, locazione, id_autostrada FROM casello WHERE id='" + id + "' LIMIT 1" );
+		} catch ( Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		 if ( rs.next() == false ) {
+			 throw new SQLException ( Constants.CASELLO_NOT_FOUND_ERROR );
+			
+		 }else {
+			 this.id = rs.getInt( "id" );
+			 this.km = rs.getInt( "kilometro" );
+			 this.localita = rs.getString( "locazione" );
+			 this.autostradaId = rs.getInt("id_autostrada");
+		 }
 	}
 
 	/**
