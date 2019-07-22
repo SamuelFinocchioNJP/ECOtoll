@@ -8,9 +8,9 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import casello.Casello;
 import autostrada.Autostrada;
 import autostrada.AutostradaController;
-import casello.Casello;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,6 +84,8 @@ public class HomeOperatorMainController implements Initializable {
 	 * @param actionEvent
 	 */
 	public void handleTollClick(ActionEvent actionEvent) {
+		
+		
 		if(actionEvent.getSource() == btn_km_toll) {
 			toll_code = Constants.KM_TOLL;
 			lbl_tollprice.setVisible(false);
@@ -95,9 +97,8 @@ public class HomeOperatorMainController implements Initializable {
 			lbl_tollprice.setText("The ECOtoll will be avaible from 2021!");
 			lbl_tollprice.setVisible(true);
 		}
+		System.out.println("Toll Selected: " + toll_code);
 		
-		/// Debug
-		System.out.println ( "Toll Selected: " + toll_code );
 	}
 
 	/**
@@ -137,29 +138,29 @@ public class HomeOperatorMainController implements Initializable {
 	 */
 	public void onClick() throws IOException {
 		
-		BufferedReader reader = new BufferedReader(new FileReader(Config.TOLL_DATA_INPUT_FILE));
+		BufferedReader reader = new BufferedReader(new FileReader( Config.TOLL_DATA_INPUT_FILE ));
 		this.start_tollbooth_code = reader.readLine();
 		this.car_license_plate = reader.readLine();
-		
-		/// Debug
 		System.out.println(start_tollbooth_code);
 		System.out.println(car_license_plate);
 
 		switch(toll_code) {	
 			case Constants.KM_TOLL:	
 				Veicolo vehicle = VeicoloController.getVeicolo(car_license_plate);				
-				Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
-				Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
-				AutostradaController highway_controller = new AutostradaController();
-				Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());											
-				toll = new PedaggioKm();
-				
-				Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
-				int highway_iva = highway.getIva();
-				
-				lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva) + "0 Euro");
-				lbl_tollprice.setVisible(true);
-				break;
+					Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
+					Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
+					AutostradaController highway_controller = new AutostradaController();
+					Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());											
+					toll = new PedaggioKm();
+					
+					Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
+					int highway_iva = highway.getIva();
+					
+
+					lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0 Euro");
+
+					lbl_tollprice.setVisible(true);
+					break;
 		
 			case Constants.ECO_TOLL:		
 				toll = new PedaggioEco();
@@ -172,5 +173,4 @@ public class HomeOperatorMainController implements Initializable {
 		}
 		reader.close();
 	}
-	
 }
