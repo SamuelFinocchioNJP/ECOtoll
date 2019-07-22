@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 public class LoginAdministratorController implements Initializable {
@@ -21,7 +22,7 @@ public class LoginAdministratorController implements Initializable {
 	private TextField txt_Username;
 	
 	@FXML
-	private TextField txt_Password;
+	private PasswordField txt_Password;
 	
 	private Parent root;
 	private double x,y;
