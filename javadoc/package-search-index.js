@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"auth"},{"l":"autostrada"},{"l":"casello"},{"l":"controllers"},{"l":"models"},{"l":"pedaggio"},{"l":"settings"},{"l":"tariffa"},{"l":"utility"},{"l":"veicolo"}]
