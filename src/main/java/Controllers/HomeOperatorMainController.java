@@ -155,11 +155,9 @@ public class HomeOperatorMainController implements Initializable {
 					Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
 					int highway_iva = highway.getIva();
 					
-					
 					lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0 Euro");
 					lbl_tollprice.setVisible(true);
 					break;
-				
 		
 			case Constants.ECO_TOLL:		
 				toll = new PedaggioEco();

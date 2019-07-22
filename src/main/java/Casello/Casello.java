@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.mysql.jdbc.Statement;
-import Models.ModelInterface;
+import Models.IModel;
 import utility.Constants;
 import utility.Database;
 
@@ -12,7 +12,7 @@ import utility.Database;
  *	Class Casello
  *	Model for casello relation
  */
-public class Casello implements ModelInterface {
+public class Casello implements IModel {
 
 	private String localita;
 	private int km;

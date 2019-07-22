@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 
 /**
  * This is the main controller for the Admin panel containing features to manage Highways and Tollbooths
- * @author: Pietro Ciammaricone
  * 
  * */
 public class AdminHomeController implements Initializable {
@@ -79,7 +78,6 @@ public class AdminHomeController implements Initializable {
 	@FXML
 	private VBox scoll_Tollbooths = null;
 	
-	
 	@FXML
 	private Button btn_Signout;
 	
@@ -87,9 +85,8 @@ public class AdminHomeController implements Initializable {
 	
 	private ArrayList<Autostrada> query_results;
 		
-	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize ( URL arg0, ResourceBundle arg1 ) {
 		
 		//Query e popolamento delle rows
 		getAllHighways();
@@ -134,7 +131,8 @@ public class AdminHomeController implements Initializable {
 			controller.setHomeController(this);
 			
 			stage.show();
-		}catch(Exception e)
+		} 
+		catch ( Exception e )
 		{
 			e.printStackTrace();
 		}
@@ -174,7 +172,8 @@ public class AdminHomeController implements Initializable {
 			controller.setHomeController(this);
 					
 			stage.show();
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
