@@ -2,9 +2,17 @@ package veicolo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ *Abstract factory used for generating an object of type "Veicolo"
+ **/
 public class FactoryConcreteVeicolo {
 	public FactoryConcreteVeicolo() {}
+	/***
+	 *Method that generates a Veicolo of a certain type trough the abstract class Veicolo; this method also populates the instance generated
+	 *@param ResultSet ogg: This method takes a result set of a single record that describes a Veicolo and uses the data for generating the object
+	 *@throws Exception
+	 *@return  Veicolo returnVal: It returns a generic Veicolo that has a Veicolo of a certain category inside
+	 **/
 	public static Veicolo getVeicolo(ResultSet ogg) throws Exception {
 		String type=null;
 		Veicolo returnVal=null;

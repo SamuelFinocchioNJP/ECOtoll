@@ -8,6 +8,9 @@ import java.util.Map;
 import Controllers.ControllerInterface;
 import utility.Database;
 
+/**
+ * Autostrada's controller
+ */
 public class ControllerAutostrada implements ControllerInterface {
 	/**
 	 * @deprecated
@@ -31,7 +34,11 @@ public class ControllerAutostrada implements ControllerInterface {
 		return arrayId;
 	}
 	
-	public ArrayList <Autostrada> getAutostrade() { // retrieve automatico autostrade
+	/**
+	 * Method that gets every single Autostrada in the database
+	 * @return Returns an ArrayList<Autostrada>
+	 */
+	public ArrayList <Autostrada> getAutostrade() { 
 		ArrayList <Autostrada> autobahn = new ArrayList<Autostrada>();
 		try {	
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
@@ -45,7 +52,12 @@ public class ControllerAutostrada implements ControllerInterface {
 
 		return autobahn;
 	}
-	
+	/**
+	 *Method to edit an autostrada with the given tariffs
+	 *@param idAutostrada: The id of the Autostrada's record to edit
+	 *@param nomeNuovo: New name for the highway
+	 *@param tariffeNuove: Map of tariffs
+	 **/
 	public void editAutostradaWithTariff ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		editTariffa ( idAutostrada, nomeNuovo, tariffeNuove );
 	}
@@ -83,6 +95,11 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 	}
 	
+	/**
+	 * Method that adds an Autostrada with the related tariffs
+	 * @param nomeNuovo: The Autostrada's name
+	 * @param tariffeNuove:A map from the categories (String) to the tariffs (Float)   
+	 **/
 	public void addAutostradaWithTariff ( String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		Autostrada a = new Autostrada ( nomeNuovo, 22 );
 		a.save();
@@ -90,6 +107,11 @@ public class ControllerAutostrada implements ControllerInterface {
 		editAutostradaWithTariff ( a.getId(), a.getNome(), tariffeNuove );
 	}
 	
+	/**
+	 * Fetches the tariffs from a given Autostrada
+	 * @param idAutostrada Autostrada's Id passed from the view
+	 * @return This method returns A map that maps  categories (String) to  tariffs (Float)  
+	 **/
 	public Map<String,Float> getAutostradeTariffe ( int idAutostrada ) {
 		HashMap<String,Float> classToTariffs = new HashMap<String, Float>();
 		try {
@@ -108,9 +130,13 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 		return classToTariffs;
 	}
-
-	@Override
-	public void deleteRecord ( int id ) {//Con codice si intende l'Id o il nome dell'autostrada?
+	
+	/**
+	 * @Override
+	 * Method for the delete of a record
+	 * @param id: id of the record that needs to be removed 
+	 **/
+	public void deleteRecord ( int id ) {
 		try {
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = "+id );
 			if(!rs.next()) {
@@ -122,5 +148,4 @@ public class ControllerAutostrada implements ControllerInterface {
 			e.printStackTrace();
 		}
 	}
-	
 }

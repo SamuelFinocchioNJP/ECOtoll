@@ -3,9 +3,15 @@ package veicolo;
 import java.sql.ResultSet;
 
 import utility.Database;
-
+/**
+ *Veicolo's Controller
+ **/
 public class VeicoloController {
-
+	/**
+	 *Get a vehicle from a given license plate
+	 *@param targa: license plate that is used for the researcj
+	 *@return Veicolo ret: object of type Veicolo (Vehicle) 
+	 **/
 	public static Veicolo getVeicolo (String targa ) {
 		Veicolo ret=null;
 		try {
