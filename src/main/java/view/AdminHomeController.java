@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
+import com.mysql.jdbc.StringUtils;
+
 import autostrada.Autostrada;
 import Casello.Casello;
 import Casello.CaselloController;
@@ -183,6 +185,10 @@ public class AdminHomeController implements Initializable {
 	 */
 	public void onRefreshClickTollbooths()
 	{
+		
+		if(StringUtils.isEmptyOrWhitespaceOnly(txt_HighwayCode.getText()))
+			return;
+		
 		//pulisco la lista
 		scoll_Tollbooths.getChildren().clear();
 		
