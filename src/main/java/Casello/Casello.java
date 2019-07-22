@@ -27,13 +27,9 @@ public class Casello implements ModelInterface {
 	 * Retrieves data from database to populate object
 	 * @param id
 	 */
-	public Casello ( int id ) {
+	public Casello ( int id ) throws SQLException{
 		this.id = id;
-		try {
-			this.retrieve( id );
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		this.retrieve( id );
 	}
 	
 	/**
