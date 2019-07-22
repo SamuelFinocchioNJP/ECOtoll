@@ -57,7 +57,7 @@ public class TollboothEditController implements Initializable {
 	}
 
 	/**
-	 * This methods handles the clock on the done button to complete the edit.
+	 * This methods handles the click on the done button to complete the edit.
 	 * This queries it to the database and then closes the edit windows
 	 * and refreshes the rows in the parent view.
 	 */

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * This is the controller for the highways rows
  *
  */
-public class RowHighwaysController implements Initializable, RowControllerInterface {
+public class RowHighwaysController implements Initializable, IRowController {
 
 	
 	@FXML
