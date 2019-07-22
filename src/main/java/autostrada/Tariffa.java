@@ -4,6 +4,10 @@ import java.sql.ResultSet;
 import Models.ModelInterface;
 import utility.Database;
 
+/**
+ *	Class Tariffa
+ *	Model for tariffa relation
+ */
 public class Tariffa implements ModelInterface {
 	private int id;
 	private String classeVeicolo;
@@ -33,7 +37,6 @@ public class Tariffa implements ModelInterface {
 	public double getPrezzo ( ) {
 		return prezzo;
 	}
-	
 	
 	/**
 	 * Setter for prezzo

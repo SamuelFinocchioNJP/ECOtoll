@@ -6,13 +6,15 @@ package Casello;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.mysql.jdbc.Statement;
-
 import Models.ModelInterface;
 import utility.Constants;
 import utility.Database;
 
+/**
+ *	Class Casello
+ *	Model for casello relation
+ */
 public class Casello implements ModelInterface {
 
 	private String localita;
@@ -20,59 +22,89 @@ public class Casello implements ModelInterface {
 	private int id;
 	private int autostradaId;
 	
-	public Casello ( int id ){
+	/**
+	 * Casello constructor
+	 * Retrieves data from database to populate object
+	 * @param id
+	 */
+	public Casello ( int id ) {
 		this.id = id;
 		this.retrieve( id );
-		
 	}
 	
+	/**
+	 * Casello constructor
+	 * Instantiates a new casello object
+	 * @param localita
+	 * @param km
+	 * @param autostradaId
+	 */
 	public Casello ( String localita, int km, int autostradaId ) {
 		this.localita = localita;
 		this.km = km;	
 		this.autostradaId = autostradaId;
 	}
-
+	
+	/**
+	 * Getter for località
+	 * @return localita
+	 */
 	public String getLocalita() {
 		return localita;
 	}
 	
+	/**
+	 * Getter for id
+	 * @return id
+	 */
 	public int getId ( ) {
 		return this.id;
 	}
 
+	/**
+	 * Setter for localita
+	 * @param localita
+	 */
 	public void setLocalita(String localita) {
 		this.localita = localita;
 	}
 
+	/**
+	 * Getter for autostradaId
+	 * @return autostradaId
+	 */
 	public int getAutostradaId() {
 		return autostradaId;
 	}
-
+	
+	/**
+	 * Setter for autostradaId
+	 * @param autostradaId
+	 */
 	public void setAutostradaId(int autostradaId) {
 		this.autostradaId = autostradaId;
 	}
-
+	
+	/**
+	 * Getter for km
+	 * @return km
+	 */
 	public int getKm() {
 		return km;
 	}
 
+	/**
+	 * Setter for km
+	 * @param km
+	 */
 	public void setKm(int km) {
 		this.km = km;
 	}
-
-	public boolean equals(Object object) {
-		if(object instanceof Casello)
-			return this.getLocalita().equals(((Casello)object).getLocalita());
-		else
-			return false;
-	}
-	/** (
-      id BIGINT AUTO_INCREMENT,
-      locazione VARCHAR ( 255 ) NOT NULL,
-      kilometro INT NOT NULL,
-      PRIMARY KEY ( id )
-	);*/
-	@Override
+	
+	/**
+	 * @Override
+	 * Saves current object to the database
+	 */
 	public void save() {
 		ResultSet rs = null;
 		if ( this.id != 0 ) {
@@ -120,7 +152,10 @@ public class Casello implements ModelInterface {
 		
 	}
 
-	@Override
+	/**
+	 * Populates current object with database informations
+	 * @Override
+	 */
 	public void retrieve ( int id ){
 		ResultSet rs = null;
 		try {
@@ -140,7 +175,9 @@ public class Casello implements ModelInterface {
 		}
 	}
 
-	@Override
+	/**
+	 * Deletes current object from database
+	 */
 	public void destroy() {
 		try {
 			Database.getConnectionStatement().executeUpdate ( "DELETE FROM casello WHERE id=" + id );
