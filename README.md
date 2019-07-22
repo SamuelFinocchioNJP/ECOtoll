@@ -1,4 +1,4 @@
-# ECOtoll - OOSD
+# ECOtoll - OOSD ( Object Oriented Software Design University Exam )
 Utilizzo del software:
 Il software necessità di una base di dati popolata con dei veicoli 
 e un utente amministratore per funzionare.
