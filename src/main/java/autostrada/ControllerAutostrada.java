@@ -52,7 +52,12 @@ public class ControllerAutostrada implements ControllerInterface {
 
 		return autobahn;
 	}
-	
+	/**
+	 *Method to edit an autostrada with the given tariffs
+	 *@param idAutostrada: The id of the Autostrada's record to edit
+	 *@param nomeNuovo: New name for the highway
+	 *@param tariffeNuove: Map of tariffs
+	 **/
 	public void editAutostradaWithTariff ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		editTariffa ( idAutostrada, nomeNuovo, tariffeNuove );
 	}
