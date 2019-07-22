@@ -29,7 +29,11 @@ public class Casello implements ModelInterface {
 	 */
 	public Casello ( int id ) {
 		this.id = id;
-		this.retrieve( id );
+		try {
+			this.retrieve( id );
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -156,7 +160,7 @@ public class Casello implements ModelInterface {
 	 * Populates current object with database informations
 	 * @Override
 	 */
-	public void retrieve ( int id ){
+	public void retrieve ( int id ) throws SQLException {
 		ResultSet rs = null;
 		try {
 			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id, kilometro, locazione, id_autostrada FROM casello WHERE id='" + id + "' LIMIT 1" );
