@@ -78,7 +78,7 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	{
 		Casello casello = new Casello(Integer.valueOf(lbl_Code.getText()));
 		casello.destroy();
-		
+			
 		admincontroller.onRefreshClickTollbooths();
 	}
 	

@@ -53,7 +53,9 @@ public class LoginOperatorController implements Initializable{
 	
 	public void onSubmitClick()
 	{		
+				
 		try {
+			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
 			root = loader.load();

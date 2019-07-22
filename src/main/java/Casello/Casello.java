@@ -5,10 +5,12 @@ package Casello;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.mysql.jdbc.Statement;
 
 import Models.ModelInterface;
+import utility.Constants;
 import utility.Database;
 
 public class Casello implements ModelInterface {
@@ -18,9 +20,10 @@ public class Casello implements ModelInterface {
 	private int id;
 	private int autostradaId;
 	
-	public Casello ( int id ) {
+	public Casello ( int id ){
 		this.id = id;
 		this.retrieve( id );
+		
 	}
 	
 	public Casello ( String localita, int km, int autostradaId ) {
@@ -118,13 +121,14 @@ public class Casello implements ModelInterface {
 	}
 
 	@Override
-	public void retrieve ( int id ) {
+	public void retrieve ( int id ){
 		ResultSet rs = null;
 		try {
 			 rs = Database.getConnectionStatement().executeQuery ( "SELECT id, kilometro, locazione, id_autostrada FROM casello WHERE id='" + id + "' LIMIT 1" );
 		
 			 if ( rs.next() == false ) {
-				 throw new Exception ( "Casello not found Exception" );
+				 throw new SQLException ( Constants.CASELLO_NOT_FOUND_ERROR );
+				
 			 }else {
 				 this.id = rs.getInt( "id" );
 				 this.km = rs.getInt( "kilometro" );

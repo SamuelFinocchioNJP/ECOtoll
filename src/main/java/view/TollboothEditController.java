@@ -54,11 +54,13 @@ public class TollboothEditController implements Initializable {
 	
 	public void onClick()
 	{
-		Casello casello = new Casello (code);
+		Casello casello;
+		casello = new Casello (code);
 		casello.setKm(Integer.valueOf(txt_KM.getText()));
 		casello.setLocalita(txt_Name.getText());
 		
 		casello.save();
+		
 		
 		admincontroller.onRefreshClickTollbooths();
 		
