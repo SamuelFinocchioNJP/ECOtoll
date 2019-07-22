@@ -14,6 +14,11 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * This is the controller for the panel to edit tollbooths
+ *
+ */
 public class TollboothEditController implements Initializable {
 
 	
@@ -51,7 +56,11 @@ public class TollboothEditController implements Initializable {
 
 	}
 
-	
+	/**
+	 * This methods handles the clock on the done button to complete the edit.
+	 * This queries it to the database and then closes the edit windows
+	 * and refreshes the rows in the parent view.
+	 */
 	public void onClick()
 	{
 		Casello casello;
@@ -68,11 +77,23 @@ public class TollboothEditController implements Initializable {
 		stage.close();
 	}
 	
+	/**
+	 * <p>This method is used to give this controller a reference 
+	 * to the controlled that created it
+	 * </p>
+	 * @param controller
+	 */
 	public void setHomeController(AdminHomeController controller)
 	{
 		admincontroller = controller;
 	}
 	
+	/**
+	 * Sets the labels for the edit panel
+	 * @param code
+	 * @param nome
+	 * @param KM
+	 */
 	public void setLabels(String code, String nome, String KM)
 	{
 		txt_Name.setText(nome);
@@ -80,6 +101,10 @@ public class TollboothEditController implements Initializable {
 		lbl_Tollbooth.setText("Editing Tollbooth " + code);
 	}
 	
+	/**
+	 * Sets the highway code to use in the query
+	 * @param code
+	 */
 	public void setCode(int code)
 	{
 		this.code = code;

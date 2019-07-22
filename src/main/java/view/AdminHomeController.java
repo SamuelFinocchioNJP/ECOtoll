@@ -24,12 +24,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/*
- * @author: Pietro
+/**
+ * This is the main controller for the Admin panel containing features to manage Highways and Tollbooths
+ * @author: Pietro Ciammaricone
  * 
  * */
-
-
 public class AdminHomeController implements Initializable {
 
 	//Variabili Pannello di Sinistra
@@ -82,7 +81,7 @@ public class AdminHomeController implements Initializable {
 	@FXML
 	private Button btn_Signout;
 	
-	
+	private double x , y;
 	
 	private ArrayList<Autostrada> query_results;
 		
@@ -115,6 +114,9 @@ public class AdminHomeController implements Initializable {
 	
 	//Metodi bottoni Highways
 	
+	/**
+	 * <p> Opens a new window with an UI to create and submit a new Highway to the Database </p>
+	 */
 	public void onInsertClickHighwyas()
 	{
 		//query di inserimento
@@ -137,6 +139,9 @@ public class AdminHomeController implements Initializable {
 		
 	}
 	
+	/**
+	 * <p> Refreshes the current rows in the highways panel </p>
+	 */
 	public void onRefreshClickHighways()
 	{	
 		//Pulisco la lista
@@ -148,6 +153,9 @@ public class AdminHomeController implements Initializable {
 
 	//Metodi bottoni Tollbooths
 	
+	/**
+	 * <p> Opens a new window with an UI to create and submit a new tollbooth to the Database </p>
+	 */
 	public void onInsertClickTollbooths()
 	{
 		//query di inserimento
@@ -169,7 +177,10 @@ public class AdminHomeController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-		
+	
+	/**
+	 * <p> Refreshes the current rows in the tollbooths panel </p>
+	 */
 	public void onRefreshClickTollbooths()
 	{
 		//pulisco la lista
@@ -182,6 +193,10 @@ public class AdminHomeController implements Initializable {
 	
 	//Metodi click sui bottoni a sinistra per cambio panel
 	
+	
+	/**
+	 * Switches the UI to the highways section
+	 */
 	public void onHighwaysClick()
 	{
 		if(!pnl_Highways.isVisible())
@@ -191,6 +206,9 @@ public class AdminHomeController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Switches the UI to the tollbooths section
+	 */
 	public void onTollboothsClick()
 	{
 		if(!pnl_Tollbooths.isVisible())
@@ -200,6 +218,9 @@ public class AdminHomeController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Signs out from the admin panel and returns to the main choice panel
+	 */
 	public void onSignoutClick()
 	{
 		try {
@@ -210,7 +231,16 @@ public class AdminHomeController implements Initializable {
 			Stage stage = (Stage) btn_Signout.getScene().getWindow();
 			stage.setScene(new Scene(root));
 			
-			
+			//drag it here
+		    root.setOnMousePressed(event -> {
+		        x = event.getSceneX();
+		        y = event.getSceneY();
+		    });
+		    root.setOnMouseDragged(event -> {
+		        stage.setX(event.getScreenX() - x);
+		        stage.setY(event.getScreenY() - y);
+
+		    });
 			
 		}catch(Exception e)
 		{

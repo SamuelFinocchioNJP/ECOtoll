@@ -14,12 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/*
- * @author: Pietro
- * 
- * */
-
-
+/**
+ * This is the controller for the highways rows
+ *
+ */
 public class RowHighwaysController implements Initializable, RowControllerInterface {
 
 	
@@ -42,14 +40,15 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
 	}
 	
-	@Override
+	/**
+	 * Method to manage the click on edit button
+	 * Opens a new panel and populate its labels 
+	 * with the correct data
+	 */
 	public void onEditClick()
 	{
-		//TODO: Da decidere, apriamo un pannello per editare?
 		try
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("HighwaysEdit.fxml"));
@@ -71,6 +70,10 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 		
 	}
 	
+	/**
+	 * Mehtod to manage the click on the Delete button
+	 * queries the database and drops the record with the given id
+	 */
 	public void onDeleteClick()
 	{
 		ControllerAutostrada controller = new ControllerAutostrada();
@@ -79,6 +82,9 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 		admincontroller.onRefreshClickHighways();
 	}
 
+	/**
+	 * Method to set the lables of the row
+	 */
 	@Override
 	public void setLabels(String... strings) {
 		lbl_Code.setText(strings[0]);
@@ -88,19 +94,30 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	
 	//Metodi per animazione bellina :)
 	
+	/**
+	 * Method used to decide the mouse entering event animation
+	 */
 	@Override
 	public void onMouseEntered()
 	{
 		box_Row.setStyle("-fx-background-color : #0A0E3F");
 	}
 	
+	/**
+	 * Method used to decide the mouse exiting event animation
+	 */
 	@Override
 	public void onMouseExited()
 	{
 		box_Row.setStyle("-fx-background-color : #02030A");
 	}
 	
-	@Override
+	/**
+	 * <p>This method is used to give this controller a reference 
+	 * to the controlled that created it
+	 * </p>
+	 * @param controller
+	 */
 	public void setAdminController(AdminHomeController controller)
 	{
 		this.admincontroller = controller;

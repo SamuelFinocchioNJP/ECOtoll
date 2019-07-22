@@ -19,6 +19,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utility.Constants;
 
+/**
+ * This is the main controller for the panel to edit an Highway
+ *
+ */
 public class HighwaysEditController implements Initializable {
 
 	@FXML
@@ -46,6 +50,12 @@ public class HighwaysEditController implements Initializable {
 		
 	}
 	
+	/**
+	 * <p>This checks for the text boxes correctness and if they are correct 
+	 * runs the query to edit the selected highway into the database
+	 * Ends by closing the view and refreshing the highway rows (Hence the need
+	 * for the caller controller reference)</p>
+	 */
 	public void onClick()
 	{
 		
@@ -76,17 +86,36 @@ public class HighwaysEditController implements Initializable {
 		stage.close();
 	}
 	
+	/**
+	 * <p>This method is used to give this controller a reference 
+	 * to the controlled that started the insertion operation
+	 * </p>
+	 * @param controller
+	 */
 	public void setHomeController(AdminHomeController controller)
 	{
 		admincontroller = controller;
 	}
 	
+	/**
+	 * <p>This method is used to initialize the labels of
+	 * the view once an highway is selected from the parent controller</p>
+	 * @param id
+	 * @param name
+	 */
 	public void setLabels(String id, String name)
 	{
 		lbl_Highway.setText("Highway " + id);
 		txt_Name.setText(name);
 	}
 	
+	/**
+	 * <p>
+	 * This method is used to pass the 
+	 * selected highway code from the parent controller
+	 * </p>
+	 * @param code
+	 */
 	public void setCode(int code)
 	{
 		this.code = code;

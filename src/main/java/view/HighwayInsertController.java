@@ -18,6 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utility.Constants;
 
+/**
+ * This is the main controller for the panel to add a new Highway
+ * 
+ *
+ */
 public class HighwayInsertController implements Initializable {
 
 	FXMLLoader[] loaders ;
@@ -41,11 +46,23 @@ public class HighwayInsertController implements Initializable {
 		populate();
 	}
 
+	/**
+	 * <p>This method is used to give this controller a reference 
+	 * to the controlled that started the insertion operation
+	 * </p>
+	 * @param controller
+	 */
 	public void setHomeController(AdminHomeController controller)
 	{
 		admincontroller = controller;
 	}
 	
+	/**
+	 * <p>This checks for the text boxes correctness and if they are correct 
+	 * runs the query to add a new highway into the database
+	 * Ends by closing the view and refreshing the highway rows (Hence the need
+	 * for the caller controller reference)</p>
+	 */
 	public void onClick()
 	{
 		if(StringUtils.isEmptyOrWhitespaceOnly(txt_Name.getText()))

@@ -13,6 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * This is the main controller for the main page, used to chose between admin or user access
+ *
+ */
 public class LoginController implements Initializable{
 
 	
@@ -25,17 +29,18 @@ public class LoginController implements Initializable{
 	private double x,y;
 	private Stage stageTheButtonBelongs;
 
-	public LoginController() {
-		
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
 		
 	}
 	
+	
+	/**
+	 * <p>This method handles the user decision to chose 
+	 * between admin and operator view.
+	 * Intercepts the button clicks.</p>
+	 * @param actionEvent
+	 */
 	public void handleClicks(ActionEvent actionEvent) {
 		       
 		if ( actionEvent.getSource() == administrationArea ) {

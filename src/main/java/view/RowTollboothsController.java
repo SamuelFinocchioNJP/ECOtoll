@@ -14,11 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/*
- * @author: Pietro
- * 
- * */
-
+/**
+ * This is the controller for tollbooths panel rows
+ *
+ */
 public class RowTollboothsController implements Initializable, RowControllerInterface {
 
 	@FXML
@@ -48,8 +47,11 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 
 	}
 
-	
-	@Override
+	/**
+	 * Method to manage the click on edit button
+	 * Opens a new panel and populate its labels 
+	 * with the correct data
+	 */
 	public void onEditClick()
 	{
 		//TODO: Da decidere, apriamo un pannello per editare?
@@ -73,7 +75,10 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 				}
 	}
 	
-	@Override
+	/**
+	 * Mehtod to manage the click on the Delete button
+	 * queries the database and drops the record with the given id
+	 */
 	public void onDeleteClick()
 	{
 		Casello casello = new Casello(Integer.valueOf(lbl_Code.getText()));
@@ -82,6 +87,11 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 		admincontroller.onRefreshClickTollbooths();
 	}
 	
+	/**
+	 * Sets the row lables
+	 * @param type
+	 * @param tariff
+	 */
 	@Override
 	public void setLabels(String... strings) {
 		// TODO Auto-generated method stub
@@ -93,19 +103,31 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	
 	//Metodi per animazione bellina :)
 	
+	/**
+	 * Method used to decide the mouse entering event animation
+	 */
 	@Override
 	public void onMouseEntered()
 	{
 		box_Row.setStyle("-fx-background-color : #0A0E3F");
 	}
 	
+	/**
+	 * Method used to decide the mouse exiting event animation
+	 */
 	@Override
 	public void onMouseExited()
 	{
 		box_Row.setStyle("-fx-background-color : #02030A");
 	}
 	
-	@Override
+	
+	/**
+	 * <p>This method is used to give this controller a reference 
+	 * to the controlled that created it
+	 * </p>
+	 * @param controller
+	 */
 	public void setAdminController(AdminHomeController controller)
 	{
 		this.admincontroller = controller;

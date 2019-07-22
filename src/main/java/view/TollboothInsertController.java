@@ -9,7 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+/**
+ * This is the controller for the tollbooth insert panel
+ *
+ */
 public class TollboothInsertController implements Initializable {
 
 	
@@ -33,7 +36,11 @@ public class TollboothInsertController implements Initializable {
 
 	}
 
-	
+	/**
+	 * This method handles the click on the Done button
+	 * Queries the database to add a new tollbooth, 
+	 * closes the window and refreshes the rows in the parent view
+	 */
 	public void onClick()
 	{
 		Casello casello = new Casello (txt_Name.getText(),Integer.valueOf(txt_KM.getText()),code);
@@ -46,11 +53,21 @@ public class TollboothInsertController implements Initializable {
 		stage.close();
 	}
 	
+	/**
+	 * <p>This method is used to give this controller a reference 
+	 * to the controlled that created it
+	 * </p>
+	 * @param controller
+	 */
 	public void setHomeController(AdminHomeController controller)
 	{
 		admincontroller = controller;
 	}
 	
+	/**
+	 * Setter for the highway code used to query the database
+	 * @param code
+	 */
 	public void setHighwayCode(int code)
 	{
 		this.code = code;

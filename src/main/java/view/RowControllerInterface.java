@@ -1,16 +1,24 @@
 package view;
 
+/**
+ * All row controllers must implement these methods
+ *
+ */
 public interface RowControllerInterface {
 
+	/**
+	 * Method used to set the view labels
+	 * @param strings
+	 */
 	public void setLabels(String...strings);
 	
-	public void onEditClick();
-	
-	public void onDeleteClick();
-	
+	/**
+	 * Method used to decide the mouse entering event animation
+	 */
 	public void onMouseEntered();
 	
+	/**
+	 * Method used to decide the mouse exiting event animation
+	 */
 	public void onMouseExited();
-	
-	public void setAdminController(AdminHomeController controller);
 }

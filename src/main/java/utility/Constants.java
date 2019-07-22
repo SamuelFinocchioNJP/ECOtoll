@@ -29,4 +29,5 @@ public class Constants {
 	public static final String WRONG_NAME = "Please insert a valid name";
 	public static final String CASELLO_NOT_FOUND_ERROR = "Tollbooth not found Exception";
 	public static final String WRONG_CASELLO = "Tollbooth id not found";
+	public static final String WRONG_USERNAME = "Wrong user/pass";
 }

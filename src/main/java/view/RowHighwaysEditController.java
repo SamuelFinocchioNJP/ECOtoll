@@ -12,6 +12,10 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.layout.HBox;
 
+/**
+ * This is the controller for the rows in the edit panel
+ *
+ */
 public class RowHighwaysEditController implements Initializable {
 
 	@FXML
@@ -42,13 +46,21 @@ public class RowHighwaysEditController implements Initializable {
 		txt_Tariff.setTextFormatter(formatter);
 	}
 
-	
+	/**
+	 * Sets the row lables
+	 * @param type
+	 * @param tariff
+	 */
 	public void setLables(String type, String tariff)
 	{
 		lbl_Name.setText(type);
 		txt_Tariff.setText(tariff);
 	}
 	
+	/**
+	 * Returns the lables of this row
+	 * @return String[]
+	 */
 	public String[] getLables()
 	{
 		String[] res = new String[2];
@@ -56,21 +68,20 @@ public class RowHighwaysEditController implements Initializable {
 		res[1] = txt_Tariff.getText();
 		return res;
 	}
-	
-	public void setTariffPrompt(String text)
-	{
-		txt_Tariff.setPromptText(text);
-	}
-		
-	
+			
 	//Metodi per animazione bellina :)
 	
-	
+	/**
+	 * Method used to decide the mouse entering event animation
+	 */
 	public void onMouseEntered()
 	{
 		box_Row.setStyle("-fx-background-color : #0A0E3F");
 	}
-		
+	
+	/**
+	 * Method used to decide the mouse exiting event animation
+	 */
 	public void onMouseExited()
 	{
 		box_Row.setStyle("-fx-background-color : #02030A");

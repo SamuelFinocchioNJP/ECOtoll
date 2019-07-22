@@ -62,6 +62,16 @@ public class LoginOperatorController implements Initializable{
 			stage.setScene(new Scene(root));
 			stage.show();
 			
+			root.setOnMousePressed(event -> {
+		        x = event.getSceneX();
+		        y = event.getSceneY();
+		    });
+		    root.setOnMouseDragged(event -> {
+		        stage.setX(event.getScreenX() - x);
+		        stage.setY(event.getScreenY() - y);
+
+		    });
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
