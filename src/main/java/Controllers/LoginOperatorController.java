@@ -1,13 +1,7 @@
-package view;
-
-/*
- * @author: Pietro
- */
-
+package Controllers;
 
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -24,6 +18,10 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
 import utility.Constants;
 
+/**
+ * This class manages the operator toll selection panel
+ *
+ */
 public class LoginOperatorController implements Initializable{
 	
 	@FXML
@@ -54,12 +52,16 @@ public class LoginOperatorController implements Initializable{
 		
 	}
 	
+	/**
+	 * <p>This method is used to 
+	 * manage the "back icon" click event </p>
+	 */
 	public void onBtnBackClick()
 	{
 		
 		
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login-choice.fxml"));
 		Parent root;
 		
 		try {	
@@ -83,7 +85,12 @@ public class LoginOperatorController implements Initializable{
 			e.printStackTrace();
 		}		
 	}
-		
+	
+	/**
+	 * This button submits the tollcode to the next view
+	 * Checks if the code exists and doesn't allow
+	 * you to continue if it does not exists
+	 */
 	public void onSubmitClick()
 	{		
 				
@@ -92,8 +99,9 @@ public class LoginOperatorController implements Initializable{
 			new Casello(Integer.valueOf(textbox_toll_code.getText()),true);
 			
 			
+			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home_Operator_Main.fxml"));
 			root = loader.load();
 			
 			//Prendo il controller del loader e setto il tollcode con il relativo metodo

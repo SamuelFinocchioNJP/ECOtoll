@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +45,7 @@ public class LoginAdministratorController implements Initializable {
 	 */
 	public void onBtnBackClick()
 	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login-choice.fxml"));
 		Parent root;
 		
 		try {	
@@ -93,7 +93,7 @@ public class LoginAdministratorController implements Initializable {
 			}
 			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHome.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AdminHome.fxml"));
 			root = loader.load();
 			
 			

@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import com.mysql.jdbc.StringUtils;
 
-import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -105,7 +104,7 @@ public class HighwayInsertController implements Initializable {
 			try
 			{
 				//Prendo il layout della singola riga
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighwaysEdit.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/RowHighwaysEdit.fxml"));
 				loaders[i] = loader;
 				//la assegno all'i-esmima entry
 				nodes[i] = (Node) loader.load();

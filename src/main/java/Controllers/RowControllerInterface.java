@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 
 /**
  * All row controllers must implement these methods

@@ -57,7 +57,7 @@ public class Casello implements ModelInterface {
 	}
 	
 	/**
-	 * Getter for località
+	 * Getter for localitï¿½
 	 * @return localita
 	 */
 	public String getLocalita() {
