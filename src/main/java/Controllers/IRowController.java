@@ -4,7 +4,7 @@ package Controllers;
  * All row controllers must implement these methods
  *
  */
-public interface RowControllerInterface {
+public interface IRowController {
 
 	/**
 	 * Method used to set the view labels

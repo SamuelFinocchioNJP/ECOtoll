@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import Casello.Casello;
 import autostrada.Autostrada;
+import autostrada.AutostradaController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,12 +25,13 @@ import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
 import veicolo.Veicolo;
+import veicolo.VeicoloController;
 
 /**
  * This is the main controller for the operator main view
  *
  */
-public class HomeOperatorMainController implements Initializable{
+public class HomeOperatorMainController implements Initializable {
 
 	private String destination_tollbooth_code;
 	private String start_tollbooth_code;
@@ -71,7 +73,7 @@ public class HomeOperatorMainController implements Initializable{
 	public void setTollboothCode(String code)
 	{
 		this.destination_tollbooth_code = code;
-		lbl_tollbooth2.setText("you are at toolbooth number: "+ code);
+		lbl_tollbooth2.setText ( "you are at toolbooth number: " + code );
 		return;
 	}
 	
@@ -146,18 +148,18 @@ public class HomeOperatorMainController implements Initializable{
 				Veicolo vehicle = VeicoloController.getVeicolo(car_license_plate);				
 					Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
 					Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
-					ControllerAutostrada highway_controller = new ControllerAutostrada();
+					AutostradaController highway_controller = new AutostradaController();
 					Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());											
 					toll = new PedaggioKm();
 					
 					Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
 					int highway_iva = highway.getIva();
 					
-					
-					lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0€");
+
+					lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0 Euro");
+
 					lbl_tollprice.setVisible(true);
 					break;
-				
 		
 			case Constants.ECO_TOLL:		
 				toll = new PedaggioEco();

@@ -3,6 +3,7 @@ package Controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import autostrada.AutostradaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  * This is the controller for the highways rows
  *
  */
-public class RowHighwaysController implements Initializable, RowControllerInterface {
+public class RowHighwaysController implements Initializable, IRowController {
 
 	
 	@FXML
@@ -75,7 +76,7 @@ public class RowHighwaysController implements Initializable, RowControllerInterf
 	 */
 	public void onDeleteClick()
 	{
-		ControllerAutostrada controller = new ControllerAutostrada();
+		AutostradaController controller = new AutostradaController();
 		controller.deleteRecord(Integer.valueOf(lbl_Code.getText()));
 		
 		admincontroller.onRefreshClickHighways();

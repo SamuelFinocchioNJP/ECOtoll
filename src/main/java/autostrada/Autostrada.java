@@ -3,14 +3,14 @@ package autostrada;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import Models.ModelInterface;
+import Models.IModel;
 import utility.Database;
 
 /**
  *	Class Autostrada
  *	Model for autostrada relation
  */
-public class Autostrada implements ModelInterface {
+public class Autostrada implements IModel {
 	private String nome;
 	private int id;
 	private int iva;

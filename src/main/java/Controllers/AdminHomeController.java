@@ -7,8 +7,10 @@ import java.util.function.UnaryOperator;
 
 import com.mysql.jdbc.StringUtils;
 
-import autostrada.Autostrada;
 import Casello.Casello;
+import Casello.CaselloController;
+import autostrada.Autostrada;
+import autostrada.AutostradaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +28,6 @@ import javafx.stage.Stage;
 
 /**
  * This is the main controller for the Admin panel containing features to manage Highways and Tollbooths
- * @author: Pietro Ciammaricone
  * 
  * */
 public class AdminHomeController implements Initializable {
@@ -77,7 +78,6 @@ public class AdminHomeController implements Initializable {
 	@FXML
 	private VBox scoll_Tollbooths = null;
 	
-	
 	@FXML
 	private Button btn_Signout;
 	
@@ -85,9 +85,8 @@ public class AdminHomeController implements Initializable {
 	
 	private ArrayList<Autostrada> query_results;
 		
-	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize ( URL arg0, ResourceBundle arg1 ) {
 		
 		//Query e popolamento delle rows
 		getAllHighways();
@@ -132,7 +131,8 @@ public class AdminHomeController implements Initializable {
 			controller.setHomeController(this);
 			
 			stage.show();
-		}catch(Exception e)
+		} 
+		catch ( Exception e )
 		{
 			e.printStackTrace();
 		}
@@ -172,7 +172,8 @@ public class AdminHomeController implements Initializable {
 			controller.setHomeController(this);
 					
 			stage.show();
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -256,7 +257,7 @@ public class AdminHomeController implements Initializable {
 	private void getAllHighways()
 	{
 		//Eseguo la query
-		ControllerAutostrada controllera = new ControllerAutostrada();
+		AutostradaController controllera = new AutostradaController();
 		this.query_results = controllera.getAutostrade();
 			
 		lbl_Number_Highways.setText(String.valueOf(query_results.size()));

@@ -1,14 +1,14 @@
-package autostrada;
+package Tariffa;
 
 import java.sql.ResultSet;
-import Models.ModelInterface;
+import Models.IModel;
 import utility.Database;
 
 /**
  *	Class Tariffa
  *	Model for tariffa relation
  */
-public class Tariffa implements ModelInterface {
+public class Tariffa implements IModel {
 	private int id;
 	private String classeVeicolo;
 	private double prezzo;

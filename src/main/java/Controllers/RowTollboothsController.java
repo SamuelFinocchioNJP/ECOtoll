@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * This is the controller for tollbooths panel rows
  *
  */
-public class RowTollboothsController implements Initializable, RowControllerInterface {
+public class RowTollboothsController implements Initializable, IRowController {
 
 	@FXML
 	private Label lbl_Code;

@@ -1,18 +1,16 @@
-package Controllers;
+package autostrada;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import autostrada.Autostrada;
-import autostrada.Tariffa;
+import Tariffa.Tariffa;
 import utility.Database;
 
 /**
  * Autostrada's controller
  */
-public class ControllerAutostrada implements ControllerInterface {
+public class AutostradaController {
 	/**
 	 * @deprecated
 	 * Use getAutostrade() instead
@@ -54,10 +52,10 @@ public class ControllerAutostrada implements ControllerInterface {
 		return autobahn;
 	}
 	/**
-	 *Method to edit an autostrada with the given tariffs
-	 *@param idAutostrada: The id of the Autostrada's record to edit
-	 *@param nomeNuovo: New name for the highway
-	 *@param tariffeNuove: Map of tariffs
+	 * Method to edit an autostrada with the given tariffs
+	 * @param idAutostrada: The id of the Autostrada's record to edit
+	 * @param nomeNuovo: New name for the highway
+	 * @param tariffeNuove: Map of tariffs
 	 **/
 	public void editAutostradaWithTariff ( int idAutostrada, String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		editTariffa ( idAutostrada, nomeNuovo, tariffeNuove );
@@ -91,7 +89,6 @@ public class ControllerAutostrada implements ControllerInterface {
 			t5.save();
 			
 		} catch ( Exception e ) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -126,7 +123,7 @@ public class ControllerAutostrada implements ControllerInterface {
 				throw new Exception ( "Cant retrieve tariffe from autostrada exception" );
 			}
 				
-		} catch (Exception e) {
+		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
 		return classToTariffs;
@@ -139,13 +136,12 @@ public class ControllerAutostrada implements ControllerInterface {
 	 **/
 	public void deleteRecord ( int id ) {
 		try {
-			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = "+id );
+			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = " + id );
 			if(!rs.next()) {
-				throw new Exception("The id that you have supplied does not correspond to an existing Autostrada");
+				throw new Exception( "The id that you have supplied does not correspond to an existing Autostrada" );
 			}
 			Database.getConnectionStatement().executeUpdate ( "DELETE FROM autostrada WHERE id = " + id );
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
