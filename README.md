@@ -1,5 +1,5 @@
 # ECOtoll - OOSD
--- Utilizzo del software:
+Utilizzo del software:
 Il software necessità di una base di dati popolata con dei veicoli 
 e un utente amministratore per funzionare.
 Sarà poi possibile dal software inserire autostrade, relative tariffe e caselli.
