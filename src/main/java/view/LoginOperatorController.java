@@ -1,13 +1,7 @@
 package view;
 
-/*
- * @author: Pietro
- */
-
-
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -24,6 +18,10 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
 import utility.Constants;
 
+/**
+ * This class manages the operator toll selection panel
+ *
+ */
 public class LoginOperatorController implements Initializable{
 	
 	@FXML
@@ -54,6 +52,10 @@ public class LoginOperatorController implements Initializable{
 		
 	}
 	
+	/**
+	 * <p>This method is used to 
+	 * manage the "back icon" click event </p>
+	 */
 	public void onBtnBackClick()
 	{
 		
@@ -83,7 +85,12 @@ public class LoginOperatorController implements Initializable{
 			e.printStackTrace();
 		}		
 	}
-		
+	
+	/**
+	 * This button submits the tollcode to the next view
+	 * Checks if the code exists and doesn't allow
+	 * you to continue if it does not exists
+	 */
 	public void onSubmitClick()
 	{		
 				
