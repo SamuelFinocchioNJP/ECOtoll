@@ -1,6 +1,3 @@
-/**
- * 
- */
 package autostrada;
 
 import java.sql.ResultSet;
@@ -13,42 +10,79 @@ public class Tariffa implements ModelInterface {
 	private double prezzo;
 	private int idAutostrada;
 	
-	public String getClasseVeicolo() {
+	/**
+	 * Getter for classeVeigolo
+	 * @return
+	 */
+	public String getClasseVeicolo ( ) {
 		return classeVeicolo;
 	}
-
-	public void setClasseVeicolo( String classeVeicolo ) {
+	
+	/**
+	 * Setter for classe veicolo
+	 * @param classeVeicolo
+	 */
+	public void setClasseVeicolo ( String classeVeicolo ) {
 		this.classeVeicolo = classeVeicolo;
 	}
 
-	public double getPrezzo() {
+	/**
+	 * Getter for prezzo
+	 * @return prezzo
+	 */
+	public double getPrezzo ( ) {
 		return prezzo;
 	}
-
-	public void setPrezzo(double prezzo) {
+	
+	
+	/**
+	 * Setter for prezzo
+	 * @param prezzo
+	 */
+	public void setPrezzo ( double prezzo ) {
 		this.prezzo = prezzo;
 	}
 
-	public int getIdAutostrada() {
+	/**
+	 * Getter for idAutostrada
+	 * @return idAutostrada
+	 */
+	public int getIdAutostrada ( ) {
 		return idAutostrada;
 	}
-
-	public void setIdAutostrada(int idAutostrada) {
+	
+	/**
+	 * Setter for idAutostrada
+	 * @param idAutostrada
+	 */
+	public void setIdAutostrada ( int idAutostrada ) {
 		this.idAutostrada = idAutostrada;
 	}
 
-	public int getId() {
+	/**
+	 * Getter for id
+	 * @return id
+	 */
+	public int getId ( ) {
 		return id;
 	}
 		
-	/** TODO: Replace old constructor **/
+	/**
+	 * Conctructor method for tariffa
+	 * @param classeVeicolo
+	 * @param prezzo
+	 * @param idAutostrada
+	 */
 	public Tariffa ( String classeVeicolo, double prezzo, int idAutostrada ) {
 		this.classeVeicolo = classeVeicolo;
 		this.prezzo = prezzo;
 		this.idAutostrada = idAutostrada;
 	}
 
-	@Override
+	/**
+	 * @Override
+	 * Saves current object to the database
+	 */
 	public void save ( ) {
 		/***
 		 * DB Schema for Tariffa:
@@ -73,9 +107,11 @@ public class Tariffa implements ModelInterface {
 		}
 	}
 
-	@Override
+	/**
+	 * Populates current object with database informations
+	 * @Override
+	 */
 	public void retrieve ( int id ) {
-		
 		try {
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id, id_autostrada, classe_veicolo, prezzo FROM tariffa WHERE id='" + id + "' LIMIT 1" );
 			
@@ -86,22 +122,23 @@ public class Tariffa implements ModelInterface {
 				/// Result found in query
 				this.idAutostrada = rs.getInt ( "id_autostrada" );
 				this.classeVeicolo = rs.getString ( "classe_veicolo" );
-				this.prezzo = rs.getInt("prezzo");
+				this.prezzo = rs.getInt( "prezzo" );
 				this.id = rs.getInt ( "id" );
 			}
 		    
 			rs.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Deletes current object from database
+	 */
 	public void destroy ( ) {
 		try {
 			Database.getConnectionStatement().executeUpdate ( "DELETE FROM tariffa WHERE id='" + this.getId() + "'" );
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}	
