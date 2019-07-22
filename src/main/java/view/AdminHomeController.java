@@ -117,7 +117,7 @@ public class AdminHomeController implements Initializable {
 	
 	public void onInsertClickHighwyas()
 	{
-		//TODO: query di inserimento
+		//query di inserimento
 		try
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("HighwaysInsert.fxml"));
@@ -150,7 +150,7 @@ public class AdminHomeController implements Initializable {
 	
 	public void onInsertClickTollbooths()
 	{
-		//TODO: query di inserimento
+		//query di inserimento
 		try
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("TollboothInsert.fxml"));
