@@ -135,7 +135,7 @@ public class HomeOperatorMainController implements Initializable{
 	 */
 	public void onClick() throws IOException {
 		
-		BufferedReader reader = new BufferedReader(new FileReader("../view/tollData.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("tollData.txt"));
 		this.start_tollbooth_code = reader.readLine();
 		this.car_license_plate = reader.readLine();
 		System.out.println(start_tollbooth_code);
