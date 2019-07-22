@@ -44,6 +44,11 @@
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
+      <ImageView fitHeight="49.0" fitWidth="56.0" layoutX="39.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/baseline_keyboard_arrow_left_white_48dp.png" />
+         </image>
+      </ImageView>
    </children>
    <effect>
       <DropShadow blurType="ONE_PASS_BOX" color="#1b1eeb" />
