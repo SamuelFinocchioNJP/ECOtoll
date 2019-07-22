@@ -88,7 +88,7 @@ public class LoginOperatorController implements Initializable{
 				
 		try {
 			
-			Casello casello = new Casello(Integer.valueOf(textbox_toll_code.getText()));
+			Casello casello = new Casello(Integer.valueOf(textbox_toll_code.getText()),true);
 			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
@@ -106,7 +106,7 @@ public class LoginOperatorController implements Initializable{
 		} catch (Exception e) {
 			
 			textbox_toll_code.setPromptText("Error");
-			e.printStackTrace();
+			//e.printStackTrace();
 			return;
 			
 			/*e.printStackTrace();
