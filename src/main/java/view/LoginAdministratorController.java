@@ -24,6 +24,10 @@ public class LoginAdministratorController implements Initializable {
 	@FXML
 	private TextField txt_Password;
 	
+	private Parent root;
+	private double x,y;
+	private Stage stage;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -47,11 +51,11 @@ public class LoginAdministratorController implements Initializable {
 			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHome.fxml"));
-			Parent root = loader.load();
+			root = loader.load();
 			
 			
 			//Passo alla nuova view
-			Stage stage = (Stage) btn_login.getScene().getWindow();
+			stage = (Stage) btn_login.getScene().getWindow();
 			stage.setScene(new Scene(root));
 			stage.setTitle("Operator Panel - Tollbooth #" + txt_Username.getText());
 		}
@@ -60,6 +64,17 @@ public class LoginAdministratorController implements Initializable {
 			System.err.println(e);
 			
 		}
+		
+        //drag it here
+        root.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+
+        });
 		
 		
 	}

@@ -26,6 +26,10 @@ public class LoginOperatorController implements Initializable{
 	@FXML
 	private TextField textbox_toll_code;
 	
+	private Parent root;
+	private double x,y;
+	private Stage stage;
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -38,14 +42,14 @@ public class LoginOperatorController implements Initializable{
 		try {
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
-			Parent root = loader.load();
+			root = loader.load();
 			
 			//Prendo il controller del loader e setto il tollcode con il relativo metodo
 			HomeOperatorMainController controller = loader.getController();
 			controller.setTollboothCode(textbox_toll_code.getText());
 			
 			//Passo alla nuova view
-			Stage stage = (Stage) submit.getScene().getWindow();
+			stage = (Stage) submit.getScene().getWindow();
 			stage.setScene(new Scene(root));
 			stage.setTitle("Operator Panel - Tollbooth #" + textbox_toll_code.getText());
 			
@@ -54,5 +58,17 @@ public class LoginOperatorController implements Initializable{
 			System.err.println(e);
 		}
 		
+	    //drag it here
+	    root.setOnMousePressed(event -> {
+	        x = event.getSceneX();
+	        y = event.getSceneY();
+	    });
+	    root.setOnMouseDragged(event -> {
+	        stage.setX(event.getScreenX() - x);
+	        stage.setY(event.getScreenY() - y);
+
+	    });
 	}
+	
+
 }

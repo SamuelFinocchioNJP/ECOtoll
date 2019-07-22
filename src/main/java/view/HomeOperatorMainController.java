@@ -44,6 +44,9 @@ public class HomeOperatorMainController implements Initializable{
 	private Label lbl_tollbooth;
 	
 	@FXML
+	private Label lbl_tollbooth2;
+	
+	@FXML
 	private Button btn_km_toll;
 	
 	@FXML
@@ -61,18 +64,23 @@ public class HomeOperatorMainController implements Initializable{
 	public void setTollboothCode(String code)
 	{
 		this.destination_tollbooth_code = code;
-		lbl_tollbooth.setText("Welcome, \n you are in "+ code +" toolbooth");
+		lbl_tollbooth2.setText("you are at toolbooth number: "+ code);
 		return;
 	}
 	
 	public void handleTollClick(ActionEvent actionEvent) {
 		
+		
 		if(actionEvent.getSource() == btn_km_toll) {
 			toll_code = Constants.KM_TOLL;
+			lbl_tollprice.setVisible(false);
 		}
 		
 		if(actionEvent.getSource() == btn_eco_toll) {
 			toll_code = Constants.ECO_TOLL;
+			lbl_tollprice.setVisible(false);
+			lbl_tollprice.setText("The ECOtoll will be avaible from 2021!");
+			lbl_tollprice.setVisible(true);
 		}
 		System.out.println("Toll Selected: "+toll_code);
 		
@@ -100,7 +108,7 @@ public class HomeOperatorMainController implements Initializable{
 				int highway_iva = highway.getIva();
 				
 				
-				lbl_tollprice.setText("Il prezzo del pedaggio è: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"€");
+				lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0€");
 				lbl_tollprice.setVisible(true);
 				break;
 		
@@ -109,9 +117,11 @@ public class HomeOperatorMainController implements Initializable{
 				System.out.println(toll_code);
 				break;
 		
-		default:
-			
+			default:
+				lbl_tollprice.setText("You have to select a toll type!");
+				lbl_tollprice.setVisible(true);			
 		}
 	}
+	
 	
 }

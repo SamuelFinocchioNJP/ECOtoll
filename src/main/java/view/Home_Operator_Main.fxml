@@ -27,7 +27,7 @@
             <Image url="@../imgs/ECOtoll%20logo/logo_transparent.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_tollbooth" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="196.0" text="Welcome, you are on ###### tollbooth" textAlignment="CENTER" textFill="#e7e5e5" wrapText="true">
+      <Label fx:id="lbl_tollbooth" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="196.0" text="Welcome," textAlignment="CENTER" textFill="#e7e5e5" wrapText="true">
          <font>
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
@@ -37,6 +37,11 @@
       <Label fx:id="lbl_tollprice" layoutX="39.0" layoutY="308.0" text="Operator Panel" textFill="#e7e5e5" visible="false">
          <font>
             <Font name="Microsoft Sans Serif" size="38.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_tollbooth2" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="234.0" text="you are on ###### tollbooth" textAlignment="CENTER" textFill="#e7e5e5" wrapText="true">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
    </children>

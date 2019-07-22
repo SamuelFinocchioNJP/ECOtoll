@@ -20,6 +20,10 @@ public class LoginController implements Initializable{
 	private Button administrationArea;
 	@FXML
 	private Button operatorArea;
+	
+	private Parent root;
+	private double x,y;
+	private Stage stageTheButtonBelongs;
 
 	public LoginController() {
 		
@@ -29,15 +33,16 @@ public class LoginController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 	
 	public void handleClicks(ActionEvent actionEvent) {
 		       
 		if ( actionEvent.getSource() == administrationArea ) {
-	        Parent root;
+	        
 			try {
 				root = FXMLLoader.load(getClass().getResource("Login-administrator.fxml"));
-			    Stage stageTheButtonBelongs = (Stage) administrationArea.getScene().getWindow();
+			    stageTheButtonBelongs = (Stage) administrationArea.getScene().getWindow();
 			    stageTheButtonBelongs.setScene(new Scene(root));
 		       
 			} catch (IOException e) {
@@ -47,10 +52,10 @@ public class LoginController implements Initializable{
 		}
 		
 		if(actionEvent.getSource() == operatorArea) {
-	        Parent root;
+	        
 			try {
 				root = FXMLLoader.load(getClass().getResource("Login-operator.fxml"));
-			    Stage stageTheButtonBelongs = (Stage) operatorArea.getScene().getWindow();
+			    stageTheButtonBelongs = (Stage) operatorArea.getScene().getWindow();
 			    stageTheButtonBelongs.setScene(new Scene(root));
 		      
 			    
@@ -59,7 +64,17 @@ public class LoginController implements Initializable{
 				e.printStackTrace();
 			}
 		}
-					
+		
+        //drag it here
+        root.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            stageTheButtonBelongs.setX(event.getScreenX() - x);
+            stageTheButtonBelongs.setY(event.getScreenY() - y);
+
+        });
 	}
 
 }

@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 
 public class AdminHomeController implements Initializable {
 
-	//Variabili Pannelli di Sinistra
+	//Variabili Pannello di Sinistra
 	
 	@FXML
 	private Pane pnl_Highways;
