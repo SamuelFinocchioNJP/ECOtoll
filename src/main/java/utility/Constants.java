@@ -21,4 +21,10 @@ public class Constants {
 	public static final String COD_CLASSE_3 = "3";
 	public static final String COD_CLASSE_4 = "4";
 	public static final String COD_CLASSE_5 = "5";
+	
+	
+	//Costanti per messaggi di errore
+	
+	public static final String WRONG_TARIFF = "Wrong Value";
+	public static final String WRONG_NAME = "Please insert a valid name";
 }

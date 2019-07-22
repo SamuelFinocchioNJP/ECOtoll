@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.mysql.jdbc.StringUtils;
+
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utility.Constants;
 
 public class HighwaysEditController implements Initializable {
 
@@ -40,15 +43,21 @@ public class HighwaysEditController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	public void onClick()
 	{
-		Map<String,Float> res = new HashMap<String,Float>();
-		//query di inserimento
 		
+		if(StringUtils.isEmptyOrWhitespaceOnly(txt_Name.getText()))
+		{
+			txt_Name.setPromptText(Constants.WRONG_NAME);
+			return;
+		}
+		
+		Map<String,Float> res = new HashMap<String,Float>();
+		
+		//Popolo la map
 		if(loaders != null)
 		{
 			for(FXMLLoader x : loaders)
@@ -107,8 +116,7 @@ public class HighwaysEditController implements Initializable {
 				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
 				RowHighwaysEditController controller = loader.getController();
 				controller.setLables(x.getKey(), String.valueOf(x.getValue()));
-				//Ogni row ha il riferimento al controller dello scroller in cui si trova
-				controller.setHighwaysController(this);
+				
 				scroll_vehicle_classes.getChildren().add(nodes[i]);
 				i++;
 				

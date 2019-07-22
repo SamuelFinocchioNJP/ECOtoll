@@ -3,7 +3,7 @@ package view;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import java.util.function.UnaryOperator;
 
 import autostrada.Autostrada;
 import Casello.Casello;
@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -91,7 +93,21 @@ public class AdminHomeController implements Initializable {
 		//Query e popolamento delle rows
 		getAllHighways();
 		
-						
+		//Il bottone di insert parte disabilitato
+		btn_Insert_Tollbooths.setDisable(true);
+		
+		UnaryOperator<Change> filter = change -> {
+		    String text = change.getText();
+
+		    if (text.matches("[0-9]*")) {
+		        return change;
+		    }
+		    return null;
+		};
+		
+		TextFormatter<String> formatter = new TextFormatter<>(filter);
+		txt_HighwayCode.setTextFormatter(formatter);
+		
 		//Parte visibile il pannello highways
 		pnl_Highways.setVisible(true);
 		pnl_Tollbooths.setVisible(false);
@@ -159,19 +175,9 @@ public class AdminHomeController implements Initializable {
 		//pulisco la lista
 		scoll_Tollbooths.getChildren().clear();
 		
+		btn_Insert_Tollbooths.setDisable(false);
 		//Query e ripopolamento
 		getAllTollbooths();
-	}
-	
-	//Metodi bottoni Vehicles
-	public void onInsertClickVehicles()
-	{
-		//TODO: query di inserimento
-	}
-		
-	public void onRefreshClickVehicles()
-	{
-		//TODO: query per refreshare la vista dei veicoli
 	}
 	
 	//Metodi click sui bottoni a sinistra per cambio panel

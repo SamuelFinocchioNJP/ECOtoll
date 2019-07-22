@@ -8,6 +8,7 @@ package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
 
 public class LoginOperatorController implements Initializable{
@@ -33,7 +36,18 @@ public class LoginOperatorController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+
+	UnaryOperator<Change> filter = change -> {
+		    String text = change.getText();
+
+		    if (text.matches("[0-9]*")) {
+		        return change;
+		    }
+		    return null;
+		};
+		
+		TextFormatter<String> formatter = new TextFormatter<>(filter);
+		textbox_toll_code.setTextFormatter(formatter);
 		
 	}
 	

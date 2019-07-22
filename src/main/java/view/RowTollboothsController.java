@@ -43,7 +43,8 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+
+
 
 	}
 

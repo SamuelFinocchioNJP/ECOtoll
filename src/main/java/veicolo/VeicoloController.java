@@ -1,8 +1,6 @@
 package veicolo;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import utility.Database;
 

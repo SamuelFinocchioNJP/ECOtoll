@@ -2,7 +2,6 @@ package view;
 
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -21,11 +20,6 @@ import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
-import veicolo.Classe3;
-import veicolo.Classe4;
-import veicolo.Classe5;
-import veicolo.ClasseA;
-import veicolo.ClasseB;
 import veicolo.Veicolo;
 import veicolo.VeicoloController;
 
@@ -57,7 +51,6 @@ public class HomeOperatorMainController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -108,7 +101,7 @@ public class HomeOperatorMainController implements Initializable{
 				int highway_iva = highway.getIva();
 				
 				
-				lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0€");
+				lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0ï¿½");
 				lbl_tollprice.setVisible(true);
 				break;
 		
@@ -121,6 +114,7 @@ public class HomeOperatorMainController implements Initializable{
 				lbl_tollprice.setText("You have to select a toll type!");
 				lbl_tollprice.setVisible(true);			
 		}
+		reader.close();
 	}
 	
 	

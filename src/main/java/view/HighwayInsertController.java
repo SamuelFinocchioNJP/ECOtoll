@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.mysql.jdbc.StringUtils;
+
 import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +38,6 @@ public class HighwayInsertController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		populate();
 	}
 
@@ -47,6 +48,12 @@ public class HighwayInsertController implements Initializable {
 	
 	public void onClick()
 	{
+		if(StringUtils.isEmptyOrWhitespaceOnly(txt_Name.getText()))
+		{
+			txt_Name.setPromptText(Constants.WRONG_NAME);
+			return;
+		}
+		
 		Map<String,Float> res = new HashMap<String,Float>();
 		
 		if(loaders != null)
@@ -89,8 +96,7 @@ public class HighwayInsertController implements Initializable {
 				//prendo il controller della riga e utilizzo il metodo setLabels per inserire i dati del record corrente
 				RowHighwaysEditController controller = loader.getController();
 				controller.setLables(classi[i], "");
-				//Ogni row ha il riferimento al controller dello scroller in cui si trova
-				controller.setHighwaysController(this);
+				
 				scroll_vehicle_classes.getChildren().add(nodes[i]);
 				
 			}catch(Exception e)
