@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 
 
 import java.net.URL;
@@ -61,7 +61,7 @@ public class LoginOperatorController implements Initializable{
 		
 		
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login-choice.fxml"));
 		Parent root;
 		
 		try {	
@@ -99,8 +99,9 @@ public class LoginOperatorController implements Initializable{
 			new Casello(Integer.valueOf(textbox_toll_code.getText()),true);
 			
 			
+			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home_Operator_Main.fxml"));
 			root = loader.load();
 			
 			//Prendo il controller del loader e setto il tollcode con il relativo metodo

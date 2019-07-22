@@ -1,9 +1,8 @@
-package view;
+package Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Casello.Casello;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,19 +14,17 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * This is the controller for tollbooths panel rows
+ * This is the controller for the highways rows
  *
  */
-public class RowTollboothsController implements Initializable, RowControllerInterface {
+public class RowHighwaysController implements Initializable, RowControllerInterface {
 
+	
 	@FXML
 	private Label lbl_Code;
 	
 	@FXML
 	private Label lbl_Name;
-	
-	@FXML
-	private Label lbl_KM;
 	
 	@FXML
 	private Button btn_Edit;
@@ -42,11 +39,8 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-
-
 	}
-
+	
 	/**
 	 * Method to manage the click on edit button
 	 * Opens a new panel and populate its labels 
@@ -54,25 +48,25 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	 */
 	public void onEditClick()
 	{
-		//TODO: Da decidere, apriamo un pannello per editare?
-				try
-				{
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("TollboothEdit.fxml"));
-					Parent root = loader.load();
-					
-					Stage stage = new Stage();
-					stage.setScene(new Scene(root));
-					TollboothEditController controller = loader.getController();
-					controller.setLabels(lbl_Code.getText(), lbl_Name.getText(), lbl_KM.getText());
-					controller.setCode(Integer.valueOf(lbl_Code.getText()));
-					controller.setHomeController(admincontroller);
-					
-					stage.show();
-					
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
+		try
+		{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/HighwaysEdit.fxml"));
+			Parent root = loader.load();
+			
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			HighwaysEditController controller = loader.getController();
+			controller.setLabels(lbl_Code.getText(), lbl_Name.getText());
+			controller.setCode(Integer.valueOf(lbl_Code.getText()));
+			controller.setHomeController(admincontroller);
+			
+			stage.show();
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -81,23 +75,19 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	 */
 	public void onDeleteClick()
 	{
-		Casello casello = new Casello(Integer.valueOf(lbl_Code.getText()));
-		casello.destroy();
-			
-		admincontroller.onRefreshClickTollbooths();
+		ControllerAutostrada controller = new ControllerAutostrada();
+		controller.deleteRecord(Integer.valueOf(lbl_Code.getText()));
+		
+		admincontroller.onRefreshClickHighways();
 	}
-	
+
 	/**
-	 * Sets the row lables
-	 * @param type
-	 * @param tariff
+	 * Method to set the lables of the row
 	 */
 	@Override
 	public void setLabels(String... strings) {
-		// TODO Auto-generated method stub
 		lbl_Code.setText(strings[0]);
 		lbl_Name.setText(strings[1]);
-		lbl_KM.setText(strings[2]);
 		return;
 	}
 	
@@ -121,7 +111,6 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 		box_Row.setStyle("-fx-background-color : #02030A");
 	}
 	
-	
 	/**
 	 * <p>This method is used to give this controller a reference 
 	 * to the controlled that created it
@@ -132,4 +121,5 @@ public class RowTollboothsController implements Initializable, RowControllerInte
 	{
 		this.admincontroller = controller;
 	}
+
 }

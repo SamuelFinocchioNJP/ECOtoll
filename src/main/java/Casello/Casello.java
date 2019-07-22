@@ -3,7 +3,6 @@
  */
 package Casello;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +60,7 @@ public class Casello implements ModelInterface {
 	}
 	
 	/**
-	 * Getter for località
+	 * Getter for localitï¿½
 	 * @return localita
 	 */
 	public String getLocalita() {

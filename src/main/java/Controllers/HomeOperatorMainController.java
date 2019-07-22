@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 
 
 import java.io.BufferedReader;
@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 
 import Casello.Casello;
 import autostrada.Autostrada;
-import autostrada.ControllerAutostrada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +24,6 @@ import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
 import utility.Constants;
 import veicolo.Veicolo;
-import veicolo.VeicoloController;
 
 /**
  * This is the main controller for the operator main view
@@ -106,7 +104,7 @@ public class HomeOperatorMainController implements Initializable{
 	 */
 	public void onBtnBackClick()
 	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-operator.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login-operator.fxml"));
 		Parent root;
 		
 		try {	
@@ -137,7 +135,7 @@ public class HomeOperatorMainController implements Initializable{
 	 */
 	public void onClick() throws IOException {
 		
-		BufferedReader reader = new BufferedReader(new FileReader("tollData.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("../view/tollData.txt"));
 		this.start_tollbooth_code = reader.readLine();
 		this.car_license_plate = reader.readLine();
 		System.out.println(start_tollbooth_code);

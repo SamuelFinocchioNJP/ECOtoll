@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,8 +9,6 @@ import com.mysql.jdbc.StringUtils;
 
 import autostrada.Autostrada;
 import Casello.Casello;
-import Casello.CaselloController;
-import autostrada.ControllerAutostrada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -124,7 +122,7 @@ public class AdminHomeController implements Initializable {
 		//query di inserimento
 		try
 		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("HighwaysInsert.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/HighwaysInsert.fxml"));
 			Parent root = loader.load();
 			
 			Stage stage = new Stage();
@@ -163,7 +161,7 @@ public class AdminHomeController implements Initializable {
 		//query di inserimento
 		try
 		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("TollboothInsert.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TollboothInsert.fxml"));
 			Parent root = loader.load();
 					
 			Stage stage = new Stage();
@@ -231,7 +229,7 @@ public class AdminHomeController implements Initializable {
 	{
 		try {
 			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login-choice.fxml"));
 			Parent root = loader.load();
 			
 			Stage stage = (Stage) btn_Signout.getScene().getWindow();
@@ -273,7 +271,7 @@ public class AdminHomeController implements Initializable {
 			try
 			{
 				//Prendo il layout della singola riga
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowHighways.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/RowHighways.fxml"));
 				//la assegno all'i-esmima entry
 				nodes[i] = (Node) loader.load();
 						
@@ -314,7 +312,7 @@ public class AdminHomeController implements Initializable {
 			try
 			{
 				//Prendo il layout della singola riga
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("RowTollbooths.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/RowTollbooths.fxml"));
 				//la assegno all'i-esmima entry
 				nodes[i] = (Node) loader.load();
 								

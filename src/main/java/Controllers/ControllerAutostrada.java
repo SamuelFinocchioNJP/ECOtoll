@@ -1,11 +1,12 @@
-package autostrada;
+package Controllers;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import Controllers.ControllerInterface;
+import autostrada.Autostrada;
+import autostrada.Tariffa;
 import utility.Database;
 
 /**
