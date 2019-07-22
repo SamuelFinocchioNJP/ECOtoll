@@ -1,4 +1,4 @@
-package autostrada;
+package Tariffa;
 
 import java.sql.ResultSet;
 import Models.ModelInterface;

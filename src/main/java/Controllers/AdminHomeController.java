@@ -7,8 +7,10 @@ import java.util.function.UnaryOperator;
 
 import com.mysql.jdbc.StringUtils;
 
-import autostrada.Autostrada;
 import Casello.Casello;
+import Casello.CaselloController;
+import autostrada.Autostrada;
+import autostrada.AutostradaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -256,7 +258,7 @@ public class AdminHomeController implements Initializable {
 	private void getAllHighways()
 	{
 		//Eseguo la query
-		ControllerAutostrada controllera = new ControllerAutostrada();
+		AutostradaController controllera = new AutostradaController();
 		this.query_results = controllera.getAutostrade();
 			
 		lbl_Number_Highways.setText(String.valueOf(query_results.size()));

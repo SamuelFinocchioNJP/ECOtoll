@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.mysql.jdbc.StringUtils;
 
+import autostrada.AutostradaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -76,7 +77,7 @@ public class HighwaysEditController implements Initializable {
 			}
 		}
 		//query
-		ControllerAutostrada controller = new ControllerAutostrada();
+		AutostradaController controller = new AutostradaController();
 		controller.editAutostradaWithTariff(code, txt_Name.getText(), res);
 		
 		admincontroller.onRefreshClickHighways();
@@ -124,7 +125,7 @@ public class HighwaysEditController implements Initializable {
 	private void populate()
 	{
 		
-		ControllerAutostrada controllerA= new ControllerAutostrada();
+		AutostradaController controllerA= new AutostradaController();
 		Map<String,Float> result = controllerA.getAutostradeTariffe(code);
 		
 		loaders = new FXMLLoader[result.size()];

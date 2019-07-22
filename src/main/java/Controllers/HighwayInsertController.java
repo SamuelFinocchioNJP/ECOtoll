@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.mysql.jdbc.StringUtils;
 
+import autostrada.AutostradaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -81,7 +82,7 @@ public class HighwayInsertController implements Initializable {
 			}
 		}
 		//query
-		ControllerAutostrada controller = new ControllerAutostrada();
+		AutostradaController controller = new AutostradaController();
 		controller.addAutostradaWithTariff(txt_Name.getText(), res);
 		
 		admincontroller.onRefreshClickHighways();

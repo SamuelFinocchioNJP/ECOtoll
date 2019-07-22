@@ -1,18 +1,18 @@
-package Controllers;
+package autostrada;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import autostrada.Autostrada;
-import autostrada.Tariffa;
+import Controllers.ControllerInterface;
+import Tariffa.Tariffa;
 import utility.Database;
 
 /**
  * Autostrada's controller
  */
-public class ControllerAutostrada implements ControllerInterface {
+public class AutostradaController implements ControllerInterface {
 	/**
 	 * @deprecated
 	 * Use getAutostrade() instead
