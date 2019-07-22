@@ -144,7 +144,7 @@ public class HomeOperatorMainController implements Initializable{
 		System.out.println(car_license_plate);
 
 		switch(toll_code) {	
-			case Constants.KM_TOLL:							
+			case Constants.KM_TOLL:	
 				Veicolo vehicle = VeicoloController.getVeicolo(car_license_plate);				
 					Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
 					Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
