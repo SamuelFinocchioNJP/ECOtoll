@@ -1,42 +1,25 @@
-/**
- * 
- */
 package autostrada;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.*;
-
-import Casello.Casello;
 import Models.ModelInterface;
-import pedaggio.IPedaggio;
-import pedaggio.PedaggioEco;
-import pedaggio.PedaggioKm;
-import utility.Constants;
 import utility.Database;
-import veicolo.Veicolo;
 
+/**
+ *	Class Autostrada
+ *	Model for autostrada relation
+ */
 public class Autostrada implements ModelInterface {
-	
 	private String nome;
 	private int id;
-	private Map<String,Float> tariffaUnitaria;
-	private List<Casello> listCasello;
 	private int iva;
-	private IPedaggio pedaggio;
-	private String tipoPedaggio;
-		
-	/** TODO: Replace old constructor **/
-	public Autostrada ( String nome, Map<String,Float> tariffaUnitaria, List<Casello> listCasello, String tipoPedaggio, int iva) {
-		this.nome = nome;
-		this.tariffaUnitaria = tariffaUnitaria;
-		this.listCasello = listCasello;
-		this.tipoPedaggio = tipoPedaggio;
-		this.iva = iva;
-		buildPedaggio();
-	}
 	
+	/**
+	 * Constructor method that creates a new Autostrada in database
+	 * @param nome
+	 * @param iva
+	 */
 	public Autostrada ( String nome, int iva ) {
 		this.nome = nome;
 		this.iva = iva;
@@ -44,69 +27,51 @@ public class Autostrada implements ModelInterface {
 		this.save();
 	}
 	
+	/**
+	 * Constructor method
+	 * @param id
+	 */
 	public Autostrada ( int id ) {
 		this.id = id;
 		this.retrieve( id );
 	}
 
-	private void buildPedaggio ( ) {
-		switch(tipoPedaggio) {
-			case Constants.PEDAGGIO_KM:
-				pedaggio = new PedaggioKm();
-				break;
-			case Constants.PEDAGGIO_ECO:
-				pedaggio = new PedaggioEco();
-				break;
-			default:
-				throw new IllegalArgumentException("Il tipo di pedaggio non è ammesso"); 		
-		}
-	}
-	
-	public String stampaPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita ) {
-		return pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita, tariffaUnitaria, iva);	
-	}
-
+	/**
+	 * Getter for nome
+	 * @return nome
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 	
+	/**
+	 * Getter for id
+	 * @return id
+	 */
 	public int getId ( ) {
 		return this.id;
 	}
 	
+	/**
+	 * Getter for iva
+	 * @return iva
+	 */
 	public int getIva( ) {
 		return this.iva;
 	}
 
+	/**
+	 * Setter for nome
+	 * @param nome
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Map<String, Float> getTariffaUnitaria() {
-		return tariffaUnitaria;
-	}
 	
-	public void setTariffaUnitaria(Map<String, Float> tariffaUnitaria) {
-		this.tariffaUnitaria = tariffaUnitaria;
-	}
-
-	public List<Casello> getListCasello() {
-		return listCasello;
-	}
-
-	public void setListCasello(List<Casello> listCasello) {
-		this.listCasello = listCasello;
-	}
-
-	public IPedaggio getPedaggio() {
-		return pedaggio;
-	}
-	
-	public void setPedaggio(IPedaggio pedaggio) {
-		this.pedaggio = pedaggio;
-	}
-
-	@Override
+	/**
+	 * @Override
+	 * Saves current object to the database
+	 */
 	public void save ( ) {
 		/***
 		 * DB Schema for Autostrada:
@@ -153,8 +118,11 @@ public class Autostrada implements ModelInterface {
 			}
 		}
 	}
-
-	@Override
+	
+	/**
+	 * Populates current object with database informations
+	 * @Override
+	 */
 	public void retrieve ( int id ) {
 		
 		try {
@@ -177,11 +145,18 @@ public class Autostrada implements ModelInterface {
 		}
 	}
 
+	/** 
+	 * Setter for iva
+	 * @param iva
+	 */
 	public void setIva ( int iva ) {
 		if ( iva > 0 )
 			this.iva = iva;
 	}
 
+	/**
+	 * Deletes current object from database
+	 */
 	public void destroy ( ) {
 		try {
 			Database.getConnectionStatement().executeUpdate ( "DELETE FROM autostrada WHERE nome='" + this.getNome() + "'" );

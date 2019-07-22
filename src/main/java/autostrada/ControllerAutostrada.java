@@ -1,15 +1,13 @@
 package autostrada;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import Casello.Casello;
 import Controllers.ControllerInterface;
 import utility.Database;
+
 /**
  * Autostrada's controller
  */
@@ -35,6 +33,7 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 		return arrayId;
 	}
+	
 	/**
 	 * Method that gets every single Autostrada in the database
 	 * @return Returns an ArrayList<Autostrada>
@@ -90,8 +89,9 @@ public class ControllerAutostrada implements ControllerInterface {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
-	 *Method that adds an Autostrada with the related tariffs
+	 * Method that adds an Autostrada with the related tariffs
 	 * @param nomeNuovo: The Autostrada's name
 	 * @param tariffeNuove:A map from the categories (String) to the tariffs (Float)   
 	 **/
@@ -101,8 +101,9 @@ public class ControllerAutostrada implements ControllerInterface {
 		
 		editAutostradaWithTariff ( a.getId(), a.getNome(), tariffeNuove );
 	}
+	
 	/**
-	 *Fetches the tariffs from a given Autostrada
+	 * Fetches the tariffs from a given Autostrada
 	 * @param idAutostrada Autostrada's Id passed from the view
 	 * @return This method returns A map that maps  categories (String) to  tariffs (Float)  
 	 **/
@@ -124,11 +125,12 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 		return classToTariffs;
 	}
+	
 	/**
-	 *Method for the delete of a record
-	 *@param id: id of the record that needs to be removed 
+	 * @Override
+	 * Method for the delete of a record
+	 * @param id: id of the record that needs to be removed 
 	 **/
-	@Override
 	public void deleteRecord ( int id ) {
 		try {
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = "+id );
@@ -141,7 +143,4 @@ public class ControllerAutostrada implements ControllerInterface {
 			e.printStackTrace();
 		}
 	}
-	
-
-	
 }
