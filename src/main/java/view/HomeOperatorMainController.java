@@ -27,6 +27,10 @@ import utility.Constants;
 import veicolo.Veicolo;
 import veicolo.VeicoloController;
 
+/**
+ * This is the main controller for the operator main view
+ *
+ */
 public class HomeOperatorMainController implements Initializable{
 
 	private String destination_tollbooth_code;
@@ -53,11 +57,19 @@ public class HomeOperatorMainController implements Initializable{
 	@FXML
 	private Label lbl_tollprice;
 	
+	private double x , y;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 	}
 	
+	/**
+	 * <p>This method is used to pass the 
+	 * tollbooth code from the parent controller
+	 * </p>
+	 * @param code
+	 */
 	public void setTollboothCode(String code)
 	{
 		this.destination_tollbooth_code = code;
@@ -65,6 +77,11 @@ public class HomeOperatorMainController implements Initializable{
 		return;
 	}
 	
+	/**
+	 * <p> This is the handler for the buttons 
+	 * used to select the toll type</p>
+	 * @param actionEvent
+	 */
 	public void handleTollClick(ActionEvent actionEvent) {
 		
 		
@@ -83,6 +100,10 @@ public class HomeOperatorMainController implements Initializable{
 		
 	}
 
+	/**
+	 * <p>This method is used to 
+	 * manage the "back icon" click event </p>
+	 */
 	public void onBtnBackClick()
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-operator.fxml"));
@@ -94,11 +115,26 @@ public class HomeOperatorMainController implements Initializable{
 			stage.setScene(new Scene(root));
 			stage.show();
 			
+			root.setOnMousePressed(event -> {
+		        x = event.getSceneX();
+		        y = event.getSceneY();
+		    });
+		    root.setOnMouseDragged(event -> {
+		        stage.setX(event.getScreenX() - x);
+		        stage.setY(event.getScreenY() - y);
+
+		    });
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 	}
 	
+	/**
+	 * <p>This method handles the click on the calculate button
+	 * Calculates a toll price and displays it on the view</p>
+	 * @throws IOException
+	 */
 	public void onClick() throws IOException {
 		
 		BufferedReader reader = new BufferedReader(new FileReader("tollData.txt"));

@@ -12,7 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import utility.Constants;
 
+/**
+ * This is the main controller for the admin login view
+ *
+ */
 public class LoginAdministratorController implements Initializable {
 
 	@FXML
@@ -34,6 +39,10 @@ public class LoginAdministratorController implements Initializable {
 
 	}
 
+	/**
+	 * <p>This method is used to 
+	 * manage the "back icon" click event </p>
+	 */
 	public void onBtnBackClick()
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
@@ -45,12 +54,28 @@ public class LoginAdministratorController implements Initializable {
 			stage.setScene(new Scene(root));
 			stage.show();
 			
+			root.setOnMousePressed(event -> {
+		        x = event.getSceneX();
+		        y = event.getSceneY();
+		    });
+		    root.setOnMouseDragged(event -> {
+		        stage.setX(event.getScreenX() - x);
+		        stage.setY(event.getScreenY() - y);
+
+		    });
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+		
+		
 	}
 	
-	
+	/**
+	 * <p>This method queries the database for the login authentication
+	 * then proceeds to block the login or admit the user to the 
+	 * main admin panel</p>
+	 */
 	public void onClick()
 	{
 		try {
@@ -61,7 +86,8 @@ public class LoginAdministratorController implements Initializable {
 			
 			if(!login)
 			{
-				txt_Username.setText("Wrong Credentials");
+				txt_Username.setText("");
+				txt_Username.setPromptText(Constants.WRONG_USERNAME);
 				txt_Password.setText("");
 				return;
 			}

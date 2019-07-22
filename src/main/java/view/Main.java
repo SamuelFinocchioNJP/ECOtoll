@@ -10,6 +10,9 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
     private double x, y;
 
+    /**
+     * Starts the program on the first view and sets its stile
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Login-choice.fxml"));
