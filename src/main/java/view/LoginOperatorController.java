@@ -7,6 +7,7 @@ package view;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -21,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
+import utility.Constants;
 
 public class LoginOperatorController implements Initializable{
 	
@@ -81,14 +83,14 @@ public class LoginOperatorController implements Initializable{
 			e.printStackTrace();
 		}		
 	}
-	
-	
+		
 	public void onSubmitClick()
 	{		
 				
 		try {
 			
-			Casello casello = new Casello(Integer.valueOf(textbox_toll_code.getText()),true);
+			new Casello(Integer.valueOf(textbox_toll_code.getText()),true);
+			
 			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
@@ -105,12 +107,10 @@ public class LoginOperatorController implements Initializable{
 			
 		} catch (Exception e) {
 			
-			textbox_toll_code.setPromptText("Error");
+			textbox_toll_code.setText("");
+			textbox_toll_code.setPromptText(Constants.CASELLO_NOT_FOUND_ERROR);
 			//e.printStackTrace();
 			return;
-			
-			/*e.printStackTrace();
-			System.err.println(e);*/
 		}
 		
 	    //drag it here
