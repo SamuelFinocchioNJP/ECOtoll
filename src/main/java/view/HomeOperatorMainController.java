@@ -90,20 +90,20 @@ public class HomeOperatorMainController implements Initializable{
 		switch(toll_code) {	
 			case Constants.KM_TOLL:							
 				Veicolo vehicle = VeicoloController.getVeicolo(car_license_plate);				
-							
-				Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
-				Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
-				ControllerAutostrada highway_controller = new ControllerAutostrada();
-				Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());											
-				toll = new PedaggioKm();
+					Casello destination_toll = new Casello(Integer.parseInt(this.destination_tollbooth_code));
+					Casello start_toll = new Casello(Integer.parseInt(this.start_tollbooth_code));
+					ControllerAutostrada highway_controller = new ControllerAutostrada();
+					Map<String,Float> rate = highway_controller.getAutostradeTariffe(destination_toll.getAutostradaId());											
+					toll = new PedaggioKm();
+					
+					Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
+					int highway_iva = highway.getIva();
+					
+					
+					lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0�");
+					lbl_tollprice.setVisible(true);
+					break;
 				
-				Autostrada highway = new Autostrada(destination_toll.getAutostradaId());
-				int highway_iva = highway.getIva();
-				
-				
-				lbl_tollprice.setText("The toll price is: "+ toll.calcoloPedaggio(vehicle, start_toll, destination_toll, rate, highway_iva)+"0�");
-				lbl_tollprice.setVisible(true);
-				break;
 		
 			case Constants.ECO_TOLL:		
 				toll = new PedaggioEco();
