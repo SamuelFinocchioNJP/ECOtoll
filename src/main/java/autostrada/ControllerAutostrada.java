@@ -1,13 +1,18 @@
 package autostrada;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import Casello.Casello;
 import Controllers.ControllerInterface;
 import utility.Database;
-
+/**
+ * Controllore dell'oggetto Autostrada 
+ */
 public class ControllerAutostrada implements ControllerInterface {
 	/**
 	 * @deprecated
@@ -30,8 +35,11 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 		return arrayId;
 	}
-	
-	public ArrayList <Autostrada> getAutostrade() { // retrieve automatico autostrade
+	/**
+	 * Metodo che restituisce tutte le autostrade presenti nella base di dati
+	 * @return Restituisce un ArrayList<Autostrada>
+	 */
+	public ArrayList <Autostrada> getAutostrade() { 
 		ArrayList <Autostrada> autobahn = new ArrayList<Autostrada>();
 		try {	
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT id FROM autostrada" );
@@ -82,14 +90,22 @@ public class ControllerAutostrada implements ControllerInterface {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 *Metodo di aggiunta dell'autostrada con le relative tariffe
+	 * @param nomeNuovo: Il nome dell'autostrada
+	 * @param tariffeNuove: mappa delle tariffe che mappa il nome delle categorie alle tariffe
+	 **/
 	public void addAutostradaWithTariff ( String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		Autostrada a = new Autostrada ( nomeNuovo, 22 );
 		a.save();
 		
 		editAutostradaWithTariff ( a.getId(), a.getNome(), tariffeNuove );
 	}
-	
+	/**
+	 *Prende le tariffe data l'autostrada
+	 * @param idAutostrada id passato da view
+	 * @return Restituisce una mappa che ha come chiave i nomi delle categorie(String) e come valori le tariffe(Float) 
+	 **/
 	public Map<String,Float> getAutostradeTariffe ( int idAutostrada ) {
 		HashMap<String,Float> classToTariffs = new HashMap<String, Float>();
 		try {
@@ -108,9 +124,12 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 		return classToTariffs;
 	}
-
+	/**
+	 *Metodo per la delete di un record
+	 *@param id: id del record da eliminare 
+	 **/
 	@Override
-	public void deleteRecord ( int id ) {//Con codice si intende l'Id o il nome dell'autostrada?
+	public void deleteRecord ( int id ) {
 		try {
 			ResultSet rs = Database.getConnectionStatement().executeQuery ( "SELECT * FROM autostrada WHERE id = "+id );
 			if(!rs.next()) {
@@ -122,5 +141,7 @@ public class ControllerAutostrada implements ControllerInterface {
 			e.printStackTrace();
 		}
 	}
+	
+
 	
 }

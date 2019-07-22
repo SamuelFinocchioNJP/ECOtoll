@@ -3,9 +3,15 @@ package veicolo;
 import java.sql.ResultSet;
 
 import utility.Database;
-
+/**
+ *Controller dell'oggetto Veicolo 
+ **/
 public class VeicoloController {
-
+	/**
+	 *Ottiene il veicolo data la targa
+	 *@param targa: targa con cui fare la ricerca
+	 *@return Veicolo ret: Veicolo restituito data la targa
+	 **/
 	public static Veicolo getVeicolo (String targa ) {
 		Veicolo ret=null;
 		try {

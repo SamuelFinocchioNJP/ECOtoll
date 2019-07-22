@@ -2,9 +2,17 @@ package veicolo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ *Abstract factory per la generazione di un oggetto veicolo 
+ **/
 public class FactoryConcreteVeicolo {
 	public FactoryConcreteVeicolo() {}
+	/***
+	 *Metodo generatore di veicoli con categoria;Il veicolo verrà popolato
+	 *@param ResultSet ogg: Il metodo prende in input un ResultSet generato da una query per ottenere un singolo veicolo.Tale query sarà sfruttata per popolare l'oggetto
+	 *@throws Exception
+	 *@return  Veicolo returnVal: Restituisce un veicolo astratto che però è stato istanziato come un veicolo figlio
+	 **/
 	public static Veicolo getVeicolo(ResultSet ogg) throws Exception {
 		String type=null;
 		Veicolo returnVal=null;
