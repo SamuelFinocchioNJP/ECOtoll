@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
+import Casello.Casello;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,10 +54,14 @@ public class LoginOperatorController implements Initializable{
 	
 	public void onBtnBackClick()
 	{
+		
+		
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
 		Parent root;
 		
 		try {	
+						
 			root = loader.load();
 			Stage stage = (Stage) submit.getScene().getWindow();
 			stage.setScene(new Scene(root));
@@ -83,6 +88,8 @@ public class LoginOperatorController implements Initializable{
 				
 		try {
 			
+			Casello casello = new Casello(Integer.valueOf(textbox_toll_code.getText()));
+			
 			//Creo il loader che contiene il nuovo layout dell'interfaccia
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Operator_Main.fxml"));
 			root = loader.load();
@@ -97,8 +104,13 @@ public class LoginOperatorController implements Initializable{
 			stage.setTitle("Operator Panel - Tollbooth #" + textbox_toll_code.getText());
 			
 		} catch (Exception e) {
+			
+			textbox_toll_code.setPromptText("Error");
 			e.printStackTrace();
-			System.err.println(e);
+			return;
+			
+			/*e.printStackTrace();
+			System.err.println(e);*/
 		}
 		
 	    //drag it here
