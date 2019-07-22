@@ -34,6 +34,23 @@ public class LoginAdministratorController implements Initializable {
 
 	}
 
+	public void onBtnBackClick()
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
+		Parent root;
+		
+		try {	
+			root = loader.load();
+			Stage stage = (Stage) btn_login.getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	
 	public void onClick()
 	{
 		try {

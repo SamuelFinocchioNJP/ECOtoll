@@ -13,9 +13,13 @@ import autostrada.Autostrada;
 import autostrada.ControllerAutostrada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import pedaggio.IPedaggio;
 import pedaggio.PedaggioEco;
 import pedaggio.PedaggioKm;
@@ -75,10 +79,26 @@ public class HomeOperatorMainController implements Initializable{
 			lbl_tollprice.setText("The ECOtoll will be avaible from 2021!");
 			lbl_tollprice.setVisible(true);
 		}
-		System.out.println("Toll Selected: "+toll_code);
+		System.out.println("Toll Selected: " + toll_code);
 		
 	}
 
+	public void onBtnBackClick()
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-operator.fxml"));
+		Parent root;
+		
+		try {	
+			root = loader.load();
+			Stage stage = (Stage) btn_eco_toll.getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
 	public void onClick() throws IOException {
 		
 		BufferedReader reader = new BufferedReader(new FileReader("tollData.txt"));

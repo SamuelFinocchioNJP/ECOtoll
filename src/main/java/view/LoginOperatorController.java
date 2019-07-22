@@ -51,6 +51,23 @@ public class LoginOperatorController implements Initializable{
 		
 	}
 	
+	public void onBtnBackClick()
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-choice.fxml"));
+		Parent root;
+		
+		try {	
+			root = loader.load();
+			Stage stage = (Stage) submit.getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	
 	public void onSubmitClick()
 	{		
 				
