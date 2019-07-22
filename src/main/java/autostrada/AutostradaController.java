@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import Tariffa.Tariffa;
+
+import tariffa.Tariffa;
 import utility.Database;
 
 /**

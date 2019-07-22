@@ -29,11 +29,11 @@ public class Database {
 		/** Database connection String **/
 		Connection conn = DriverManager.getConnection ( 
 				   "jdbc:mysql://" 
-						   + Settings.Config.DB_CONNECTION_SERVER + "/" 
-						   + Settings.Config.DB_CONNECTION_DBNAME 
+						   + settings.Config.DB_CONNECTION_SERVER + "/" 
+						   + settings.Config.DB_CONNECTION_DBNAME 
 						   + "?useSSL=false" 
-						   + "&user=" + Settings.Config.DB_CONNECTION_DBUSERNAME 
-						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD 
+						   + "&user=" + settings.Config.DB_CONNECTION_DBUSERNAME 
+						   + "&password=" + settings.Config.DB_CONNECTION_DBPASSWORD 
 						  );
 		
 		return conn.createStatement ( );
@@ -46,10 +46,10 @@ public class Database {
 		/** Database connection String **/
 		Connection conn = DriverManager.getConnection ( 
 				   "jdbc:mysql://" 
-						   + Settings.Config.DB_CONNECTION_SERVER + "/" 
-						   + Settings.Config.DB_CONNECTION_DBNAME 
-						   + "?user=" + Settings.Config.DB_CONNECTION_DBUSERNAME 
-						   + "&password=" + Settings.Config.DB_CONNECTION_DBPASSWORD );
+						   + settings.Config.DB_CONNECTION_SERVER + "/" 
+						   + settings.Config.DB_CONNECTION_DBNAME 
+						   + "?user=" + settings.Config.DB_CONNECTION_DBUSERNAME 
+						   + "&password=" + settings.Config.DB_CONNECTION_DBPASSWORD );
 		
 		return conn;
 	}

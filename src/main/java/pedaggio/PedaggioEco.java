@@ -5,7 +5,7 @@ package pedaggio;
 
 import java.util.Map;
 
-import Casello.Casello;
+import casello.Casello;
 import veicolo.Veicolo;
 
 /**
