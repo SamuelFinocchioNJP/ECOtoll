@@ -4,13 +4,13 @@ import java.sql.ResultSet;
 
 import utility.Database;
 /**
- *Controller dell'oggetto Veicolo 
+ *Veicolo's Controller
  **/
 public class VeicoloController {
 	/**
-	 *Ottiene il veicolo data la targa
-	 *@param targa: targa con cui fare la ricerca
-	 *@return Veicolo ret: Veicolo restituito data la targa
+	 *Get a vehicle from a given license plate
+	 *@param targa: license plate that is used for the researcj
+	 *@return Veicolo ret: object of type Veicolo (Vehicle) 
 	 **/
 	public static Veicolo getVeicolo (String targa ) {
 		Veicolo ret=null;

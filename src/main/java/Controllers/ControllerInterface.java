@@ -3,12 +3,13 @@ package Controllers;
 
 public interface ControllerInterface {
 	/**
-	 *Funzione comune che restituisce tutti gli id di un determinato oggetto gestito dal controller che la implementa 
+	 *Common method used to retrieve all the identifiers of the objects related to the controller that implements this interface from the database
+	 *@return It returns an array containing the identifiers 
 	 **/
 	public  int[] idRetriever();
 	/**
-	 *Metodo per la delete di un record
-	 *@param id: id del record da eliminare 
+	 *Method used for the delete of a single record
+	 *@param id: id of the record that needs to be deleted 
 	 **/
 	public  void deleteRecord(int id) ;
 }

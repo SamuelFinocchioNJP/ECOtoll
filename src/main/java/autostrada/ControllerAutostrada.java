@@ -11,7 +11,7 @@ import Casello.Casello;
 import Controllers.ControllerInterface;
 import utility.Database;
 /**
- * Controllore dell'oggetto Autostrada 
+ * Autostrada's controller
  */
 public class ControllerAutostrada implements ControllerInterface {
 	/**
@@ -36,8 +36,8 @@ public class ControllerAutostrada implements ControllerInterface {
 		return arrayId;
 	}
 	/**
-	 * Metodo che restituisce tutte le autostrade presenti nella base di dati
-	 * @return Restituisce un ArrayList<Autostrada>
+	 * Method that gets every single Autostrada in the database
+	 * @return Returns an ArrayList<Autostrada>
 	 */
 	public ArrayList <Autostrada> getAutostrade() { 
 		ArrayList <Autostrada> autobahn = new ArrayList<Autostrada>();
@@ -91,9 +91,9 @@ public class ControllerAutostrada implements ControllerInterface {
 		}
 	}
 	/**
-	 *Metodo di aggiunta dell'autostrada con le relative tariffe
-	 * @param nomeNuovo: Il nome dell'autostrada
-	 * @param tariffeNuove: mappa delle tariffe che mappa il nome delle categorie alle tariffe
+	 *Method that adds an Autostrada with the related tariffs
+	 * @param nomeNuovo: The Autostrada's name
+	 * @param tariffeNuove:A map from the categories (String) to the tariffs (Float)   
 	 **/
 	public void addAutostradaWithTariff ( String nomeNuovo, Map <String,Float> tariffeNuove ) {
 		Autostrada a = new Autostrada ( nomeNuovo, 22 );
@@ -102,9 +102,9 @@ public class ControllerAutostrada implements ControllerInterface {
 		editAutostradaWithTariff ( a.getId(), a.getNome(), tariffeNuove );
 	}
 	/**
-	 *Prende le tariffe data l'autostrada
-	 * @param idAutostrada id passato da view
-	 * @return Restituisce una mappa che ha come chiave i nomi delle categorie(String) e come valori le tariffe(Float) 
+	 *Fetches the tariffs from a given Autostrada
+	 * @param idAutostrada Autostrada's Id passed from the view
+	 * @return This method returns A map that maps  categories (String) to  tariffs (Float)  
 	 **/
 	public Map<String,Float> getAutostradeTariffe ( int idAutostrada ) {
 		HashMap<String,Float> classToTariffs = new HashMap<String, Float>();
@@ -125,8 +125,8 @@ public class ControllerAutostrada implements ControllerInterface {
 		return classToTariffs;
 	}
 	/**
-	 *Metodo per la delete di un record
-	 *@param id: id del record da eliminare 
+	 *Method for the delete of a record
+	 *@param id: id of the record that needs to be removed 
 	 **/
 	@Override
 	public void deleteRecord ( int id ) {
